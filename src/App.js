@@ -8,6 +8,7 @@ import Scan from './pages/Scan';
 import History from './pages/History';
 import Analyze from './pages/Analyze';
 import {Link, Route, BrowserRouter as Router, Routes} from 'react-router-dom'
+import Details from "./pages/Details";
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
           <Route path='/Analyze' Component={Analyze}></Route>
           <Route path='/Login' Component={Login}></Route>
           <Route path='/Register' Component={Register}></Route>
+          <Route path='/Details' Component={Details}></Route>
         </Routes>
       </Router>
       

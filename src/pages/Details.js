@@ -1,8 +1,12 @@
 import React from "react";
+import {scanStore} from "../stores/ScanStore";
 
-function Details() {
+const Details= () => {
+
     return (
-        <h1>TODO - Details</h1>
+        <div>
+            <h2>{scanStore.productCode}</h2>
+        </div>
     )
 }
 export default Details;
