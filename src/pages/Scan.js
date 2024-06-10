@@ -30,7 +30,7 @@ const Scan = () => {
             html5QrcodeScanner.clear();
         }
 
-    }, []);
+    }, [navigate]);
 
     return (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "20px"}}>
