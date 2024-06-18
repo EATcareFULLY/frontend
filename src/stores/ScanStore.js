@@ -3,22 +3,26 @@ import ApiService from "../services/ApiService";
 
 
 class ScanStore {
-    productCode = '';
-    testProducts = null;
+    scannedProductCode = '';
+    scannedProduct = null;
 
     constructor() {
         makeAutoObservable(this);
     }
 
     setProductCode(productCode) {
-        this.productCode=productCode;
-        console.log('store', this.productCode)
+        this.scannedProductCode=productCode;
+        console.log('storeCode', this.scannedProductCode);
     }
 
-    /* TO TYMCZASOWO JAKO REFERENCJA TO OGÓLNIE RACZEJ DO TEGO STORE NIE PASUJE
-    async getTestProducts(){
-        this.testProducts = await ApiService.getTestProducts();
-    }*/
+    async getScannedProduct(productCode){
+        this.scannedProduct = await ApiService.getScannedProduct(productCode);
+    }
+
+    async getTestProduct(){
+        this.scannedProduct = await ApiService.getTestProduct();
+        console.log('storeProduct', this.scannedProduct);
+    }
 
 }
 

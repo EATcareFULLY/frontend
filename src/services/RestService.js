@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const ROOT_URL = 'http://localhost:8080';
+export const ROOT_URL = 'http://localhost:8081';
 export const URLS = {
-    testproducts: `${ROOT_URL}/test/products`
+    testproducts: `${ROOT_URL}/test/products`,
+    testproduct: `${ROOT_URL}/test/product`
 };
 
 class RestService {
