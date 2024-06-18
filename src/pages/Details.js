@@ -2,11 +2,23 @@ import React, {useEffect} from "react";
 import {scanStore} from "../stores/ScanStore";
 
 const Details= () => {
+    console.log("Details component rendering");
 
     useEffect(() => {
-        scanStore.getTestProduct();
+
+        const fetchData = async () => {
+            await scanStore.getTestProduct();
+        }
+
+        fetchData();
+
 
     }, []);
+
+
+    if (!scanStore.scannedProduct) {
+        return <div>We cannot found any info about product {scanStore.scannedProductCode}</div>;
+    }
 
     return (
         <div>
