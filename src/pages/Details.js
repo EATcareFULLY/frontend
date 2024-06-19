@@ -1,12 +1,13 @@
 import React, {useEffect} from "react";
 import {scanStore} from "../stores/ScanStore";
+import { observer } from "mobx-react";
 
-const Details= () => {
+const Details= observer(() => {
     console.log("Details component rendering");
 
     useEffect(() => {
 
-        const fetchData = async () => {
+        async function fetchData () {
             await scanStore.getTestProduct();
         }
 
@@ -17,8 +18,9 @@ const Details= () => {
 
 
     if (!scanStore.scannedProduct) {
-        return <div>We cannot found any info about product {scanStore.scannedProductCode}</div>;
+        return <div>Loading...</div>;
     }
+
 
     return (
         <div>
@@ -64,5 +66,5 @@ const Details= () => {
 
         </div>
     )
-}
+});
 export default Details;
