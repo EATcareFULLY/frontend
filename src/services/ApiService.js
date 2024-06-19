@@ -14,6 +14,18 @@ class ApiService {
             console.error("Failed to fetch test products:", error);
         }
     }
+    static async getTestPurchases() {
+        try {
+            return await RestService.ajax(
+                `${URLS.testpurchases}`,
+                "GET",
+                null,
+                null
+            );
+        } catch (error) {
+            console.error("Failed to fetch test product:", error);
+        }
+    }
 
 
     static async getTestProduct() {

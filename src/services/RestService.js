@@ -3,7 +3,8 @@ import axios from "axios";
 export const ROOT_URL = 'http://localhost:8081';
 export const URLS = {
     testproducts: `${ROOT_URL}/test/products`,
-    testproduct: `${ROOT_URL}/test/product`
+    testproduct: `${ROOT_URL}/test/product`,
+    testpurchases: `${ROOT_URL}/test/purchases`
 };
 
 class RestService {
