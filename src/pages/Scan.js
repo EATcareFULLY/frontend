@@ -1,39 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { useNavigate } from 'react-router-dom';
-import {Html5QrcodeScanner} from "html5-qrcode";
 import {scanStore} from "../stores/ScanStore";
+import BarcodeForm from "../components/BarcodeForm";
+import BarcodeScanner from "../components/BarcodeScanner";
+import 'react-toastify/dist/ReactToastify.css';
+import {Slide, toast, ToastContainer} from "react-toastify";
 
 const Scan = () => {
-
     const navigate = useNavigate();
-    const [inputBarcode, setInputBarcode] = useState("");
-
-    useEffect(() => {
-
-        const html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader",
-            { fps: 10, qrbox: { width: 250, height: 250 }},
-            false
-        );
-
-        function onScanSuccess(decodedText, decodedResult) {
-            console.log(`Code matched = ${decodedText}`, decodedResult);
-            barcodeSubmition(decodedText);
-        }
-
-        function onScanFailure(error) {}
-
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-
-        return () => {
-            html5QrcodeScanner.clear();
-        }
-
-    }, []);
 
     const validateBarcode = (barcode) => {
         const barcodePattern = /^(?=.*\d)[\d\-]+$/;
-
         if (!barcodePattern.test(barcode)) {
             return false;
         }
@@ -42,37 +19,42 @@ const Scan = () => {
         return barcode_lengths.includes(barcode.length);
     };
 
-    const handleInputChange = (e) => {
-        setInputBarcode(e.target.value);
-    };
-
-    const handleInputSubmit = () => {
-        barcodeSubmition(inputBarcode);
-    };
-
     const barcodeSubmition = (barcode) => {
         if (validateBarcode(barcode)) {
             scanStore.setProductCode(barcode);
             navigate("/Details");
         } else {
-            alert("Invalid barcode");
+            toast.error('Invalid barcode', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                pauseOnHover: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Slide,
+            });
         }
-    }
+    };
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", margin: "20px"}}>
-            <h2>Scan the Product Barcode</h2>
-            <div id="reader" style={{ width: "800px"}}></div>
-            <h2>Or Enter the Product Code Manually</h2>
-            <input
-                type="text"
-                value={inputBarcode}
-                onChange={handleInputChange}
-                placeholder="Enter barcode"
-            />
-            <button onClick={handleInputSubmit}>Submit</button>
-
+        <div className="container">
+            <ToastContainer/>
+            <div className="row justify-content-center mt-2">
+                <div className="col-md-8 text-center">
+                    <BarcodeScanner barcodeSubmition={barcodeSubmition} />
+                </div>
+            </div>
+            <div className="row justify-content-center mt-4">
+                <div className="col-md-6">
+                    <BarcodeForm
+                        barcodeSubmition={barcodeSubmition}
+                    />
+                </div>
+            </div>
         </div>
-    )
-}
+    );
+};
+
 export default Scan;
