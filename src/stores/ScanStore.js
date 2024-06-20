@@ -20,6 +20,11 @@ class ScanStore {
         console.log('storeProduct', this.scannedProduct);
     }
 
+    resetScannedProduct(){
+        this.scannedProduct = null;
+        console.log('storeProduct', this.scannedProduct);
+    }
+
     async getTestProduct(){
         this.scannedProduct = await ApiService.getTestProduct();
         console.log('storeProduct', this.scannedProduct);

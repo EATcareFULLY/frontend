@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {scanStore} from "../stores/ScanStore";
 import { observer } from "mobx-react";
 import Loading from "../components/Loading";
+import ProductNotFound from "../components/ProductNotFound";
 
 const Details = observer(() => {
     console.log("Details component rendering");
@@ -12,10 +13,19 @@ const Details = observer(() => {
         }
 
         fetchData();
+
+
+        return () => {
+            scanStore.resetScannedProduct();
+        };
     }, []);
 
     if (!scanStore.scannedProduct) {
         return <Loading/>;
+    }
+
+    if (scanStore.scannedProduct && !scanStore.scannedProduct.id) {
+        return <ProductNotFound/>;
     }
 
     return (
@@ -68,6 +78,24 @@ const Details = observer(() => {
                                 {scanStore.scannedProduct.tags.map((tag) => (
                                     <tr key={tag.id}>
                                         <td>{tag.name}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                    {scanStore.scannedProduct.allergens && scanStore.scannedProduct.allergens.length > 0 && (
+                        <div className="table-responsive mt-4">
+                            <table className="table table-striped">
+                                <thead className="thead-dark">
+                                <tr>
+                                    <th>Allergen</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {scanStore.scannedProduct.allergens.map((allergen) => (
+                                    <tr key={allergen.id}>
+                                        <td>{allergen.name}</td>
                                     </tr>
                                 ))}
                                 </tbody>
