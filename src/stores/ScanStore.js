@@ -15,8 +15,9 @@ class ScanStore {
         console.log('storeCode', this.scannedProductCode);
     }
 
-    async getScannedProduct(productCode){
-        this.scannedProduct = await ApiService.getScannedProduct(productCode);
+    async getScannedProduct(){
+        this.scannedProduct = await ApiService.getScannedProduct(this.scannedProductCode);
+        console.log('storeProduct', this.scannedProduct);
     }
 
     async getTestProduct(){

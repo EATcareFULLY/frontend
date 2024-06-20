@@ -2,69 +2,81 @@ import React, {useEffect} from "react";
 import {scanStore} from "../stores/ScanStore";
 import { observer } from "mobx-react";
 
-const Details= observer(() => {
+const Details = observer(() => {
     console.log("Details component rendering");
 
     useEffect(() => {
-
-        async function fetchData () {
-            await scanStore.getTestProduct();
+        async function fetchData() {
+            await scanStore.getScannedProduct();
         }
 
         fetchData();
-
-
     }, []);
 
-
     if (!scanStore.scannedProduct) {
-        return <div>Loading...</div>;
+        return <div className="d-flex justify-content-center align-items-center" style={{height: "100vh"}}>Loading...</div>;
     }
 
-
     return (
-        <div>
-            <h2>{scanStore.scannedProductCode}</h2>
-            <h2>{scanStore.scannedProduct.id}</h2>
-            <h2>{scanStore.scannedProduct.name}</h2>
-            <h2>{scanStore.scannedProduct.brand}</h2>
-            <h2>{scanStore.scannedProduct.score}</h2>
-            <img src={scanStore.scannedProduct.imageURL} alt="???"/>
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Content</th>
-                </tr>
-                </thead>
-                <tbody>
-                {scanStore.scannedProduct.ingredients.map((ingredient) => (
-                    <tr key={ingredient.id}>
-                        <td>{ingredient.name}</td>
-                        <td>{ingredient.content}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Tag</th>
-                </tr>
-                </thead>
-                <tbody>
-                {scanStore.scannedProduct.tags.map((tag) => (
-                    <tr key={tag.id}>
-                        <td>{tag.name}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-
+        <div className="container mt-5">
+            <div className="card">
+                <div className="card-header">
+                    <h2 className="text-center">{scanStore.scannedProductCode}</h2>
+                </div>
+                <div className="card-body">
+                    <div className="row mb-3">
+                        <div className="col-md-4">
+                            <img src={scanStore.scannedProduct.imageURL} alt="Product" className="img-fluid rounded"/>
+                        </div>
+                        <div className="col-md-8">
+                            <h3>ID: {scanStore.scannedProduct.id}</h3>
+                            <h3>Name: {scanStore.scannedProduct.name}</h3>
+                            <h3>Brand: {scanStore.scannedProduct.brand}</h3>
+                            <h3>Score: {scanStore.scannedProduct.score}</h3>
+                        </div>
+                    </div>
+                    {scanStore.scannedProduct.ingredients && scanStore.scannedProduct.ingredients.length > 0 && (
+                        <div className="table-responsive">
+                            <table className="table table-striped">
+                                <thead className="thead-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Content</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {scanStore.scannedProduct.ingredients.map((ingredient) => (
+                                    <tr key={ingredient.id}>
+                                        <td>{ingredient.name}</td>
+                                        <td>{ingredient.content}%</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                    {scanStore.scannedProduct.tags && scanStore.scannedProduct.tags.length > 0 && (
+                        <div className="table-responsive mt-4">
+                            <table className="table table-striped">
+                                <thead className="thead-dark">
+                                <tr>
+                                    <th>Tag</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {scanStore.scannedProduct.tags.map((tag) => (
+                                    <tr key={tag.id}>
+                                        <td>{tag.name}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
-    )
+    );
 });
+
 export default Details;

@@ -45,7 +45,7 @@ class ApiService {
     static async getScannedProduct(productCode) {
         try {
             return await RestService.ajax(
-                `${URLS.testproduct}?code=${productCode}`,
+                `${URLS.products}/${productCode}`,
                 "GET",
                 null,
                 null
