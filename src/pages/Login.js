@@ -1,8 +1,16 @@
-import React from "react";
+import React from 'react';
 
-function Login() {
+const Login = () => {
+    const handleLogin = () => {
+        window.location.href = 'http://localhost:8081/test/secure';
+    };
+
     return (
-        <h1>TODO - Login</h1>
-    )
-}
+        <div>
+            <h1>Login Page</h1>
+            <button onClick={handleLogin}>Login</button>
+        </div>
+    );
+};
+
 export default Login;

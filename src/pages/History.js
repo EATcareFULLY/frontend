@@ -6,6 +6,7 @@ const History = observer(() => {
     useEffect(() => {
         const fetchData = async () => {
             await historyStore.fetchAllPurchases();
+            console.log("history",historyStore.history);
         };
 
         fetchData();
@@ -16,6 +17,7 @@ const History = observer(() => {
             <h1>Purchase List</h1>
             {historyStore.history.length === 0 ? (
                 <p>Loading...</p>
+
             ) : (
                 <ul>
 
@@ -25,6 +27,7 @@ const History = observer(() => {
                             <p>Product Name: {purchase.product.name}</p>
                             <p>Brand: {purchase.product.brand}</p>
                             <p>Purchase Date: {new Date(purchase.purchaseDate).toLocaleString()}</p>
+                            <p>Quantity: {purchase.quantity}</p>
                             <hr/>
                         </li>
                     ))}
