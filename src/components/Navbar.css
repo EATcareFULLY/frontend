@@ -1,0 +1,28 @@
+.custom-navbar {
+    background-color: #343a40;
+}
+
+.custom-navbar .nav-link,
+.custom-navbar .navbar-brand,
+.custom-navbar .dropdown-item {
+    color: white;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .navbar-brand:hover,
+.custom-navbar .dropdown-item:hover {
+    color: #ccc;
+}
+
+.custom-navbar .dropdown-menu {
+    background-color: #343a40;
+    border: none;
+}
+
+.custom-navbar .dropdown-item {
+    color: white;
+}
+
+.custom-navbar .dropdown-item:hover {
+    background-color: #495057;
+}

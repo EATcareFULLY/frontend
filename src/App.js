@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Scan from './pages/Scan';
+import Footer from './components/Footer'
 import History from './pages/History';
 import Analyze from './pages/Analyze';
 import {Link, Route, BrowserRouter as Router, Routes} from 'react-router-dom'
@@ -24,6 +25,7 @@ function App() {
           <Route path='/Details' Component={Details}></Route>
         </Routes>
       </Router>
+      <Footer/>
       
     </div>
   );
