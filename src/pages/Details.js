@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {scanStore} from "../stores/ScanStore";
 import { observer } from "mobx-react";
+import Loading from "../components/Loading";
 
 const Details = observer(() => {
     console.log("Details component rendering");
@@ -14,7 +15,7 @@ const Details = observer(() => {
     }, []);
 
     if (!scanStore.scannedProduct) {
-        return <div className="d-flex justify-content-center align-items-center" style={{height: "100vh"}}>Loading...</div>;
+        return <Loading/>;
     }
 
     return (
