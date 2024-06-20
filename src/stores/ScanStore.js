@@ -12,11 +12,36 @@ class ScanStore {
 
     setProductCode(productCode) {
         this.scannedProductCode=productCode;
+        localStorage.setItem('scannedProductCode', productCode);
         console.log('storeCode', this.scannedProductCode);
     }
 
+    getProductCodeFromStorage(){
+        const storedProductCode = localStorage.getItem('scannedProductCode');
+
+        if (storedProductCode) {
+            this.scannedProductCode = storedProductCode;
+        } else {
+            this.scannedProductCode = '00000000';
+        }
+
+    }
+
     async getScannedProduct(){
-        this.scannedProduct = await ApiService.getScannedProduct(this.scannedProductCode);
+
+        if(this.scannedProductCode === ''){
+            this.getProductCodeFromStorage();
+        }
+
+        console.log('storeCode', this.scannedProductCode);
+
+        let product = await ApiService.getScannedProduct(this.scannedProductCode);
+
+        if (product && product.ingredients) {
+            product.ingredients.sort((a, b) => b.content - a.content);
+        }
+
+        this.scannedProduct = product;
         console.log('storeProduct', this.scannedProduct);
     }
 
