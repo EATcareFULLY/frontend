@@ -10,7 +10,7 @@ const ProductNotFound = () => {
 
     return (
         <div className="container mt-5">
-            <div className="alert alert-warning text-center">
+            <div className="alert alert-secondary text-center">
                 <h2>Product Not Found</h2>
                 <p>The product you are looking for does not exist in our database.</p>
                 <p>Try again with different product.</p>
