@@ -67,6 +67,7 @@ const Analyze = observer(() => {
     return (
         <Container className="my-5">
             <h1 className="text-center mb-5">Purchase Analysis</h1>
+            <h2 className="text-center mb-5">Your healthy score: {averageScore}</h2>
             <Row className="gx-10">
                 <Col md={6}>
                     <h3 className="text-center">Most frequently bought</h3>
