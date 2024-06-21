@@ -1,31 +1,32 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // Importowanie pliku CSS
 
-function MainNavBar() {
+const MainNavBar = ({ isAuthenticated, logout }) => {
   return (
-      <Navbar expand="lg" className="custom-navbar">
-        <Container>
-          <Navbar.Brand href="#home">EATcareFULLY</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to="/Scan">Scan</Nav.Link>
-              <NavDropdown title="More" id="basic-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/History">History</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/Analyze">Analyze</NavDropdown.Item>
-              </NavDropdown>
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Container>
+        <Navbar.Brand as={Link} to="/">EATcareFULLY</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/Scan">Scan</Nav.Link>
+            <Nav.Link as={Link} to="/History">History</Nav.Link>
+            <Nav.Link as={Link} to="/Analyze">Analyze</Nav.Link>
+            <Nav.Link as={Link} to="/Details">Details</Nav.Link>
+          </Nav>
+          <Nav>
+            {isAuthenticated ? (
+              <Nav.Link onClick={logout}>Logout</Nav.Link>
+            ) : (
               <Nav.Link as={Link} to="/Login">Login/Register</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-}
+};
 
 export default MainNavBar;

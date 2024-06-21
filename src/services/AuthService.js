@@ -8,10 +8,11 @@ const useAuth = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        debugger;
         await api.get('/session/user');
         setIsAuthenticated(true);
       } catch (error) {
-        window.location.href = 'http://localhost:8081/oauth2/authorization/keycloak';
+        setIsAuthenticated(false);
       } finally {
         setLoading(false);
       }
@@ -19,15 +20,14 @@ const useAuth = () => {
 
     fetchUser();
   }, []);
-
-  const logout = () => {
-    // Handle logout logic
-    setIsAuthenticated(false);
-    window.location.href = '/'; // Redirect to home or login page
+//http://localhost:8080/realms/eat-carefully/protocol/openid-connect/logout
+  const logout = async () => {
+        window.location.href = "http://localhost:8080/realms/eat-carefully/protocol/openid-connect/logout";
+      
+        setIsAuthenticated(false);
   };
 
   return { isAuthenticated, loading, logout };
-
 };
 
 export default useAuth;

@@ -20,7 +20,7 @@ function Home() {
                                 <Card.Text className="mb-4 text-white animated-text">
                                     Whether you want to lose weight, gain muscle, or simply eat healthier, EATcareFULLY is your perfect companion on the journey to a better you.
                                 </Card.Text>
-                                <Button variant="primary" size="lg" href="/Scan" className="animate__animated animate__pulse animate__infinite">Get Started</Button>
+        
                             </Card.Body>
                         </Card>
                     </Col>
