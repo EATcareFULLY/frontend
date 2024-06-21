@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {scanStore} from "../stores/ScanStore";
 import BarcodeForm from "../components/BarcodeForm";
 import BarcodeScanner from "../components/BarcodeScanner";
-import 'react-toastify/dist/ReactToastify.css';
-import {Slide, toast, ToastContainer} from "react-toastify";
+import {Slide, toast} from "react-toastify";
 
 const Scan = () => {
     const navigate = useNavigate();
@@ -40,7 +39,6 @@ const Scan = () => {
 
     return (
         <div className="container">
-            <ToastContainer/>
             <div className="row justify-content-center mt-2">
                 <div className="col-md-8 text-center">
                     <BarcodeScanner barcodeSubmition={barcodeSubmition} />

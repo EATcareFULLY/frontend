@@ -1,5 +1,6 @@
 import { makeAutoObservable} from "mobx";
 import ApiService from "../services/ApiService";
+import {Slide, toast} from "react-toastify";
 
 
 class ScanStore {
@@ -48,6 +49,11 @@ class ScanStore {
     resetScannedProduct(){
         this.scannedProduct = null;
         console.log('storeProduct', this.scannedProduct);
+    }
+
+    async addScannedProductToPurchase(quantity){
+
+        await ApiService.addProductToPurchased(this.scannedProduct.id, quantity);
     }
 
     async getTestProduct(){

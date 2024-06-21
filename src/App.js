@@ -10,11 +10,15 @@ import History from './pages/History';
 import Analyze from './pages/Analyze';
 import {Link, Route, BrowserRouter as Router, Routes} from 'react-router-dom'
 import Details from "./pages/Details";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
 function App() {
   return (
     <div className="App">
       <Router>
         <MainNavBar/>
+        <ToastContainer/>
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/Scan' Component={Scan}></Route>

@@ -3,6 +3,7 @@ import {scanStore} from "../stores/ScanStore";
 import { observer } from "mobx-react";
 import Loading from "../components/Loading";
 import ProductNotFound from "../components/ProductNotFound";
+import ProductInfo from "../components/ProductInfo";
 
 const Details = observer(() => {
     console.log("Details component rendering");
@@ -31,21 +32,17 @@ const Details = observer(() => {
     return (
         <div className="container mt-5">
             <div className="card">
-                <div className="card-header">
-                    <h2 className="text-center">{scanStore.scannedProductCode}</h2>
+                <div className="card-header bg-dark" style={{ color: 'white' }}>
+                    <h2 className="text-center">Products's Details</h2>
                 </div>
-                <div className="card-body">
-                    <div className="row mb-3">
-                        <div className="col-md-4">
-                            <img src={scanStore.scannedProduct.imageURL} alt="Product" className="img-fluid rounded"/>
-                        </div>
-                        <div className="col-md-8">
-                            <h3>ID: {scanStore.scannedProduct.id}</h3>
-                            <h3>Name: {scanStore.scannedProduct.name}</h3>
-                            <h3>Brand: {scanStore.scannedProduct.brand}</h3>
-                            <h3>Score: {scanStore.scannedProduct.score}</h3>
-                        </div>
-                    </div>
+                <div className="card-body ">
+                    <ProductInfo
+                        imageURL={scanStore.scannedProduct.imageURL}
+                        id={scanStore.scannedProduct.id}
+                        name={scanStore.scannedProduct.name}
+                        brand={scanStore.scannedProduct.brand}
+                        score={scanStore.scannedProduct.score}
+                    />
                     {scanStore.scannedProduct.ingredients && scanStore.scannedProduct.ingredients.length > 0 && (
                         <div className="table-responsive">
                             <table className="table table-striped">
