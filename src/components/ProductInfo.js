@@ -6,7 +6,6 @@ import nutri_d from '../assets/nutri-score-d.png';
 import nutri_e from '../assets/nutri-score-e.png';
 import {scanStore} from "../stores/ScanStore";
 import {Dash, Plus} from "react-bootstrap-icons";
-import {Slide, toast} from "react-toastify";
 
 const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 

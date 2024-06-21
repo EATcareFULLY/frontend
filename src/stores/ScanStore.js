@@ -1,6 +1,5 @@
 import { makeAutoObservable} from "mobx";
 import ApiService from "../services/ApiService";
-import {Slide, toast} from "react-toastify";
 
 
 class ScanStore {
