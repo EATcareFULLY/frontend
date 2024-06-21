@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import MainNavBar from './components/Navbar';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import LoginRegister from './pages/LoginRegister';
+
 import Scan from './pages/Scan';
 import Footer from './components/Footer'
 import History from './pages/History';
@@ -20,8 +20,7 @@ function App() {
           <Route path='/Scan' Component={Scan}></Route>
           <Route path='/History' Component={History}></Route>
           <Route path='/Analyze' Component={Analyze}></Route>
-          <Route path='/Login' Component={Login}></Route>
-          <Route path='/Register' Component={Register}></Route>
+          <Route path='/Login' Component={LoginRegister}></Route>
           <Route path='/Details' Component={Details}></Route>
         </Routes>
       </Router>

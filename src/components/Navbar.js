@@ -20,8 +20,7 @@ function MainNavBar() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/Analyze">Analyze</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link as={Link} to="/Login">Login</Nav.Link>
-              <Nav.Link as={Link} to="/Register">Register</Nav.Link>
+              <Nav.Link as={Link} to="/Login">Login/Register</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
