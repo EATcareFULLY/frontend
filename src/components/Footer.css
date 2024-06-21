@@ -1,6 +1,11 @@
 footer {
     background-color: #343a40;
     color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 1; /* Upewnienie się, że footer jest na wierzchu */
+    padding: 1rem 0;
 }
 
 footer a {
