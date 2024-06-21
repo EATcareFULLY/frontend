@@ -4,6 +4,8 @@ import nutri_b from '../assets/nutri-score-b.png';
 import nutri_c from '../assets/nutri-score-c.png';
 import nutri_d from '../assets/nutri-score-d.png';
 import nutri_e from '../assets/nutri-score-e.png';
+import nutri_unknown from '../assets/nutri-score-unknown.png';
+import img_placeholder from '../assets/product-photo-placeholder.png'
 import {scanStore} from "../stores/ScanStore";
 import {Dash, Plus} from "react-bootstrap-icons";
 
@@ -17,6 +19,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
         'c': nutri_c,
         'd': nutri_d,
         'e': nutri_e,
+        'unknown': nutri_unknown
     };
 
     const handleAddProduct = async () => {
@@ -45,7 +48,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
     return (
         <div className="row mb-3">
             <div className="col-md-6">
-                <img src={imageURL} alt="Product" className="img-fluid rounded" />
+                <img src={imageURL || img_placeholder} alt="Product" className="img-fluid rounded" />
             </div>
             <div className="col-md-6 text-start">
                 <h1>{name}</h1>
