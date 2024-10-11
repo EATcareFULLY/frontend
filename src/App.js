@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Router>
         <MainNavBar/>
-        <ToastContainer/>
+        <ToastContainer limit={3}/>
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/Scan' Component={Scan}></Route>

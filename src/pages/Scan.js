@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {scanStore} from "../stores/ScanStore";
 import BarcodeForm from "../components/BarcodeForm";
 import BarcodeScanner from "../components/BarcodeScanner";
-import {Slide, toast} from "react-toastify";
+import {errorToast} from "../utils/Toasts";
 
 const Scan = () => {
     const navigate = useNavigate();
@@ -23,17 +23,7 @@ const Scan = () => {
             scanStore.setProductCode(barcode);
             navigate("/Details");
         } else {
-            toast.error('Invalid barcode', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                pauseOnHover: false,
-                closeOnClick: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Slide,
-            });
+            errorToast("Invalid barcode format.")
         }
     };
 

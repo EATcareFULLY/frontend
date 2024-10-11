@@ -1,5 +1,5 @@
 import RestService, {URLS} from "./RestService";
-import {Slide, toast} from "react-toastify";
+import {errorToast, successToast} from "../utils/Toasts";
 
 class ApiService {
 
@@ -72,34 +72,14 @@ class ApiService {
                 purchaseRequest
             );
 
-            toast.success('YASS', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                pauseOnHover: false,
-                closeOnClick: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Slide,
-            });
+            successToast("Product added to purchased products.");
 
             return resoonse;
 
         } catch (error) {
             console.error("Failed to add " + purchaseRequest.barcode + " product:", error);
 
-            toast.error('Failed to add product to purchased', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                pauseOnHover: false,
-                closeOnClick: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Slide,
-            });
+            errorToast("Failed to add product to purchased products.");
         }
     }
 
