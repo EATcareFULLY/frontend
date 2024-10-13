@@ -33,3 +33,7 @@ You just need to delete my-pwa-cache1.
 `Service worker occupies url so it may save your different project which was hosted using this url.` 
 ## Some pages are on infinite loading
 Redirect doesn't seem to work currently so page is blocked on loading screen
+## Wrong placing of images and ?icons?
+Photos are currently adjusted to left instead of center.
+## Number of items input needs resize and better styling
+Input is bigger than buttons.
