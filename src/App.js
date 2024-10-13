@@ -15,23 +15,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
 function App() {
   return (
-    <div className="App">
+      <div>
       <Router>
-        <MainNavBar/>
-        <ToastContainer limit={3}/>
-        <Routes>
-          <Route path='/' Component={Home}></Route>
-          <Route path='/Scan' Component={Scan}></Route>
-          <Route path='/History' Component={History}></Route>
-          <Route path='/Analyze' Component={Analyze}></Route>
-          <Route path='/Login' Component={Login}></Route>
-          <Route path='/Register' Component={Register}></Route>
-          <Route path='/Details' Component={Details}></Route>
-        </Routes>
+          <MainNavBar/>
+          <ToastContainer limit={3}/>
+          <Routes>
+              <Route path='/' Component={Home}></Route>
+              <Route path='/Scan' Component={Scan}></Route>
+              <Route path='/History' Component={History}></Route>
+              <Route path='/Analyze' Component={Analyze}></Route>
+              <Route path='/Login' Component={Login}></Route>
+              <Route path='/Register' Component={Register}></Route>
+              <Route path='/Details' Component={Details}></Route>
+          </Routes>
       </Router>
-      <Footer/>
-      
-    </div>
+    <Footer/>
+      </div>
   );
 }
 
