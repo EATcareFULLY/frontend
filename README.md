@@ -31,3 +31,5 @@ Probably service worker registered itself twice
 It can happen that old data from service worker overrides the port that you want to use.
 You just need to delete my-pwa-cache1.
 `Service worker occupies url so it may save your different project which was hosted using this url.` 
+## Some pages are on infinite loading
+Redirect doesn't seem to work currently so page is blocked on loading screen
