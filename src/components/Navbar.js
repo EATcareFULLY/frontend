@@ -10,6 +10,7 @@ function MainNavBar() {
 
   const { keycloak, initialized } = useKeycloak();
 
+  //TODO refactor and toasts and 401
   const handleAuthAction = () => {
     if (initialized) {
       if (keycloak.authenticated) {
