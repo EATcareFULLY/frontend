@@ -1,4 +1,5 @@
 import axios from "axios";
+import keycloak from "../utils/Keycloak";
 
 export const ROOT_URL = 'http://localhost:8081';
 export const URLS = {
@@ -10,12 +11,21 @@ export const URLS = {
 };
 
 class RestService {
-    static async ajax(url, method, data, headers) {
+    static async ajax(url, method, data, headers = {}) {
+
+        if (keycloak.authenticated) {
+            await keycloak.updateToken(30).catch(() => {
+                keycloak.logout();
+            });
+
+            headers['Authorization'] = `Bearer ${keycloak.token}`;
+        }
+
         const config = {
             url,
             method,
             data,
-            headers: {...headers},
+            headers,
             withCredentials: true
         };
 
@@ -26,3 +36,4 @@ class RestService {
 }
 
 export default RestService;
+

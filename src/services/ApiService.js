@@ -8,7 +8,6 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.testproducts}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
@@ -20,7 +19,6 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.testpurchases}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
@@ -34,7 +32,6 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.testproduct}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
@@ -48,7 +45,6 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.products}/${productCode}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
@@ -68,7 +64,6 @@ class ApiService {
             const resoonse =  await RestService.ajax(
                 `${URLS.purchases}`,
                 "POST",
-                null,
                 purchaseRequest
             );
 
