@@ -3,9 +3,27 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // Importowanie pliku CSS
+import './Navbar.css';
+import {useKeycloak} from "@react-keycloak/web"; // Importowanie pliku CSS
 
 function MainNavBar() {
+
+  const { keycloak, initialized } = useKeycloak();
+
+  //TODO reafactor and toast and 401
+
+  const handleAuthAction = () => {
+    if (initialized) {
+      if (keycloak.authenticated) {
+        keycloak.logout({
+          redirectUri: "http://localhost:3000/"
+        });
+      } else {
+        keycloak.login();
+      }
+    }
+  };
+
   return (
       <Navbar expand="lg" className="custom-navbar">
         <Container>
@@ -20,8 +38,9 @@ function MainNavBar() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/Analyze">Analyze</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link as={Link} to="/Login">Login</Nav.Link>
-              <Nav.Link as={Link} to="/Register">Register</Nav.Link>
+              <Nav.Link onClick={handleAuthAction}>
+                {keycloak.authenticated ? 'Logout' : 'Sign in'}
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

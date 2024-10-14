@@ -1,5 +1,6 @@
+
 function swDev() {
-    let url = `http://localhost:3000/sw.js`; // Możesz użyć process.env.PUBLIC_URL jeśli masz zdefiniowane odpowiednie zmienne środowiskowe
+    let url = `http://localhost:3000/sw.js`;
     console.log(url);
 
     if ('serviceWorker' in navigator) {
@@ -8,7 +9,7 @@ function swDev() {
 
             if (registration.waiting) {
                 console.log("New service worker waiting.");
-                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                registration.waiting.postMessage({type: 'SKIP_WAITING'});
             }
 
             registration.addEventListener('updatefound', () => {
@@ -19,7 +20,7 @@ function swDev() {
                         if (newWorker.state === 'installed') {
                             if (navigator.serviceWorker.controller) {
                                 console.log("New service worker installed and waiting.");
-                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                newWorker.postMessage({type: 'SKIP_WAITING'});
                             }
                         }
                     });
@@ -31,6 +32,7 @@ function swDev() {
     } else {
         console.log("Service worker is not supported in this browser.");
     }
+
 }
 
 export default swDev;

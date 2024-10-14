@@ -5,10 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import swDev from './swDev'
+import {ReactKeycloakProvider} from "@react-keycloak/web";
+import keycloak from "./utils/Keycloak";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App/>
+    <ReactKeycloakProvider authClient={keycloak}>
+        <App />
+    </ReactKeycloakProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

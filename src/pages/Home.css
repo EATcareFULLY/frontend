@@ -1,0 +1,79 @@
+/* Wideo tła */
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -2;
+    object-fit: cover;
+}
+
+/* Tło strony */
+.home-bg {
+    position: relative;
+    z-index: 1;
+}
+
+/* Pełna wysokość dla kontenera */
+.min-vh-100 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Stylizacja karty */
+.bg-dark.bg-opacity-75 {
+    background-color: rgba(0, 0, 0, 0.6); /* Zmniejszenie przezroczystości dla lepszej czytelności */
+    border-radius: 10px; /* Dodanie zaokrąglonych rogów */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Dodanie cienia */
+    padding: 2rem; /* Dodanie wewnętrznego marginesu */
+}
+
+/* Kolor tekstu */
+.text-white {
+    color: #ffffff; /* Jaśniejszy kolor dla lepszej czytelności */
+}
+
+/* Animacje tekstu */
+.animated-text {
+    animation: fadeInUp 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Kontener treści */
+.content-container {
+    position: relative;
+    z-index: 2;
+    padding-top: 20vh; /* Dodanie górnego paddingu */
+    padding-bottom: 20vh; /* Dodanie dolnego paddingu */
+}
+
+/* Upewnienie się, że navbar i footer są na wierzchu */
+.navbar {
+    position: relative;
+    z-index: 3;
+}
+
+/* Zielony przycisk */
+.btn-primary {
+    background-color: #28a745 !important; /* Zmiana koloru przycisku na zielony */
+    border: none !important; /* Usunięcie obramowania */
+}
+
+.btn-primary:hover {
+    background-color: #218838 !important; /* Ciemniejszy zielony przycisk po najechaniu */
+}
+
+/* Animacje */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
