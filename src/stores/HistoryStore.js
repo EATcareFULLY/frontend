@@ -13,7 +13,7 @@ class HistoryStore {
             const products = await ApiService.getTestPurchases();
             this.setHistory(products);
         } catch (error) {
-            console.error("Failed to fetch purchases:", error);
+            console.error("Failed to fetch purchases");
         }
     }
 
@@ -45,8 +45,7 @@ class HistoryStore {
                 return acc;
             }, {});
         const brandNames = Object.keys(mostFrequentBrand);
-        const mostFrequentBrandName = brandNames.reduce((a, b) => mostFrequentBrand[a] > mostFrequentBrand[b] ? a : b, brandNames[0]);
-        return mostFrequentBrandName;
+        return brandNames.reduce((a, b) => mostFrequentBrand[a] > mostFrequentBrand[b] ? a : b, brandNames[0]);
     }
 
     getAverageScore() {
@@ -62,20 +61,21 @@ class HistoryStore {
 
         const averageScoreNumeric = totalScore / this.history.length;
 
-        const numericToLetterScore = (averageScore) => {
-            if (averageScore >= 3.5) {
-                return 'A';
-            } else if (averageScore >= 2.5) {
-                return 'B';
-            } else if (averageScore >= 1.5) {
-                return 'C';
-            } else {
-                return 'D';
-            }
-        };
 
-        return numericToLetterScore(averageScoreNumeric);
+
+        return this.numericToLetterScore(averageScoreNumeric);
     }
+    numericToLetterScore(averageScore)  {
+        if (averageScore >= 3.5) {
+            return 'A';
+        } else if (averageScore >= 2.5) {
+            return 'B';
+        } else if (averageScore >= 1.5) {
+            return 'C';
+        } else {
+            return 'D';
+        }
+    };
 
     getScoreCount() {
         return this.history.reduce((acc, purchase) => {
