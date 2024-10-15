@@ -1,7 +1,7 @@
 import axios from "axios";
 import keycloak from "../utils/Keycloak";
 
-export const ROOT_URL = 'http://localhost:8081';
+export const ROOT_URL = 'http://localhost:8081/api';
 export const URLS = {
     products: `${ROOT_URL}/products`,
     purchases: `${ROOT_URL}/purchases`,
