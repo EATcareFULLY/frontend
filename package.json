@@ -2,8 +2,8 @@
   "name": "zpi-base",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.3",
@@ -33,13 +33,31 @@
     "resolve-url-loader": "^4.0.0",
     "serve": "^14.2.3",
     "svgo": "^3.3.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@craco/craco": "^7.1.0"
   },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios)/)"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -60,7 +78,10 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0",
+    "@babel/plugin-transform-runtime": "^7.25.7",
+    "@babel/preset-env": "^7.25.8",
+    "@babel/preset-react": "^7.25.7",
+    "babel-jest": "^29.7.0",
     "html5-qrcode": "^2.3.8",
     "tailwindcss": "^3.4.13"
   }
