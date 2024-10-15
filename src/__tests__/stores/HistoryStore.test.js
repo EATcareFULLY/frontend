@@ -140,10 +140,19 @@ const getMockList = () => {
         }
     ];
 }
-describe('HistoryStore', (object, method) => {
-    it('should fetch test products from api', (object, method) => {
-        jest.spyOn(ApiService, "getTestPurchases").mockResolvedValue(getMockList())
+describe('HistoryStore', () => {
+    beforeEach(() => {
+
     })
-    historyStore.fetchAllPurchases()
-    expect(historyStore.history.length).toBe(1)
+    it('should fetch test products from api', async () => {
+        jest.spyOn(ApiService, "getTestPurchases").mockResolvedValue(getMockList());
+        await historyStore.fetchAllPurchases();
+        expect(historyStore.history.length).toBe(3);
+    });
+    it("should set history", () => {
+        expect(historyStore.history.length).toBe(0);
+        historyStore.setHistory([])
+        expect(historyStore.history.length).toBe(0);
+    })
+
 })
