@@ -142,7 +142,7 @@ const getMockList = () => {
 }
 describe('HistoryStore', () => {
     beforeEach(() => {
-
+        historyStore.history = []
     })
     it('should fetch test products from api', async () => {
         jest.spyOn(ApiService, "getTestPurchases").mockResolvedValue(getMockList());
@@ -150,7 +150,9 @@ describe('HistoryStore', () => {
         expect(historyStore.history.length).toBe(3);
     });
     it("should set history", () => {
-        expect(historyStore.history.length).toBe(0);
+        console.log("history", historyStore.history.length);
+        historyStore.history = getMockList()
+        expect(historyStore.history.length).toBe(3);
         historyStore.setHistory([])
         expect(historyStore.history.length).toBe(0);
     })
