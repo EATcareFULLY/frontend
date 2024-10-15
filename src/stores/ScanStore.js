@@ -50,6 +50,11 @@ class ScanStore {
         console.log('storeProduct', this.scannedProduct);
     }
 
+    async addScannedProductToPurchase(quantity){
+
+        await ApiService.addProductToPurchased(this.scannedProduct.id, quantity);
+    }
+
     async getTestProduct(){
         this.scannedProduct = await ApiService.getTestProduct();
         console.log('storeProduct', this.scannedProduct);

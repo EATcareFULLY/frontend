@@ -3,32 +3,58 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './App.css';
 import MainNavBar from './components/Navbar';
 import Home from './pages/Home';
-import LoginRegister from './pages/LoginRegister';
 import Scan from './pages/Scan';
 import Footer from './components/Footer';
 import History from './pages/History';
 import Analyze from './pages/Analyze';
-import Details from './pages/Details';
-import useAuth from './services/AuthService';
-import PrivateRoute from './PrivateRoute';
-
+import {Link, Route, BrowserRouter as Router, Routes} from 'react-router-dom'
+import Details from "./pages/Details";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+import RequireAuth from "./components/RequireAuth";
 function App() {
   const { isAuthenticated, logout } = useAuth();
 
   return (
     <div className="App">
       <Router>
-        <MainNavBar isAuthenticated={isAuthenticated} logout={logout} />
+        <MainNavBar/>
+        <ToastContainer limit={3}/>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<LoginRegister />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/Scan" element={<Scan />} />
-            <Route path="/History" element={<History />} />
-            <Route path="/Analyze" element={<Analyze />} />
-            <Route path="/Details" element={<Details />} />
-          </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path='/' element={<Home/>}/>
+          <Route
+              path='/Scan'
+              element={
+                <RequireAuth>
+                  <Scan />
+                </RequireAuth>
+              }
+          />
+          <Route
+              path='/History'
+              element={
+                <RequireAuth>
+                  <History />
+                </RequireAuth>
+              }
+          />
+          <Route
+              path='/Analyze'
+              element={
+                <RequireAuth>
+                  <Analyze />
+                </RequireAuth>
+              }
+          />
+          <Route
+              path='/Details'
+              element={
+                <RequireAuth>
+                  <Details />
+                </RequireAuth>
+              }
+          />
         </Routes>
       </Router>
       <Footer />

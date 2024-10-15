@@ -1,4 +1,5 @@
 import RestService, {URLS} from "./RestService";
+import {errorToast, successToast} from "../utils/Toasts";
 
 class ApiService {
 
@@ -7,7 +8,6 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.testproducts}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
@@ -19,7 +19,6 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.testpurchases}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
@@ -33,7 +32,6 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.testproduct}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
@@ -47,11 +45,36 @@ class ApiService {
             return await RestService.ajax(
                 `${URLS.products}/${productCode}`,
                 "GET",
-                null,
                 null
             );
         } catch (error) {
             console.error("Failed to fetch scanned product:", error);
+        }
+    }
+
+
+    static async addProductToPurchased(barcode, quantity) {
+
+        const purchaseRequest = {
+            barcode: barcode,
+            quantity: quantity
+        };
+
+        try {
+            const resoonse =  await RestService.ajax(
+                `${URLS.purchases}`,
+                "POST",
+                purchaseRequest
+            );
+
+            successToast("Product added to purchased products.");
+
+            return resoonse;
+
+        } catch (error) {
+            console.error("Failed to add " + purchaseRequest.barcode + " product:", error);
+
+            errorToast("Failed to add product to purchased products.");
         }
     }
 

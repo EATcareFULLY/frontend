@@ -1,31 +1,48 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
+import {useKeycloak} from "@react-keycloak/web"; // Importowanie pliku CSS
 
-const MainNavBar = ({ isAuthenticated, logout }) => {
+function MainNavBar() {
+
+  const { keycloak, initialized } = useKeycloak();
+
+  //TODO reafactor and toast and 401
+
+  const handleAuthAction = () => {
+    if (initialized) {
+      if (keycloak.authenticated) {
+        keycloak.logout({
+          redirectUri: "http://localhost:3000/"
+        });
+      } else {
+        keycloak.login();
+      }
+    }
+  };
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand as={Link} to="/">EATcareFULLY</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/Scan">Scan</Nav.Link>
-            <Nav.Link as={Link} to="/History">History</Nav.Link>
-            <Nav.Link as={Link} to="/Analyze">Analyze</Nav.Link>
-            <Nav.Link as={Link} to="/Details">Details</Nav.Link>
-          </Nav>
-          <Nav>
-            {isAuthenticated ? (
-              <Nav.Link onClick={logout}>Logout</Nav.Link>
-            ) : (
-              <Nav.Link as={Link} to="/Login">Login/Register</Nav.Link>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      <Navbar expand="lg" className="custom-navbar">
+        <Container>
+          <Navbar.Brand href="#home">EATcareFULLY</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              <Nav.Link as={Link} to="/Scan">Scan</Nav.Link>
+              <NavDropdown title="More" id="basic-nav-dropdown">
+                <NavDropdown.Item as={Link} to="/History">History</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item as={Link} to="/Analyze">Analyze</NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link onClick={handleAuthAction}>
+                {keycloak.authenticated ? 'Logout' : 'Sign in'}
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
   );
 };
 
