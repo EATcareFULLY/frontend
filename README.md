@@ -6,13 +6,15 @@ For a simple dev version
 ## How to test:
  for a whole test check use
 ### `npm test`
-If you want to check coverage of the code use: 
-### `npm test -- ---coverage`
+If you want to DO NOT want check coverage of the code use: 
+### `rightclick on __tests__ and run`
 ### What's the sufficient coverage?
-### `around 50-60%`
+### `around 50-60% for all stats`
 ### What should be tested?
 `Services`
 `Components`
+### Uncovered lines
+All red should be covered. Yellow is not necessary.
 ## Service worker:
 ### What is it?
 It stores the data from the frontend and backend provider.
