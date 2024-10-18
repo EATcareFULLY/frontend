@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import Loading from "./Loading";
+import {useNavigate} from "react-router-dom";
 
 const RequireAuth = ({ children }) => {
     const { keycloak, initialized } = useKeycloak();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (initialized && !keycloak.authenticated) {
-            keycloak.login();
+            navigate("/", {replace: true});
         }
     }, [initialized, keycloak]);
 
     if (!initialized) {
         return <Loading />;
-    }
-
-    if (!keycloak.authenticated) {
-        return null;
     }
 
     return children;

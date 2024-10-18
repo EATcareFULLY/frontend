@@ -1,8 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import './Footer.css'; // Importowanie pliku CSS dla dodatkowego stylowania
+import './Footer.css';
 
 const Footer = () => {
+
     return (
         <footer className="bg-dark text-white mt-5 p-4">
             <Container>

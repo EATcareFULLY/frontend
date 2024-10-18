@@ -1,12 +1,13 @@
-import RestService, {URLS} from "./RestService";
+import RestService from "./RestService";
 import {errorToast, successToast} from "../utils/Toasts";
+import {API_URLS} from "../utils/URLS";
 
 class ApiService {
 
     static async getTestProducts() {
         try {
             return await RestService.ajax(
-                `${URLS.testproducts}`,
+                `${API_URLS.testproducts}`,
                 "GET",
                 null
             );
@@ -17,7 +18,7 @@ class ApiService {
     static async getTestPurchases() {
         try {
             return await RestService.ajax(
-                `${URLS.testpurchases}`,
+                `${API_URLS.testpurchases}`,
                 "GET",
                 null
             );
@@ -30,7 +31,7 @@ class ApiService {
     static async getTestProduct() {
         try {
             return await RestService.ajax(
-                `${URLS.testproduct}`,
+                `${API_URLS.testproduct}`,
                 "GET",
                 null
             );
@@ -43,7 +44,7 @@ class ApiService {
     static async getScannedProduct(productCode) {
         try {
             return await RestService.ajax(
-                `${URLS.products}/${productCode}`,
+                `${API_URLS.products}/${productCode}`,
                 "GET",
                 null
             );
@@ -62,7 +63,7 @@ class ApiService {
 
         try {
             const resoonse =  await RestService.ajax(
-                `${URLS.purchases}`,
+                `${API_URLS.purchases}`,
                 "POST",
                 purchaseRequest
             );
