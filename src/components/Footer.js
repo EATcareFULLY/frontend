@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoSVG from './Logo';
+import LogoMiniSVG from './LogoMini';
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="mx-auto max-w-3xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex justify-center">
         <div className="w-24 h-24">
-          <LogoSVG />
+          <LogoMiniSVG />
           </div>
         </div>
 
