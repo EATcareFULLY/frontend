@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import MainNavBar from './components/Navbar';
+import HomeBanner from './components/HomeBanner';
 import Home from './pages/Home';
 import Scan from './pages/Scan';
 import Footer from './components/Footer';
@@ -11,11 +11,9 @@ import {Link, Route, BrowserRouter as Router, Routes} from 'react-router-dom'
 import Details from "./pages/Details";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import React from "react";
 import RequireAuth from "./components/RequireAuth";
-function App() {
-  const { isAuthenticated, logout } = useAuth();
 
+function App() {
   return (
     <div className="App">
       <Router>

@@ -4,16 +4,19 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    z-index: 1; /* Upewnienie się, że footer jest na wierzchu */
-    padding: 1rem 0;
+    z-index: 1;
 }
 
-footer a {
-    color: white;
-    text-decoration: none;
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-footer a:hover {
-    color: #ccc;
-    text-decoration: none;
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
 }

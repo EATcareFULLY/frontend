@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import './Footer.css'; // Importowanie pliku CSS dla dodatkowego stylowania
+import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer className="bg-dark text-white mt-5 p-4">
+        <footer className="bg-dark text-white py-4">
             <Container>
                 <Row>
                     <Col md={4} className="text-center text-md-left">
@@ -21,8 +21,8 @@ const Footer = () => {
                     <Col md={4} className="text-center text-md-right">
                         <h5>Follow Us</h5>
                         <div><a href="https://www.facebook.com/slawomirmentzen/" className="text-white mr-2">Facebook<i className="fab fa-facebook-f"></i></a></div>
-                        <div> <a href="https://x.com/SlawomirMentzen" className="text-white mr-2">Twitter<i className="fab fa-twitter"></i></a></div>
-                    <div><a href="https://www.instagram.com/slawomirmentzen/" className="text-white">Instagram<i className="fab fa-instagram"></i></a></div>
+                        <div><a href="https://x.com/SlawomirMentzen" className="text-white mr-2">Twitter<i className="fab fa-twitter"></i></a></div>
+                        <div><a href="https://www.instagram.com/slawomirmentzen/" className="text-white">Instagram<i className="fab fa-instagram"></i></a></div>
                     </Col>
                 </Row>
                 <Row className="mt-3">
