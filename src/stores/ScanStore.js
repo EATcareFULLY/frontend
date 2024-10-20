@@ -37,12 +37,15 @@ class ScanStore {
 
         let product = await ApiService.getScannedProduct(this.scannedProductCode);
 
+        this.scannedProduct = this.sortIngredientsOfProduct(product);
+        console.log('storeProduct', this.scannedProduct);
+    }
+
+    sortIngredientsOfProduct(product) {
         if (product && product.ingredients) {
             product.ingredients.sort((a, b) => b.content - a.content);
         }
-
-        this.scannedProduct = product;
-        console.log('storeProduct', this.scannedProduct);
+        return product;
     }
 
     resetScannedProduct(){
@@ -56,6 +59,7 @@ class ScanStore {
     }
 
     async getTestProduct(){
+
         this.scannedProduct = await ApiService.getTestProduct();
         console.log('storeProduct', this.scannedProduct);
     }
