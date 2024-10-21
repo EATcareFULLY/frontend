@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import BarcodeForm from "../../components/BarcodeForm";
 
+const mockBarcodeSubmission = jest.fn();
+
 describe("BarcodeForm Component", () => {
-    let mockBarcodeSubmission;
 
     beforeEach(() => {
-        mockBarcodeSubmission = jest.fn();
         render(<BarcodeForm barcodeSubmition={mockBarcodeSubmission} />);
     });
 
