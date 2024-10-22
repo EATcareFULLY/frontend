@@ -9,6 +9,7 @@ function MainNavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { keycloak, initialized } = useKeycloak();
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -17,12 +18,18 @@ function MainNavBar() {
         setIsDropdownOpen(false);
       }
     }
-
+  
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleMobileDropdownLinkClick = (event) => {
+    // Nie zamykamy od razu menu, pozwalając na nawigację
+    setIsMobileDropdownOpen(false);
+    setIsOpen(false);  // zamknij menu mobilne po kliknięciu w link
+  };
 
   const handleDropdownLinkClick = () => {
     setTimeout(() => setIsDropdownOpen(false), 100);
@@ -119,22 +126,34 @@ function MainNavBar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#648c4c]">
-          <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <li><Link to="/" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center">Home</Link></li>
-            <li><Link to="/Scan" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center">Scan</Link></li>
-            <li>
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-full text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center"
-              >
-                More
-              </button>
-              {isDropdownOpen && (
-                <div className="pl-4">
-                  <Link to="/History" onClick={handleDropdownLinkClick} className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium text-center">History</Link>
-                  <Link to="/Analyze" onClick={handleDropdownLinkClick} className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium text-center">Analyze</Link>
-                </div>
+      <div className="md:hidden bg-[#648c4c]">
+        <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <li><Link to="/" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center">Home</Link></li>
+          <li><Link to="/Scan" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center">Scan</Link></li>
+          <li>
+            <button
+              onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}  // użyj nowego stanu
+              className="w-full text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center"
+            >
+              More
+            </button>
+            {isMobileDropdownOpen && (  // użyj nowego stanu
+              <div className="pl-4">
+                <Link 
+                  to="/History" 
+                  onClick={handleMobileDropdownLinkClick} 
+                  className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium text-center"
+                >
+                  History
+                </Link>
+                <Link 
+                  to="/Analyze" 
+                  onClick={handleMobileDropdownLinkClick} 
+                  className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium text-center"
+                >
+                  Analyze
+                </Link>
+              </div>
               )}
             </li>
           </ul>
