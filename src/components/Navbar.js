@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useKeycloak } from "@react-keycloak/web";
 import LogoBigSVG from './LogoBig';
+
+
 
 function MainNavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { keycloak, initialized } = useKeycloak();
+  const dropdownRef = useRef(null);
 
-  
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleDropdownLinkClick = () => {
+    setTimeout(() => setIsDropdownOpen(false), 100);
+  };
 
   const handleAuthAction = () => {
     if (initialized) {
@@ -26,8 +44,8 @@ function MainNavBar() {
     <header className="bg-[#648c4c]">
       <div className="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="block">
-        <div className="w-20 h-20">
-          <LogoBigSVG />
+          <div className="w-20 h-20">
+            <LogoBigSVG />
           </div>
         </Link>
 
@@ -40,7 +58,7 @@ function MainNavBar() {
               <li>
                 <Link to="/Scan" className="text-white font-medium transition hover:text-[#5e4e2b]">Scan</Link>
               </li>
-              <li className="relative">
+              <li className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="text-white font-medium transition hover:text-[#5e4e2b]"
@@ -48,10 +66,21 @@ function MainNavBar() {
                   More
                 </button>
                 {isDropdownOpen && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                    <Link to="/History" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">History</Link>
-                    <div className="border-t border-gray-100"></div>
-                    <Link to="/Analyze" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Analyze</Link>
+                  <div className="absolute left-0 mt-2 w-48 bg-[#648c4c] rounded-md shadow-lg py-1 z-50">
+                    <Link 
+                      to="/History" 
+                      className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium cursor-pointer"
+                      onClick={handleDropdownLinkClick}
+                    >
+                      History
+                    </Link>
+                    <Link 
+                      to="/Analyze" 
+                      className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium cursor-pointer"
+                      onClick={handleDropdownLinkClick}
+                    >
+                      Analyze
+                    </Link>
                   </div>
                 )}
               </li>
@@ -92,19 +121,19 @@ function MainNavBar() {
       {isOpen && (
         <div className="md:hidden bg-[#648c4c]">
           <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <li><Link to="/" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium">Home</Link></li>
-            <li><Link to="/Scan" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium">Scan</Link></li>
+            <li><Link to="/" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center">Home</Link></li>
+            <li><Link to="/Scan" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center">Scan</Link></li>
             <li>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-full text-left text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium"
+                className="w-full text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center"
               >
                 More
               </button>
               {isDropdownOpen && (
                 <div className="pl-4">
-                  <Link to="/History" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium">History</Link>
-                  <Link to="/Analyze" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium">Analyze</Link>
+                  <Link to="/History" onClick={handleDropdownLinkClick} className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium text-center">History</Link>
+                  <Link to="/Analyze" onClick={handleDropdownLinkClick} className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-base font-medium text-center">Analyze</Link>
                 </div>
               )}
             </li>
