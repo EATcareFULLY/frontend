@@ -3,7 +3,6 @@ import ProductInfo from "../../components/ProductInfo";
 import { scanStore } from "../../stores/ScanStore";
 import nutri_a from '../../assets/nutri-score-a.png';
 import img_placeholder from '../../assets/product-photo-placeholder.png';
-import {Plus} from "react-bootstrap-icons";
 
 jest.mock("../../stores/ScanStore", () => ({
     scanStore: {
@@ -80,6 +79,21 @@ describe("ProductInfo Component", () => {
         expect(input).toHaveValue(1);
     });
 
+    it("does not increment quantity over 9999", () => {
+        render(<ProductInfo {...mockProps} />);
+
+        const input = screen.getByPlaceholderText("Quantity");
+        const incrementButton = screen.getByTestId("increment-button");
+
+        fireEvent.change(input, { target: { value: "9999" } });
+
+        expect(input).toHaveValue(9999);
+
+        fireEvent.click(incrementButton);
+
+        expect(input).toHaveValue(9999);
+    });
+
     it("calls scanStore.addScannedProductToPurchase with correct quantity when button is clicked", async () => {
         render(<ProductInfo {...mockProps} />);
 
@@ -97,5 +111,25 @@ describe("ProductInfo Component", () => {
         fireEvent.change(input, { target: { value: "3" } });
 
         expect(input).toHaveValue(3);
+    });
+
+    it("does not updates quantity value on manual input chage over 9999", () => {
+        render(<ProductInfo {...mockProps} />);
+
+        const input = screen.getByPlaceholderText("Quantity");
+
+        fireEvent.change(input, { target: { value: "99999" } });
+
+        expect(input).toHaveValue(1);
+    });
+
+    it("does not updates quantity value on manual input chage below 1", () => {
+        render(<ProductInfo {...mockProps} />);
+
+        const input = screen.getByPlaceholderText("Quantity");
+
+        fireEvent.change(input, { target: { value: "0" } });
+
+        expect(input).toHaveValue(1);
     });
 });
