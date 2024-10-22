@@ -61,6 +61,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                             className="btn btn-secondary"
                             type="button"
                             onClick={handleDecrement}
+                            data-testid="decrement-button"
                         >
                             <Dash/>
                         </button>
@@ -78,6 +79,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                             className="btn btn-secondary"
                             type="button"
                             onClick={handleIncrement}
+                            data-testid="increment-button"
                         >
                             <Plus/>
                         </button>
