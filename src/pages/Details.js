@@ -25,7 +25,7 @@ const Details = observer(() => {
         return <Loading />;
     }
 
-    if (scanStore.scannedProduct.id === 0) {
+    if (scanStore.scannedProduct.id === "0") {
         return <ProductNotFound />;
     }
 
