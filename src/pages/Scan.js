@@ -9,7 +9,7 @@ const Scan = () => {
     const navigate = useNavigate();
 
     const validateBarcode = (barcode) => {
-        const barcodePattern = /^(?=.*\d)[\d\-]+$/;
+        const barcodePattern = /^\d+$/;
         if (!barcodePattern.test(barcode)) {
             return false;
         }
