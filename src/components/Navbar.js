@@ -132,12 +132,12 @@ function MainNavBar() {
           <li><Link to="/Scan" className="block text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center">Scan</Link></li>
           <li>
             <button
-              onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}  // użyj nowego stanu
+              onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)} 
               className="w-full text-white hover:bg-[#5e4e2b] px-3 py-2 rounded-md text-lg font-medium text-center"
             >
               More
             </button>
-            {isMobileDropdownOpen && (  // użyj nowego stanu
+            {isMobileDropdownOpen && (
               <div className="pl-4">
                 <Link 
                   to="/History" 

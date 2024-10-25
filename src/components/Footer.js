@@ -3,10 +3,10 @@ import LogoMiniSVG from './LogoMini';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#648c4c] text-white">
-      <div className="mx-auto max-w-3xl px-4 py-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#648c4c] text-white mt-auto">
+      <div className="mx-auto max-w-3xl px-4 py-1 sm:px-6 lg:px-8">
         <div className="flex justify-center">
-        <div className="w-24 h-24">
+        <div className="w-14 h-14">
           <LogoMiniSVG />
           </div>
         </div>

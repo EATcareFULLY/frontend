@@ -3,11 +3,11 @@ import keycloak from "../utils/Keycloak";
 
 export const ROOT_URL = 'http://localhost:8081';
 export const URLS = {
-    products: `${ROOT_URL}/products`,
-    purchases: `${ROOT_URL}/purchases`,
-    testproducts: `${ROOT_URL}/test/products`,
-    testproduct: `${ROOT_URL}/test/product`,
-    testpurchases: `${ROOT_URL}/test/purchases`
+    products: `${ROOT_URL}/api/products`,
+    purchases: `${ROOT_URL}/api/purchases`,
+    testproducts: `${ROOT_URL}/api/test/products`,
+    testproduct: `${ROOT_URL}/api/test/product`,
+    testpurchases: `${ROOT_URL}/api/test/purchases`
 };
 
 class RestService {
