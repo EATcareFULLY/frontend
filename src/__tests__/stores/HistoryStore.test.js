@@ -1,7 +1,7 @@
 import ApiService from "../../services/ApiService";
 import {historyStore} from "../../stores/HistoryStore";
 
-const getMockList = () => {
+export const getMockList = () => {
     return [
         {
             id: 0,
