@@ -7,7 +7,6 @@ import {APP_URLS} from "../utils/URLS";
 import "./Home.css";
 import HomeCard from "../components/HomeCard";
 
-//TODO refactor home i refactor require auth wraz z app
 
 function Home() {
 

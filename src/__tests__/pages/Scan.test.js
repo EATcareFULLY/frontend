@@ -68,7 +68,6 @@ describe("Scan Page", () => {
         it("renders Scan page correctly", () => {
             render(<Scan />);
 
-            // Sprawdź, czy komponenty BarcodeForm i BarcodeScanner są renderowane
             expect(screen.getByText("Submit Barcode")).toBeInTheDocument();
             expect(screen.getByText("Scan Barcode")).toBeInTheDocument();
         });
