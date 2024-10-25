@@ -30,13 +30,15 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 
     const handleQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
-        if (!isNaN(value) && value >= 1) {
+        if (!isNaN(value) && value >= 1 && value <= 9999) {
             setQuantityToAdd(value);
         }
     };
 
     const handleIncrement = () => {
-        setQuantityToAdd(quantityToAdd + 1);
+        if (quantityToAdd < 9999) {
+            setQuantityToAdd(quantityToAdd + 1);
+        }
     };
 
     const handleDecrement = () => {
@@ -61,6 +63,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                             className="btn btn-secondary"
                             type="button"
                             onClick={handleDecrement}
+                            data-testid="decrement-button"
                         >
                             <Dash/>
                         </button>
@@ -71,6 +74,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                         placeholder="Quantity"
                         value={quantityToAdd}
                         min="1"
+                        max="9999"
                         onChange={(e) => handleQuantityChange(e)}
                     />
                     <div className="input-group-append">
@@ -78,6 +82,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                             className="btn btn-secondary"
                             type="button"
                             onClick={handleIncrement}
+                            data-testid="increment-button"
                         >
                             <Plus/>
                         </button>
