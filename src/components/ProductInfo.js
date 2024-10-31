@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import nutri_a from '../assets/nutri-score-a.png';
-import nutri_b from '../assets/nutri-score-b.png';
-import nutri_c from '../assets/nutri-score-c.png';
-import nutri_d from '../assets/nutri-score-d.png';
-import nutri_e from '../assets/nutri-score-e.png';
-import nutri_unknown from '../assets/nutri-score-unknown.png';
+import nutri_a from '../assets/nutri-score-a.svg';
+import nutri_b from '../assets/nutri-score-b.svg';
+import nutri_c from '../assets/nutri-score-c.svg';
+import nutri_d from '../assets/nutri-score-d.svg';
+import nutri_e from '../assets/nutri-score-e.svg';
+import nutri_unknown from '../assets/nutri-score-unknown.svg';
 import img_placeholder from '../assets/product-photo-placeholder.png'
 import {scanStore} from "../stores/ScanStore";
 import {Dash, Plus} from "react-bootstrap-icons";

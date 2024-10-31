@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ProductInfo from "../../components/ProductInfo";
 import { scanStore } from "../../stores/ScanStore";
-import nutri_a from '../../assets/nutri-score-a.png';
+import nutri_a from '../../assets/nutri-score-a.svg';
 import img_placeholder from '../../assets/product-photo-placeholder.png';
 
 jest.mock("../../stores/ScanStore", () => ({
