@@ -27,7 +27,7 @@ const BarcodeScanner = ({ barcodeSubmition }) => {
 
     return (
         <div>
-            <h2>Scan the Product Barcode</h2>
+            <h2>Scan barcode</h2>
             <div id="reader" data-testid="reader" className="mt-3"></div>
         </div>
     );

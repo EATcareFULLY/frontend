@@ -1,10 +1,18 @@
 #reader {
-    border: 2px solid #007bff;
+    border: 2px solid var(--bs-primary-border-subtle);
     border-radius: 10px;
-    background-color: #f8f9fa;
+    background-color: var(--bs-primary-bg-subtle);
 }
 
+
+
 #html5-qrcode-anchor-scan-type-change{
+}
+
+#reader__scan_region {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -15,8 +23,8 @@
 #html5-qrcode-button-camera-stop,
 #html5-qrcode-button-file-selection {
     color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -32,6 +40,7 @@
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
     box-shadow: none;
+    margin: 0;
 }
 
 #html5-qrcode-button-camera-permission:hover,
@@ -39,8 +48,8 @@
 #html5-qrcode-button-camera-stop:hover,
 #html5-qrcode-button-file-selection:hover {
     color: #fff;
-    background-color: #5a6268;
-    border-color: #545b62;
+    background-color: var(--bs-link-hover-color);
+    border-color: var(--bs-link-hover-color);
     box-shadow: none;
 }
 
@@ -55,7 +64,20 @@
     box-shadow: 0 0 0 0.1rem rgba(130, 138, 145, 0.5);
 }
 
-#html5-qrcode-anchor-scan-type-change:hover {
-    color: #5a6268;
+#html5-qrcode-anchor-scan-type-change {
+    color: var(--bs-primary);
 }
+
+#html5-qrcode-anchor-scan-type-change:hover {
+    color: var(--bs-link-hover-color);
+}
+
+
+
+div[style*="border: 6px dashed rgb(235, 235, 235)"] {
+    width: 100% !important;
+    padding: 0 !important;
+    padding-top: 10px !important;
+}
+
 

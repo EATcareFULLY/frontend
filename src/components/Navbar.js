@@ -24,8 +24,9 @@ function MainNavBar() {
 
   if (!initialized || !keycloak.authenticated) return null;
 
+
   return (
-      <Navbar expand="lg" bg="primary" variant="dark" expanded={expanded}>
+      <Navbar expand="lg" bg="primary" variant="dark" className="p-1" expanded={expanded}>
         <Container>
           <Navbar.Brand as={Link} to="/" onClick={closeNavbar}>
             <img src={logo} width="150" className="d-inline-block align-top" alt="EATcareFULLY" />

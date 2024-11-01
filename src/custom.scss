@@ -1,4 +1,6 @@
 $primary: #658e48;
-
+$link-hover-color: lighten(#658e48, 10%);
+$primary-bg-subtle: #f8f9fa;
+$primary-border-subtle: #007bff;
 
 @import '~bootstrap/scss/bootstrap';
