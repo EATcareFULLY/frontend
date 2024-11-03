@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import './Footer.css';
 import eatcarefullylogo from '../assets/logo-full.svg';
 import githublogo from '../assets/github-logo.svg';
 import {useNavigate} from "react-router-dom";

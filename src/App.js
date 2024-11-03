@@ -18,41 +18,43 @@ function App() {
       <Router>
         <MainNavBar/>
         <ToastContainer limit={3}/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route
-              path='/Scan'
-              element={
-                <RequireAuth>
-                  <Scan />
-                </RequireAuth>
-              }
-          />
-          <Route
-              path='/History'
-              element={
-                <RequireAuth>
-                  <History />
-                </RequireAuth>
-              }
-          />
-          <Route
-              path='/Analyze'
-              element={
-                <RequireAuth>
-                  <Analyze />
-                </RequireAuth>
-              }
-          />
-          <Route
-              path='/Details'
-              element={
-                <RequireAuth>
-                  <Details />
-                </RequireAuth>
-              }
-          />
-        </Routes>
+          <div style={{flex: "1"}}>
+              <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route
+                      path='/Scan'
+                      element={
+                          <RequireAuth>
+                              <Scan />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path='/History'
+                      element={
+                          <RequireAuth>
+                              <History />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path='/Analyze'
+                      element={
+                          <RequireAuth>
+                              <Analyze />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path='/Details'
+                      element={
+                          <RequireAuth>
+                              <Details />
+                          </RequireAuth>
+                      }
+                  />
+              </Routes>
+          </div>
         <Footer/>
       </Router>
       
