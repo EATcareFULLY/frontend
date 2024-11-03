@@ -1,20 +1,12 @@
-import {Card} from "react-bootstrap";
 import React from "react";
 
-const HomeCard = ({title, body}) => {
+const HomeCard = ({ title, body }) => {
     return (
-        <Card className="bg-dark bg-opacity-75 animate__animated animate__fadeIn">
-            <Card.Body>
-                <Card.Title as="h1" className="mb-4 text-white animated-text">
-                    {title}
-                </Card.Title>
-                <Card.Text className="mb-4 text-white animated-text">
-                    {body}
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    )
-
-}
+        <div className="p-4">
+            <h1 className="mb-4">{title}</h1>
+            <p className="mb-4">{body}</p>
+        </div>
+    );
+};
 
 export default HomeCard;
