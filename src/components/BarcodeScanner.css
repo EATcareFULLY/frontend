@@ -1,7 +1,7 @@
 #reader {
-    border: 2px solid var(--bs-primary-border-subtle);
+    border: 2px solid var(--bs-secondary-border-subtle);
     border-radius: 10px;
-    background-color: var(--bs-primary-bg-subtle);
+    background-color: var(--bs-secondary-bg-subtle);
 }
 
 

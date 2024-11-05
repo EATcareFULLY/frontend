@@ -14,7 +14,7 @@ const ProductNotFound = () => {
                 <h2>Product Not Found</h2>
                 <p>The product you are looking for does not exist in our database.</p>
                 <p>Try again with different product.</p>
-                <button className="btn btn-secondary mt-3" onClick={handleBackToScan}>
+                <button className="btn btn-primary text-white mt-2" onClick={handleBackToScan}>
                     Scan again
                 </button>
             </div>

@@ -5,6 +5,7 @@ import Loading from "../components/Loading";
 import ProductNotFound from "../components/ProductNotFound";
 import ProductInfo from "../components/ProductInfo";
 import ProductTables from "../components/ProductTables";
+import {Card, CardBody, Container} from "react-bootstrap";
 
 const Details = observer(() => {
     console.log("Details component rendering");
@@ -31,12 +32,9 @@ const Details = observer(() => {
 
 
     return (
-        <div className="container mt-4">
-            <div className="card">
-                <div className="card-header bg-dark" style={{ color: "white" }}>
-                    <h2 className="text-center">Product's Details</h2>
-                </div>
-                <div className="card-body">
+        <Container className="mt-4">
+            <Card>
+                <CardBody>
                     <ProductInfo
                         imageURL={scanStore.scannedProduct.imageURL}
                         id={scanStore.scannedProduct.id}
@@ -49,9 +47,9 @@ const Details = observer(() => {
                         allergens={scanStore.scannedProduct.allergens}
                         ingredients={scanStore.scannedProduct.ingredients}
                     />
-                </div>
-            </div>
-        </div>
+                </CardBody>
+            </Card>
+        </Container>
     );
 });
 
