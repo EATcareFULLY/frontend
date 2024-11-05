@@ -22,12 +22,10 @@ const BarcodeForm = ({ barcodeSubmition }) => {
                     value={inputBarcode}
                     onChange={handleInputChange}
                     placeholder="Enter barcode"
-                    style={{ boxShadow: "none", outline: "none" }}
                 />
                 <Button
                     className="btn-primary text-white"
                     onClick={handleInputSubmit}
-                    style={{ boxShadow: "none" }}
                 >
                     Submit
                 </Button>
