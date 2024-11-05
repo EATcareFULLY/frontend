@@ -4,7 +4,7 @@ import ProductTables from "../../components/ProductTables";
 const mockTags = [{ id: 1, name: "Vegan" }, { id: 2, name: "Organic" }];
 const mockAllergens = [{ id: 1, name: "Peanuts" }, { id: 2, name: "Soy" }];
 const mockIngredients = [
-    { id: 1, name: "Sugar", content: 10 },
+    { id: 1, name: "Sugar", content: 10.001 },
     { id: 2, name: "Salt", content: 5 }
 ];
 
@@ -51,9 +51,9 @@ describe("ProductTables Component", () => {
         render(<ProductTables tags={[]} allergens={[]} ingredients={mockIngredients} />);
 
         expect(screen.getByText("Sugar")).toBeInTheDocument();
-        expect(screen.getByText("10%")).toBeInTheDocument();
+        expect(screen.getByText("10.00")).toBeInTheDocument();
         expect(screen.getByText("Salt")).toBeInTheDocument();
-        expect(screen.getByText("5%")).toBeInTheDocument();
+        expect(screen.getByText("5.00")).toBeInTheDocument();
     });
 
     it("should render all sections with data", () => {
@@ -62,6 +62,13 @@ describe("ProductTables Component", () => {
         expect(screen.getByText("Vegan")).toBeInTheDocument();
         expect(screen.getByText("Peanuts")).toBeInTheDocument();
         expect(screen.getByText("Sugar")).toBeInTheDocument();
-        expect(screen.getByText("10%")).toBeInTheDocument();
+        expect(screen.getByText("10.00")).toBeInTheDocument();
+    });
+
+    it("should round ingridients content to 2 decimal", () => {
+        render(<ProductTables tags={mockTags} allergens={mockAllergens} ingredients={mockIngredients} />);
+
+        expect(screen.getByText("Sugar")).toBeInTheDocument();
+        expect(screen.getByText("10.00")).toBeInTheDocument();
     });
 });

@@ -1,11 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen} from "@testing-library/react";
 import Details from "../../pages/Details";
 import { scanStore } from "../../stores/ScanStore";
-import { act } from "react-dom/test-utils";
-import Loading from "../../components/Loading";
-import ProductNotFound from "../../components/ProductNotFound";
-import ProductInfo from "../../components/ProductInfo";
-import ProductTables from "../../components/ProductTables";
 
 const getMockProduct = () => {
     return {
@@ -91,7 +86,7 @@ describe("Details Page", () => {
     });
 
     it("renders ProductNotFound if the product ID is 0", async () => {
-        scanStore.scannedProduct = { id: 0 };
+        scanStore.scannedProduct = { id: "0" };
 
         render(<Details />);
 

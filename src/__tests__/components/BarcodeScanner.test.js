@@ -2,13 +2,13 @@ import { render, screen } from "@testing-library/react";
 import BarcodeScanner from "../../components/BarcodeScanner";
 
 
-describe("Loading Component", () => {
+describe("Barcode Scanner Component", () => {
 
 
-    it("should apply default props if none provided", () => {
+    it("should render element properly", () => {
         render(<BarcodeScanner />);
 
-        expect(screen.getByText("Scan the Product Barcode")).toBeInTheDocument();
+        expect(screen.getByText("Scan barcode")).toBeInTheDocument();
         expect(screen.getByTestId("reader")).toBeInTheDocument();
     });
 

@@ -51,7 +51,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
     return (
         <div className="row mb-3">
             <div className="col-md-6 d-flex justify-content-center align-items-center">
-                <img src={imageURL || img_placeholder} alt="Product" className="img-fluid rounded"/>
+                <img src={imageURL || img_placeholder} alt="Product-photo" className="img-fluid rounded"/>
             </div>
             <div className="col-md-6 text-start">
                 <h1>{name}</h1>
@@ -74,6 +74,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                         max="9999"
                         onChange={(e) => handleQuantityChange(e)}
                         className="text-center"
+                        data-testid="quantity-input"
                     />
                     <Button
                         className="btn btn-primary text-white"
