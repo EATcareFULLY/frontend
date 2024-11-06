@@ -32,7 +32,7 @@ function MainNavBar() {
             <img src={logo} width="150" className="d-inline-block align-top" alt="EATcareFULLY" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNavbar} />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse id="responsive-navbar-nav" data-testid="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/Scan" onClick={closeNavbar}>Scan</Nav.Link>
               <Nav.Link as={Link} to="/History" onClick={closeNavbar}>History</Nav.Link>
