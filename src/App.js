@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
 import RequireAuth from "./components/RequireAuth";
 import Home from "./pages/Home";
+import Label from "./pages/Label";
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
                       element={
                           <RequireAuth>
                               <Scan />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path='/Label'
+                      element={
+                          <RequireAuth>
+                              <Label />
                           </RequireAuth>
                       }
                   />

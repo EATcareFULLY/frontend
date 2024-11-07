@@ -35,6 +35,7 @@ function MainNavBar() {
           <Navbar.Collapse id="responsive-navbar-nav" data-testid="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/Scan" onClick={closeNavbar}>Scan</Nav.Link>
+              <Nav.Link as={Link} to="/Label" onClick={closeNavbar}>Label</Nav.Link>
               <Nav.Link as={Link} to="/History" onClick={closeNavbar}>History</Nav.Link>
               <Nav.Link as={Link} to="/Analyze" onClick={closeNavbar}>Analyze</Nav.Link>
             </Nav>
