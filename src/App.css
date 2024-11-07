@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
 }
 
 .App-logo {
@@ -36,6 +44,35 @@
     transform: rotate(360deg);
   }
 }
+
+/* no arrows on number input */
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* bootstrap override */
+
+.table-primary {
+  --bs-table-bg: var(--bs-primary) !important;
+  --bs-table-color: white !important;
+}
+
+.input-group,
+.input-group .form-control,
+.input-group .btn {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+
+
 
 
 

@@ -1,34 +1,34 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import './Footer.css';
+import eatcarefullylogo from '../assets/logo-full.svg';
+import githublogo from '../assets/github-logo.svg';
+import {useNavigate} from "react-router-dom";
 
 const Footer = () => {
 
+    const navigate = useNavigate();
+
+    const handleHome = () => {
+        navigate('/');
+    };
+
     return (
-        <footer className="bg-dark text-white mt-5 p-4">
+        <footer className="bg-primary text-white mt-5 p-2">
             <Container>
-                <Row>
-                    <Col md={4} className="text-center text-md-left">
-                        <h5>About Us</h5>
-                        <p>
-                            Application is in early-development stage. <br/> Be aware of potential bugs.
-                        </p>
+                <Row className="justify-content-between align-items-center">
+                    <Col md="auto" className="d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
+                        <img src={eatcarefullylogo} alt="EATcareFULLY" onClick={handleHome} width="50px" height="50px"  />
                     </Col>
-                    <Col md={4} className="text-center">
-                        <h5>Contact</h5>
-                        <p>Email: EatBusiness@gmail.com</p>
-                        <p>Phone: (123) 000-200-100</p>
-                    </Col>
-                    <Col md={4} className="text-center text-md-right">
-                        <h5>Follow Us</h5>
-                        <div><a href="https://www.facebook.com/slawomirmentzen/" className="text-white mr-2">Facebook<i className="fab fa-facebook-f"></i></a></div>
-                        <div> <a href="https://x.com/SlawomirMentzen" className="text-white mr-2">Twitter<i className="fab fa-twitter"></i></a></div>
-                    <div><a href="https://www.instagram.com/slawomirmentzen/" className="text-white">Instagram<i className="fab fa-instagram"></i></a></div>
+
+                    <Col md="auto" className="d-flex justify-content-center justify-content-md-end">
+                        <a href="https://github.com/EATcareFULLY">
+                            <img src={githublogo} alt="GitHub" width="50px" height="50px" />
+                        </a>
                     </Col>
                 </Row>
                 <Row className="mt-3">
                     <Col className="text-center">
-                        <p className="mb-0">&copy; 2024 Your Company. All rights reserved.</p>
+                        <p className="mb-0">&copy; 2024 EATcareFULLY.</p>
                     </Col>
                 </Row>
             </Container>

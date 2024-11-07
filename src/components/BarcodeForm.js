@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import {Button, InputGroup, FormControl} from "react-bootstrap";
 
-const BarcodeForm = ({barcodeSubmition }) => {
-
+const BarcodeForm = ({ barcodeSubmition }) => {
     const [inputBarcode, setInputBarcode] = useState("");
 
     const handleInputChange = (e) => {
@@ -14,23 +14,23 @@ const BarcodeForm = ({barcodeSubmition }) => {
 
     return (
         <div className="text-center">
-            <h2>Or Enter the Product Code Manually</h2>
-            <div className="input-group mt-3">
-                <input
+            <h3>No scanner? Type here</h3>
+            <InputGroup className="mt-3" style={{ boxShadow: "none" }}>
+                <FormControl
                     type="text"
                     className="form-control"
                     value={inputBarcode}
                     onChange={handleInputChange}
                     placeholder="Enter barcode"
                 />
-                <button
-                    className="btn btn-secondary"
+                <Button
+                    className="btn-primary text-white"
                     onClick={handleInputSubmit}
-                    type="button"
                 >
                     Submit
-                </button>
-            </div>
+                </Button>
+            </InputGroup>
+
         </div>
     );
 };

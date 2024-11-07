@@ -10,7 +10,7 @@ describe("BarcodeForm Component", () => {
     });
 
     it("should render the component correctly", () => {
-        const headerElement = screen.getByText(/Or Enter the Product Code Manually/i);
+        const headerElement = screen.getByText("No scanner? Type here");
         const inputElement = screen.getByPlaceholderText("Enter barcode");
         const buttonElement = screen.getByText("Submit");
 

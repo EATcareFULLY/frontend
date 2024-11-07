@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import swDev from './swDev'
 import {ReactKeycloakProvider} from "@react-keycloak/web";
 import keycloak from "./utils/Keycloak";
+import "./bootstrapColorsOverride.scss"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

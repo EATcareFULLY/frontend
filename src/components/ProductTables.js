@@ -1,4 +1,5 @@
 import React from "react";
+import {Table} from "react-bootstrap";
 
 const ProductTables =({ tags, allergens, ingredients }) => {
     const renderTags = () => {
@@ -7,8 +8,8 @@ const ProductTables =({ tags, allergens, ingredients }) => {
         }
 
         return (
-            <table className="table table-bordered table-striped rounded">
-                <thead className="table-secondary">
+            <Table bordered striped rounded>
+                <thead className="table-primary">
                 <tr>
                     <th>Tag</th>
                 </tr>
@@ -20,7 +21,7 @@ const ProductTables =({ tags, allergens, ingredients }) => {
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </Table>
         );
     };
 
@@ -30,8 +31,8 @@ const ProductTables =({ tags, allergens, ingredients }) => {
         }
 
         return (
-            <table className="table table-bordered table-striped rounded">
-                <thead className="table-secondary">
+            <Table bordered striped >
+                <thead className="table-primary text-white">
                 <tr>
                     <th>Allergen</th>
                 </tr>
@@ -43,7 +44,7 @@ const ProductTables =({ tags, allergens, ingredients }) => {
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </Table>
         );
     };
 
@@ -53,22 +54,22 @@ const ProductTables =({ tags, allergens, ingredients }) => {
         }
 
         return (
-            <table className="table table-bordered table-striped rounded">
-                <thead className="table-secondary">
+            <Table bordered striped rounded>
+                <thead className="table-primary text-white">
                 <tr>
                     <th>Ingredient</th>
-                    <th>Content</th>
+                    <th>Content [%]</th>
                 </tr>
                 </thead>
                 <tbody>
                 {ingredients.map((ingredient) => (
                     <tr key={ingredient.id}>
                         <td>{ingredient.name}</td>
-                        <td>{ingredient.content}%</td>
+                        <td>{ingredient.content.toFixed(2)}</td>
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </Table>
         );
     };
 
