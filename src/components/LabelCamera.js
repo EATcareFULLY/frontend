@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import {warningToast} from "../utils/Toasts";
 import {labelStore} from "../stores/LabelStore";
 
-//TODO - logika pozwoleń, obcinanie zdjęcia, flash, wysylanie pliku, odbior odpowiedzi
+//TODO - obcinanie zdjęcia, flash (opcjonalnie), odbior odpowiedzi
 
 const LabelCamera = () => {
     const [permissionsGranted, setPermissionsGranted] = useState(false);
@@ -12,20 +12,38 @@ const LabelCamera = () => {
     const [cameraCount, setCameraCount] = useState(0);
     const cameraRef = React.useRef(null);
 
-    // Check for previously granted permissions on load
+
     useEffect(() => {
-        const grantedPreviously = localStorage.getItem("cameraPermissionsGranted");
-        if (grantedPreviously === "true") {
-            setPermissionsGranted(true);
-        }
+        const checkCameraPermission = async () => {
+            try {
+                const permissionStatus = await navigator.permissions.query({ name: 'camera' });
+
+                console.log(permissionStatus);
+
+                if (permissionStatus.state === 'granted') {
+                    setPermissionsGranted(true);
+                } else if (permissionStatus.state === 'prompt') {
+                    setPermissionsGranted(false);
+                } else if (permissionStatus.state === 'denied') {
+                    warningToast("Camera access denied. Please enable access in your settings.");
+                }
+
+                permissionStatus.onchange = () => {
+                    setPermissionsGranted(permissionStatus.state === 'granted');
+                };
+            } catch (error) {
+                console.error("Permission API not supported in this browser so permissions will be asked automatically.", error);
+                setPermissionsGranted(true); //allegedly ios does not support permission queries - not tested - may want to change that later q(>u<)p
+            }
+        };
+
+        checkCameraPermission();
     }, []);
 
-    // Request camera permissions
     const handleRequestPermissions = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             setPermissionsGranted(true);
-            localStorage.setItem("cameraPermissionsGranted", "true");
             stream.getTracks().forEach(track => track.stop());
         } catch (error) {
             warningToast("Could not get camera permission granted");
@@ -44,7 +62,7 @@ const LabelCamera = () => {
 
     return (
         <div className="text-center">
-            <h2>Scan Barcode</h2>
+            <h2>Analyze label from photo</h2>
             {!permissionsGranted ? (
                 <Button onClick={handleRequestPermissions} className="mt-3">
                     Request Camera Permissions
@@ -70,7 +88,7 @@ const LabelCamera = () => {
                     </>
                 ) : (
                     <>
-                        <img src={imageSrc} alt="Captured" className="w-100" />
+                        <img src={imageSrc} alt="Captured" className="w-100"/>
                         <Button onClick={() => setImageSrc(null)} className="mt-3 text-white mr-2">
                             Retake Photo
                         </Button>
