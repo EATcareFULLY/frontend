@@ -79,6 +79,29 @@ class ApiService {
         }
     }
 
+    static async analyzeLabelImg(imageBlob) {
+
+        const formData = new FormData();
+        formData.append("file", imageBlob, "label.jpeg");
+
+        try {
+            const resoonse =  await RestService.ajax(
+                `${API_URLS.products}/eval-label`,
+                "POST",
+                formData
+            );
+
+            successToast(resoonse);
+
+            return resoonse;
+
+        } catch (error) {
+
+            console.error("Failed to analyze image:", error);
+            errorToast("Failed to upload image.");
+        }
+    }
+
 
 }
 
