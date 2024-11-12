@@ -62,7 +62,7 @@ class ApiService {
         };
 
         try {
-            const resoonse =  await RestService.ajax(
+            const response =  await RestService.ajax(
                 `${API_URLS.purchases}`,
                 "POST",
                 purchaseRequest
@@ -70,7 +70,7 @@ class ApiService {
 
             successToast("Product added to purchased products.");
 
-            return resoonse;
+            return response;
 
         } catch (error) {
             console.error("Failed to add " + purchaseRequest.barcode + " product:", error);
@@ -85,15 +85,17 @@ class ApiService {
         formData.append("file", imageBlob, "label.jpeg");
 
         try {
-            const resoonse =  await RestService.ajax(
+            const response =  await RestService.ajax(
                 `${API_URLS.products}/eval-label`,
                 "POST",
                 formData
             );
 
-            successToast(resoonse);
+            successToast(response);
 
-            return resoonse;
+            console.log(response)
+
+            return response;
 
         } catch (error) {
 
@@ -101,8 +103,6 @@ class ApiService {
             errorToast("Failed to upload image.");
         }
     }
-
-
 }
 
 export default ApiService;

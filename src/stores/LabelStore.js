@@ -29,15 +29,11 @@ class LabelStore {
 
 
     async analyzeLabelFromImage() {
-        // Ensure blob is in a supported format (JPEG or PNG)
         const imageBlob = this.base64ToBlob(this.labelImg, 'image/jpeg');
         console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
 
-        // Upload blob to backend
         this.labelDescription = await ApiService.analyzeLabelImg(imageBlob);
     }
-
-
 
 }
 
