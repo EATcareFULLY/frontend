@@ -91,9 +91,7 @@ class ApiService {
                 formData
             );
 
-            successToast(response);
-
-            console.log(response)
+            console.log("label response", response)
 
             return response;
 

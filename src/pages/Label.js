@@ -1,15 +1,48 @@
-import React from "react";
-import LabelCamera from "../components/LabelCamera";
+import React, { useState } from 'react';
+import LabelCameraPermissions from '../components/LabelCameraPermissions';
+import LabelCameraCapture from '../components/LabelCameraCapture';
+import LabelImage from '../components/LabelImage';
+import LabelImageCrop from '../components/LabelImageCrop';
+
+//TODO - stylowanie, odbior odpowiedzi, rozwazyc brak kamer???, destroy kamery po wyjsciu z zakladki
 
 const Label = () => {
+    const [permissionsGranted, setPermissionsGranted] = useState(false);
+    const [imageSrc, setImageSrc] = useState(null);
+    const [isCropMode, setIsCropMode] = useState(false);
 
     return (
+
         <div className="row justify-content-center mt-2">
             <div className="col-md-8 text-center">
-                <LabelCamera/>
+                <h2>Analyze label from photo</h2>
+                {!permissionsGranted && (
+                    <LabelCameraPermissions
+                        setPermissionsGranted={setPermissionsGranted}
+                    />
+                )}
+                {permissionsGranted && !imageSrc && (
+                    <LabelCameraCapture
+                        setImageSrc={setImageSrc}
+                        setIsCropMode={setIsCropMode}
+                    />
+                )}
+                {imageSrc && !isCropMode && (
+                    <LabelImage
+                        imageSrc={imageSrc}
+                        setImageSrc={setImageSrc}
+                        setIsCropMode={setIsCropMode}
+                    />
+                )}
+                {imageSrc && isCropMode && (
+                    <LabelImageCrop
+                        imageSrc={imageSrc}
+                        setImageSrc={setImageSrc}
+                        setIsCropMode={setIsCropMode}
+                    />
+                )}
             </div>
         </div>
-
     );
 };
 
