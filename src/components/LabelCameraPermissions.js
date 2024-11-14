@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import { warningToast } from '../utils/Toasts';
+import {errorToast} from '../utils/Toasts';
 
 const LabelCameraPermissions = ({setPermissionsGranted }) => {
     useEffect(() => {
@@ -25,15 +25,23 @@ const LabelCameraPermissions = ({setPermissionsGranted }) => {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             setPermissionsGranted(true);
             stream.getTracks().forEach(track => track.stop());
-        } catch {
-            warningToast("Could not get camera permission granted");
+        } catch (error) {
+            if (error.name === 'NotFoundError') {
+                errorToast("No camera devices found.");
+            } else {
+                errorToast("Could not get camera permission granted");
+            }
         }
     };
 
     return (
-        <Button onClick={handleRequestPermissions} className="mt-3 text-white">
-            Request Camera Permissions
-        </Button>
+        <div className="p-3">
+            <p>To use this feature, camera access is required, so please allow camera permissions.
+                Without camera access, this functionality will be unavailable. </p>
+            <Button onClick={handleRequestPermissions} >
+                Request Camera Permissions
+            </Button>
+        </div>
     );
 };
 

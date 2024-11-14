@@ -71,6 +71,45 @@ input[type=number] {
   outline: none !important;
 }
 
+.btn-primary:hover {
+  color: var(--bs-btn-color) !important;
+}
+
+/* cropperjs override */
+
+.cropper-view-box {
+  outline-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.cropper-line,
+.cropper-point,
+.cropper-line.line-e,
+.cropper-line.line-n,
+.cropper-line.line-w,
+.cropper-line.line-s {
+  background-color: #fff !important;
+}
+
+.cropper-point.point-e,
+.cropper-point.point-n,
+.cropper-point.point-w,
+.cropper-point.point-s,
+.cropper-point.point-ne,
+.cropper-point.point-nw,
+.cropper-point.point-sw,
+.cropper-point.point-se {
+  background-color: #fff !important;
+}
+
+.cropper-center::before,
+.cropper-center::after {
+  background-color: #fff !important;
+}
+
+.cropper-point.point-se::before {
+  background-color: #fff !important;
+}
+
 
 
 

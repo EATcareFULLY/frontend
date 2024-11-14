@@ -60,7 +60,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                 {score && <img src={scoreImages[score]} alt="nutri-score" className="d-block mt-3 mb-3"/>}
                 <InputGroup className="mb-3">
                     <Button
-                        className="btn btn-primary text-white"
+                        className="btn btn-primary"
                         onClick={handleDecrement}
                         data-testid="decrement-button"
                     >
@@ -77,7 +77,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                         data-testid="quantity-input"
                     />
                     <Button
-                        className="btn btn-primary text-white"
+                        className="btn btn-primary"
                         onClick={handleIncrement}
                         data-testid="increment-button"
                     >
@@ -85,7 +85,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                     </Button>
                 </InputGroup>
                 <InputGroup className="input-group mb-3">
-                    <Button className="btn btn-primary text-white flex-fill" onClick={handleAddProduct}>
+                    <Button className="btn btn-primary flex-fill" onClick={handleAddProduct}>
                         Add to purchased products
                     </Button>
                 </InputGroup>

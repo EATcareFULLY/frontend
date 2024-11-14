@@ -27,8 +27,10 @@ const Scan = () => {
         }
     };
 
+    //consider container as a wrapper
+
     return (
-        <div className="container">
+        <div>
             <div className="row justify-content-center mt-2">
                 <div className="col-md-8 text-center">
                     <BarcodeScanner barcodeSubmition={barcodeSubmition} />

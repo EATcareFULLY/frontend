@@ -24,7 +24,7 @@ const BarcodeForm = ({ barcodeSubmition }) => {
                     placeholder="Enter barcode"
                 />
                 <Button
-                    className="btn-primary text-white"
+                    className="btn-primary"
                     onClick={handleInputSubmit}
                 >
                     Submit

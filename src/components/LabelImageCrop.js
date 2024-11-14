@@ -13,7 +13,7 @@ const LabelImageCrop = ({ imageSrc, setImageSrc, setIsCropMode }) => {
             autoCropArea: 1,
             responsive: true,
             background: false,
-            guides: true,
+            guides: false,
         });
         return () => cropperRef.current && cropperRef.current.destroy();
     }, []);
@@ -31,9 +31,21 @@ const LabelImageCrop = ({ imageSrc, setImageSrc, setIsCropMode }) => {
 
     return (
         <>
-            <img src={imageSrc} alt="To Crop" ref={imageRef} className="w-100" />
-            <Button onClick={handleSave} className="mt-3 text-white">Save</Button>
-            <Button onClick={handleCancel} className="mt-3 text-white">Cancel</Button>
+            <div className="bg-black">
+                <img
+                    src={imageSrc}
+                    alt="To Crop"
+                    ref={imageRef}
+                    className="w-100"
+                    style={{maxHeight: '80vh', objectFit: 'contain'}}
+                />
+            </div>
+            <div>
+                <div className="p-3">
+                    <Button onClick={handleCancel}>Cancel</Button>
+                    <Button onClick={handleSave} className="ml-3">Save</Button>
+                </div>
+            </div>
         </>
     );
 };

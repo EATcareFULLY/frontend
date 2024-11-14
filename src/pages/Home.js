@@ -78,7 +78,7 @@ function Home() {
                                     title="Welcome to EATcareFULLY!"
                                     body="Discover a new way to manage your dietary habits and stay healthy. Our application helps you keep track of your meals, provides nutritional insights, and guides you towards a balanced diet. Whether you want to lose weight, gain muscle, or simply eat healthier, EATcareFULLY is your perfect companion on the journey to a better you."
                                 />
-                                <Button className="btn-lg text-white mt-3 w-75" onClick={handleSignIn}>
+                                <Button className="btn-lg mt-3 w-75" onClick={handleSignIn}>
                                     Get started
                                 </Button>
                             </>
