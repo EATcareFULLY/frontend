@@ -1,6 +1,8 @@
 import React, {useRef, useState} from 'react';
 import { Camera } from 'react-camera-pro';
 import { Button } from 'react-bootstrap';
+import LabelButtonsWrapper from "./LabelButtonsWrapper";
+import LabelImgWrapper from "./LabelImgWrapper";
 
 const LabelCameraCapture = ({setImageSrc, setIsCropMode}) => {
     const [cameraCount, setCameraCount] = useState(0);
@@ -25,7 +27,7 @@ const LabelCameraCapture = ({setImageSrc, setIsCropMode}) => {
 
     return (
         <div>
-            <div className="bg-black">
+            <LabelImgWrapper>
                 <Camera
                     ref={cameraRef}
                     facingMode="environment"
@@ -35,21 +37,19 @@ const LabelCameraCapture = ({setImageSrc, setIsCropMode}) => {
                     errorMessages={errorMessages}
                     style={{maxHeight: '100vh', objectFit: 'contain'}}
                 />
-            </div>
-            <div>
-                <div className="p-3">
-                    {cameraCount > 0 && (
-                        <Button onClick={handleCapture}>
-                            Capture Photo
-                        </Button>
-                    )}
-                    {cameraCount > 1 && (
-                        <Button onClick={handleSwitchCamera} className=" ml-3 ">
-                            Switch Camera
-                        </Button>
-                    )}
-                </div>
-            </div>
+            </LabelImgWrapper>
+            <LabelButtonsWrapper>
+                {cameraCount > 0 && (
+                    <Button onClick={handleCapture}>
+                        Capture Photo
+                    </Button>
+                )}
+                {cameraCount > 1 && (
+                    <Button onClick={handleSwitchCamera}>
+                        Switch Camera
+                    </Button>
+                )}
+            </LabelButtonsWrapper>
         </div>
     );
 

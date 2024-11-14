@@ -4,6 +4,7 @@ import {scanStore} from "../stores/ScanStore";
 import BarcodeForm from "../components/BarcodeForm";
 import BarcodeScanner from "../components/BarcodeScanner";
 import {errorToast} from "../utils/Toasts";
+import CameraComponentsWrapper from "../components/CameraComponentsWrapper";
 
 const Scan = () => {
     const navigate = useNavigate();
@@ -31,11 +32,9 @@ const Scan = () => {
 
     return (
         <div>
-            <div className="row justify-content-center mt-2">
-                <div className="col-md-8 text-center">
-                    <BarcodeScanner barcodeSubmition={barcodeSubmition} />
-                </div>
-            </div>
+            <CameraComponentsWrapper>
+                <BarcodeScanner barcodeSubmition={barcodeSubmition} />
+            </CameraComponentsWrapper>
             <div className="row justify-content-center mt-4">
                 <div className="col-md-6">
                     <BarcodeForm

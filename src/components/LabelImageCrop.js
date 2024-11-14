@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
+import LabelButtonsWrapper from "./LabelButtonsWrapper";
+import LabelImgWrapper from "./LabelImgWrapper";
 
 const LabelImageCrop = ({ imageSrc, setImageSrc, setIsCropMode }) => {
     const imageRef = useRef(null);
@@ -10,7 +12,7 @@ const LabelImageCrop = ({ imageSrc, setImageSrc, setIsCropMode }) => {
     useEffect(() => {
         cropperRef.current = new Cropper(imageRef.current, {
             viewMode: 1,
-            autoCropArea: 1,
+            autoCropArea: 0.75,
             responsive: true,
             background: false,
             guides: false,
@@ -31,7 +33,7 @@ const LabelImageCrop = ({ imageSrc, setImageSrc, setIsCropMode }) => {
 
     return (
         <>
-            <div className="bg-black">
+            <LabelImgWrapper>
                 <img
                     src={imageSrc}
                     alt="To Crop"
@@ -39,13 +41,11 @@ const LabelImageCrop = ({ imageSrc, setImageSrc, setIsCropMode }) => {
                     className="w-100"
                     style={{maxHeight: '80vh', objectFit: 'contain'}}
                 />
-            </div>
-            <div>
-                <div className="p-3">
-                    <Button onClick={handleCancel}>Cancel</Button>
-                    <Button onClick={handleSave} className="ml-3">Save</Button>
-                </div>
-            </div>
+            </LabelImgWrapper>
+            <LabelButtonsWrapper>
+                <Button onClick={handleCancel}>Cancel</Button>
+                <Button onClick={handleSave}>Save</Button>
+            </LabelButtonsWrapper>
         </>
     );
 };

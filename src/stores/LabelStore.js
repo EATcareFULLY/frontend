@@ -29,12 +29,13 @@ class LabelStore {
 
 
     async analyzeLabelFromImage(image) {
-        this.setLabelImg(image);
 
-        const imageBlob = this.base64ToBlob(this.labelImg, 'image/jpeg');
+        const imageBlob = this.base64ToBlob(image, 'image/jpeg');
         console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
 
-        this.labelDescription = await ApiService.analyzeLabelImg(imageBlob);
+        this.setLabelImg(imageBlob);
+
+        this.labelDescription = await ApiService.analyzeLabelImg(this.labelImg);
 
     }
 
