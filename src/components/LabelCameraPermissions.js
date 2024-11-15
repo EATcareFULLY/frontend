@@ -35,9 +35,11 @@ const LabelCameraPermissions = ({setPermissionsGranted }) => {
     };
 
     return (
-        <div className="p-3">
-            <p>To use this feature, camera access is required, so please allow camera permissions.
-                Without camera access, this functionality will be unavailable. </p>
+        <div className="p-3 text-center">
+            <p className="w-75 mx-auto">
+                To use this feature, camera access is required, so please allow camera permissions.
+                Without camera access, this functionality will be unavailable.
+            </p>
             <Button onClick={handleRequestPermissions} >
                 Request Camera Permissions
             </Button>

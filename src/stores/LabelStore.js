@@ -3,8 +3,8 @@ import ApiService from "../services/ApiService";
 
 
 class LabelStore {
-    labelImg = null;
-    labelDescription = '';
+    labelImg = localStorage.getItem('labelImg') || null;
+    labelDescription = localStorage.getItem('labelDescription') || '';
 
 
     constructor() {
@@ -25,18 +25,29 @@ class LabelStore {
 
     setLabelImg(image) {
         this.labelImg=image;
+        localStorage.setItem('labelImg', image);
+    }
+
+    setLabelDescription(description) {
+        this.labelDescription = description;
+        localStorage.setItem('labelDescription', description);
     }
 
 
-    async analyzeLabelFromImage(image) {
+    async analyzeNewLabelFromImage(image) {
+        this.setLabelImg(image);
+        this.analyzeLabelFromImage();
+    }
 
-        const imageBlob = this.base64ToBlob(image, 'image/jpeg');
+    async analyzeLabelFromImage() {
+        this.labelDescription='';
+
+        const imageBlob = this.base64ToBlob(this.labelImg, 'image/jpeg');
         console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
 
-        this.setLabelImg(imageBlob);
+        const analysis = await ApiService.analyzeLabelImg(imageBlob);
 
-        this.labelDescription = await ApiService.analyzeLabelImg(this.labelImg);
-
+        this.setLabelDescription(analysis);
     }
 
 }

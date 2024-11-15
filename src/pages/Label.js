@@ -6,7 +6,7 @@ import LabelImageCrop from '../components/LabelImageCrop';
 import {Card} from "react-bootstrap";
 import CameraComponentsWrapper from "../components/CameraComponentsWrapper";
 
-//TODO - pomysl;enie o wrapperze dla komponentow obrazowych, odbior odpowiedzi i testy
+//TODO - testy i keycloak refresh token
 
 const Label = () => {
     const [permissionsGranted, setPermissionsGranted] = useState(false);

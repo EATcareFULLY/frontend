@@ -12,10 +12,10 @@ const LabelImageCrop = ({ imageSrc, setImageSrc, setIsCropMode }) => {
     useEffect(() => {
         cropperRef.current = new Cropper(imageRef.current, {
             viewMode: 1,
-            autoCropArea: 0.75,
+            autoCropArea: 0.99,
             responsive: true,
             background: false,
-            guides: false,
+            guides: true,
         });
         return () => cropperRef.current && cropperRef.current.destroy();
     }, []);

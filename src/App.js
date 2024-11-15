@@ -12,6 +12,7 @@ import React from "react";
 import RequireAuth from "./components/RequireAuth";
 import Home from "./pages/Home";
 import Label from "./pages/Label";
+import LabelAnalysis from "./pages/LabelAnalysis";
 
 function App() {
   return (
@@ -59,6 +60,14 @@ function App() {
                       element={
                           <RequireAuth>
                               <Details />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path='/LabelAnalysis'
+                      element={
+                          <RequireAuth>
+                              <LabelAnalysis />
                           </RequireAuth>
                       }
                   />

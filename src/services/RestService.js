@@ -6,6 +6,7 @@ class RestService {
 
         if (keycloak.authenticated) {
             await keycloak.updateToken(30).catch(() => {
+                console.log("failed to update token");
                 keycloak.logout();
             });
 
