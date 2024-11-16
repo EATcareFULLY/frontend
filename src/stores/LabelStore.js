@@ -33,6 +33,11 @@ class LabelStore {
         localStorage.setItem('labelDescription', description);
     }
 
+    resetLabelDescription() {
+        this.labelDescription = '';
+        localStorage.removeItem('labelDescription')
+    }
+
 
     async analyzeNewLabelFromImage(image) {
         this.setLabelImg(image);
@@ -40,7 +45,7 @@ class LabelStore {
     }
 
     async analyzeLabelFromImage() {
-        this.labelDescription='';
+        this.resetLabelDescription();
 
         const imageBlob = this.base64ToBlob(this.labelImg, 'image/jpeg');
         console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
