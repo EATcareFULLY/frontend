@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ProductInfo from "../../components/ProductInfo";
 import { scanStore } from "../../stores/ScanStore";
-import nutri_a from '../../assets/nutri-score-a.svg';
-import img_placeholder from '../../assets/product-photo-placeholder.svg';
+import nutri_a from '../../assets/nutri-score/nutri-score-a.svg';
+import img_placeholder from '../../assets/placeholders/product-photo-placeholder.svg';
 
 jest.mock("../../stores/ScanStore", () => ({
     scanStore: {

@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { useKeycloak } from "@react-keycloak/web";
-import logo from "../assets/logo-horizontal.svg";
+import logo from "../assets/logos/logo-horizontal.svg";
 import { NavDropdown } from "react-bootstrap";
 
 function MainNavBar() {
