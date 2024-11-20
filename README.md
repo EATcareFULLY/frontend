@@ -35,7 +35,9 @@ You just need to delete my-pwa-cache1.
 `Service worker occupies url so it may save your different project which was hosted using this url.` 
 ## Some pages are on infinite loading
 Redirect doesn't seem to work currently so page is blocked on loading screen
-## Wrong placing of images and ?icons?
-Photos are currently adjusted to left instead of center.
-## Number of items input needs resize and better styling
-Input is bigger than buttons.
+## keycloak true error
+After no activity for a long time, error occurs stating 'true' caused by keycloak.
+logs:
+(:8080/realms/eat-car…nid-connect/token:1
+Failed to load resource: the server responded with a status of 400 (Bad Request)
+Uncaught (in promise) true)
