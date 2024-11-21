@@ -101,6 +101,18 @@ class ApiService {
             errorToast("Failed to upload image.");
         }
     }
+
+    static async getAllAchievements() {
+        try {
+            return await RestService.ajax(
+                `${API_URLS.achievements}/all`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to fetch achievements:", error);
+        }
+    }
 }
 
 export default ApiService;

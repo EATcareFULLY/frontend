@@ -41,6 +41,7 @@ function MainNavBar() {
             </Nav>
             <Nav className="ms-auto">
               <NavDropdown title={`Logged in as: ${keycloak.tokenParsed?.preferred_username}`} id="basic-nav-dropdown">
+                <NavDropdown.Item as={Link} to="/Achievements" onClick={closeNavbar}>Achievements</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
             </Nav>

@@ -13,6 +13,7 @@ import RequireAuth from "./components/RequireAuth";
 import Home from "./pages/Home";
 import Label from "./pages/Label";
 import LabelAnalysis from "./pages/LabelAnalysis";
+import Achievements from "./pages/Achievements";
 
 function App() {
   return (
@@ -68,6 +69,14 @@ function App() {
                       element={
                           <RequireAuth>
                               <LabelAnalysis />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path='/Achievements'
+                      element={
+                          <RequireAuth>
+                              <Achievements />
                           </RequireAuth>
                       }
                   />
