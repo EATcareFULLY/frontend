@@ -1,19 +1,13 @@
 import React from 'react';
 import AchievementWrapper from "./AchievementWrapper";
+import {achievementBadgePath} from "../utils/ImagePaths";
 
 const AchievementCard = ({ name, level, description }) => {
-
-    const badgePath = () => {
-        console.log(`${name} - ${level} - ${description}`);
-        const formattedName = name.toLowerCase().replace(/\s+/g, '_');
-        const formattedLevel = level.toLowerCase();
-        return require(`../assets/achivement-badges/${formattedLevel}_${formattedName}.svg`);
-    };
 
     return (
         <AchievementWrapper>
             <img
-                src={badgePath()}
+                src={achievementBadgePath(name, level)}
                 alt={`${name} - ${level}`}
                 className="mb-2"
             />

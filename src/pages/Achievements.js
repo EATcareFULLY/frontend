@@ -20,6 +20,8 @@ const Achievements = observer(() => {
         return <Loading />;
     }
 
+    //TODO unhardcode ???
+
     return (
         <Container>
             <h1>Achievements</h1>

@@ -8,7 +8,7 @@ const AchievementLockedCard = () => {
         <AchievementWrapper>
             <img
                 src={locked}
-                alt="locked"
+                alt="locked-photo"
                 className="mb-2"
             />
             <h2 >Locked</h2>
