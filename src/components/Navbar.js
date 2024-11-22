@@ -38,10 +38,12 @@ function MainNavBar() {
               <Nav.Link as={Link} to="/Label" onClick={closeNavbar}>Label</Nav.Link>
               <Nav.Link as={Link} to="/History" onClick={closeNavbar}>History</Nav.Link>
               <Nav.Link as={Link} to="/Analyze" onClick={closeNavbar}>Analyze</Nav.Link>
+              <Nav.Link as={Link} to="/Ranking" onClick={closeNavbar}>Ranking</Nav.Link>
             </Nav>
             <Nav className="ms-auto">
               <NavDropdown title={`Logged in as: ${keycloak.tokenParsed?.preferred_username}`} id="basic-nav-dropdown">
                 <NavDropdown.Item as={Link} to="/Achievements" onClick={closeNavbar}>Achievements</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/Settings" onClick={closeNavbar}>Settings</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
             </Nav>
