@@ -3,6 +3,8 @@ export const API_URLS = {
     products: `${API_ROOT_URL}/products`,
     purchases: `${API_ROOT_URL}/purchases`,
     achievements: `${API_ROOT_URL}/achievements`,
+    leaderboard: `${API_ROOT_URL}/leaderboard/me`,
+    settings: `${API_ROOT_URL}/user-profile`,
     testproducts: `${API_ROOT_URL}/test/products`,
     testproduct: `${API_ROOT_URL}/test/product`,
     testpurchases: `${API_ROOT_URL}/test/purchases`

@@ -61,6 +61,12 @@ self.addEventListener('fetch', event => {
                 console.error("Fetch failed; returning offline page instead.", error);
             })
         );
+    } else if (event.request.url.includes('/user-profile')) {
+        event.respondWith(
+            fetch(event.request).catch(() => {
+                return caches.match(event.request);
+            })
+        );
     } else {
         event.respondWith(
             caches.match(event.request).then(response => {

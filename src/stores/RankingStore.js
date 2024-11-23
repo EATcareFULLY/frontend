@@ -2,16 +2,25 @@ import { makeAutoObservable } from "mobx";
 import ApiService from "../services/ApiService";
 
 class RankingStore {
-    topContext = [];
+    topPositions = [];
     userContext = [];
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    setRanking(topContext, userContext) {
-        this.topContext = topContext;
+    setRanking(topPositions, userContext) {
+        this.topPositions = topPositions;
         this.userContext = userContext;
+    }
+
+    async fetchRanking() {
+        try {
+            const ranking = await ApiService.getRanking();
+            this.setAchievements(ranking.topPositions, ranking.userContext);
+        } catch (error) {
+            console.error("Failed to fetch ranking");
+        }
     }
 
 }

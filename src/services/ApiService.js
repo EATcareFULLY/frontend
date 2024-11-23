@@ -113,6 +113,164 @@ class ApiService {
             console.error("Failed to fetch achievements:", error);
         }
     }
+
+    static async getRanking() {
+        try {
+            return await RestService.ajax(
+                `${API_URLS.leaderboard}`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to fetch achievements:", error);
+        }
+    }
+
+    static async getSettings() {
+        try {
+            return await RestService.ajax(
+                `${API_URLS.settings}`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to fetch achievements:", error);
+        }
+    }
+
+    static async updateSettings(thresholds, preferences) {
+
+        const settings = {
+            thresholds: thresholds,
+            preferences: preferences
+        };
+
+        try {
+            const response =  await RestService.ajax(
+                `${API_URLS.settings}/update`,
+                "POST",
+                settings
+            );
+
+            console.log("Settings POST response", response);
+
+            return response;
+
+        } catch (error) {
+            console.error("Failed to save settings", error);
+
+            errorToast("Failed to save setting.");
+        }
+    }
+
+    /* FUNCTION TO SETUP PREFERENCES DURING TESTING
+    static async createPref() {
+        try {
+            await RestService.ajax(
+                `http://localhost:8081/api/test/create-preference-name?name=Milk`,
+                "POST",
+                null
+            );
+            await RestService.ajax(
+                `http://localhost:8081/api/test/create-preference-name?name=Organic`,
+                "POST",
+                null
+            );
+            await RestService.ajax(
+                `http://localhost:8081/api/test/create-preference-name?name=Vegetarian`,
+                "POST",
+                null
+            );
+            await RestService.ajax(
+                `http://localhost:8081/api/test/create-preference-name?name=Eggs`,
+                "POST",
+                null
+            );
+            await RestService.ajax(
+                `http://localhost:8081/api/test/create-preference-name?name=Nuts`,
+                "POST",
+                null
+            );
+            return await RestService.ajax(
+                `http://localhost:8081/api/test/preference-name/all`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to create pref:", error);
+        }
+    }
+
+
+    static async checkPref() {
+        try {
+            return await RestService.ajax(
+                `http://localhost:8081/api/test/preference-name/all`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to get prefs:", error);
+        }
+    }
+
+    static async setupSettings() {
+
+        const settings = {
+            thresholds: {
+                fatThreshold: 100,
+                proteinThreshold: 100,
+                carbohydratesThreshold: 50,
+                caloriesThreshold: 1500
+
+            },
+            preferences: [
+
+                {
+                    "name": "Milk",
+                    "wanted": -1
+                },
+                {
+                    "name": "Eggs",
+                    "wanted": 0
+                },
+                {
+                    "name": "Organic",
+                    "wanted": -1
+                },
+                {
+                    "name": "Vegetarian",
+                    "wanted": 1
+                },
+                {
+                    "name": "Nuts",
+                    "wanted": -1
+                }
+            ]
+        };
+
+        try {
+            const response =  await RestService.ajax(
+                `${API_URLS.settings}/update`,
+                "POST",
+                settings
+            );
+
+            successToast("Settings saved successfully.");
+
+            return response;
+
+        } catch (error) {
+            console.error("Failed to save settings", error);
+
+            errorToast("Failed to save setting.");
+        }
+    }
+
+     */
+
+
+
 }
 
 export default ApiService;
