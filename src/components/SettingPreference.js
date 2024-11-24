@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { ToggleButton, ButtonGroup } from "react-bootstrap";
+import {settingsStore} from "../stores/SettingsStore";
 
-const SettingPreference = ({ name, initialWanted, onUpdate}) => {
-    const [selectedValue, setSelectedValue] = useState(initialWanted);
+const SettingPreference = ({ name, onUpdate}) => {
 
     const handleChange = (value) => {
-        setSelectedValue(value);
         onUpdate(name, value);
     };
 
@@ -17,19 +16,19 @@ const SettingPreference = ({ name, initialWanted, onUpdate}) => {
 
     return (
         <div className="d-flex justify-content-between align-items-center mb-3">
-            <h5 >{name}</h5>
+            <p >{name}</p>
             <ButtonGroup>
                 {options.map(({ value, label, variant }) => (
                     <ToggleButton
                         key={value}
                         id={`${name}-${value}`}
                         type="radio"
-                        variant={value === selectedValue ? variant : `outline-${variant}`}
+                        variant={value === settingsStore.getPreferences(name) ? variant : `outline-${variant}`}
                         name={name}
                         value={value}
-                        checked={selectedValue === value}
+                        checked={settingsStore.getPreferences(name) === value}
                         onChange={() => handleChange(value)}
-                        style={{ color: value === selectedValue ? 'white' : 'inherit' }}
+                        style={{ color: value === settingsStore.getPreferences(name) ? 'white' : 'inherit' }}
                     >
                         {label}
                     </ToggleButton>
