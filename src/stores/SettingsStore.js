@@ -76,7 +76,25 @@ class SettingsStore {
     updateThreshold(name, value) {
         if (this.thresholds.hasOwnProperty(name)) {
             this.thresholds[name] = value;
+
+            if(name==="Calories") {
+                this.validateThresholdsAfterCaloriesUpdate();
+            }
         }
+    }
+
+    validateThresholdsAfterCaloriesUpdate() {
+
+        ["Protein", "Fat", "Carbohydrates"].forEach((nutrient) => {
+            const [minValue, maxValue] = this.getDynamicRangeForNutrient(nutrient);
+            const currentValue = this.getThreshold(nutrient);
+
+            if (currentValue < minValue) {
+                settingsStore.updateThreshold(nutrient, minValue);
+            } else if (currentValue > maxValue) {
+                settingsStore.updateThreshold(nutrient, maxValue);
+            }
+        });
     }
 
     updatePreference(name, wanted) {

@@ -30,11 +30,11 @@ const Settings = observer(() => {
         settingsStore.updateThreshold(name, value)
     }
 
-    const handleSave = async (name, value) => {
+    const handleSave = async () => {
         await settingsStore.updateSettings();
     }
 
-    const handleRevert = async (name, value) => {
+    const handleRevert = async () => {
         await settingsStore.fetchSettings();
     }
 
