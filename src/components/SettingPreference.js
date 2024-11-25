@@ -1,8 +1,7 @@
 import React from "react";
 import { ToggleButton, ButtonGroup } from "react-bootstrap";
-import {settingsStore} from "../stores/SettingsStore";
 
-const SettingPreference = ({ name, onUpdate}) => {
+const SettingPreference = ({ name, wanted, onUpdate}) => {
 
     const handleChange = (value) => {
         onUpdate(name, value);
@@ -23,12 +22,12 @@ const SettingPreference = ({ name, onUpdate}) => {
                         key={value}
                         id={`${name}-${value}`}
                         type="radio"
-                        variant={value === settingsStore.getPreferences(name) ? variant : `outline-${variant}`}
+                        variant={value === wanted ? variant : `outline-${variant}`}
                         name={name}
                         value={value}
-                        checked={settingsStore.getPreferences(name) === value}
+                        checked={wanted === value}
                         onChange={() => handleChange(value)}
-                        style={{ color: value === settingsStore.getPreferences(name) ? 'white' : 'inherit' }}
+                        style={{ color: value === wanted ? 'white' : 'inherit' }}
                     >
                         {label}
                     </ToggleButton>
