@@ -40,7 +40,7 @@ const Settings = observer(() => {
         await settingsStore.fetchSettings();
     }
 
-    if (!settingsStore.getThreshold("Calories")===0) {
+    if (!settingsStore.thresholds || settingsStore.getThreshold("Calories")===0) {
         return <Loading />;
     }
 
@@ -59,7 +59,7 @@ const Settings = observer(() => {
                             </Tooltip>
                         }
                     >
-                        <InfoCircleFill className="ml-2" style={{cursor: "pointer", fontSize: "1.25rem"}}/>
+                        <InfoCircleFill data-testid="info-tooltip-icon" className="ml-2" style={{cursor: "pointer", fontSize: "1.25rem"}}/>
                     </OverlayTrigger>
                 </h4>
                 <SettingsWrapper>

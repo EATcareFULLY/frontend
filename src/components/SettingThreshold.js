@@ -47,6 +47,7 @@ const SettingThreshold = ({ name, value, unit, valueRange, onUpdate }) => {
                     min={minValue}
                     max={maxValue}
                     step={1}
+                    data-testid="threshold-slider"
                 />
             </Col>
             <Col sm={2}>
@@ -56,6 +57,7 @@ const SettingThreshold = ({ name, value, unit, valueRange, onUpdate }) => {
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                     className="text-right"
+                    data-testid="threshold-input"
                 />
             </Col>
             <Col sm={1} className="text-right">

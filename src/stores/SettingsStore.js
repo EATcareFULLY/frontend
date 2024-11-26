@@ -54,8 +54,16 @@ class SettingsStore {
             return;
         }
 
+        this.resetPreferences();
+
         preferences.forEach(({ name, wanted }) => {
             this.updatePreference(name, wanted)
+        });
+    }
+
+    resetPreferences () {
+        Object.keys(this.preferences).forEach((key) => {
+            this.preferences[key] = 0;
         });
     }
 
@@ -66,7 +74,7 @@ class SettingsStore {
         return null;
     }
 
-    getPreferences(name) {
+    getPreference(name) {
         if (this.preferences.hasOwnProperty(name)) {
             return this.preferences[name];
         }
