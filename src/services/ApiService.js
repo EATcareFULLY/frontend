@@ -86,7 +86,7 @@ class ApiService {
 
         try {
             const response =  await RestService.ajax(
-                `${API_URLS.products}/eval-label`,
+                `${API_URLS.label}/file`,
                 "POST",
                 formData
             );
@@ -218,7 +218,7 @@ class ApiService {
 
         const settings = {
             thresholds: {
-                fatThreshold: 100,
+                fatThreshold: 600,
                 proteinThreshold: 100,
                 carbohydratesThreshold: 50,
                 caloriesThreshold: 1500

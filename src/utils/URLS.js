@@ -5,6 +5,7 @@ export const API_URLS = {
     achievements: `${API_ROOT_URL}/achievements`,
     leaderboard: `${API_ROOT_URL}/leaderboard/me`,
     settings: `${API_ROOT_URL}/user-profile`,
+    label: `${API_ROOT_URL}/services/label-analysis`,
     testproducts: `${API_ROOT_URL}/test/products`,
     testproduct: `${API_ROOT_URL}/test/product`,
     testpurchases: `${API_ROOT_URL}/test/purchases`
