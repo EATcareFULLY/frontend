@@ -52,7 +52,7 @@ class LabelStore {
 
         const analysis = await ApiService.analyzeLabelImg(imageBlob);
 
-        this.setLabelDescription(analysis);
+        this.setLabelDescription(JSON.stringify(analysis));
     }
 
 }
