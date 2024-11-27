@@ -26,10 +26,10 @@ describe("SettingsStore", () => {
 
     it("should set thresholds and preferences correctly", () => {
         const thresholds = {
-            caloriesThreshold: 2000,
-            proteinThreshold: 50,
-            fatThreshold: 70,
-            carbohydratesThreshold: 300,
+            calorie_threshold: 2000,
+            protein_threshold: 50,
+            fat_threshold: 70,
+            carbon_threshold: 300,
         };
         const preferences = [
             { name: "Milk", wanted: 1 },
@@ -119,10 +119,10 @@ describe("SettingsStore", () => {
     it("should fetch settings from the backend", async () => {
         const mockSettings = {
             thresholds: {
-                caloriesThreshold: 2000,
-                proteinThreshold: 50,
-                fatThreshold: 70,
-                carbohydratesThreshold: 300,
+                calorie_threshold: 2000,
+                protein_threshold: 50,
+                fat_threshold: 70,
+                carbon_threshold: 300,
             },
             preferences: [
                 { name: "Milk", wanted: 1 },
@@ -172,10 +172,10 @@ describe("SettingsStore", () => {
 
         expect(spyUpdateSettings).toHaveBeenCalledWith(
             {
-                caloriesThreshold: 2500,
-                proteinThreshold: 0,
-                fatThreshold: 0,
-                carbohydratesThreshold: 0,
+                calorie_threshold: 2500,
+                protein_threshold: 0,
+                fat_threshold: 0,
+                carbon_threshold: 0,
             },
             [
                 { name: "Milk", wanted: 0 },

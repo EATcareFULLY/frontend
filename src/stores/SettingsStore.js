@@ -18,10 +18,10 @@ class SettingsStore {
     };
 
     backendToFrontendThresholds = {
-        caloriesThreshold: "Calories",
-        proteinThreshold: "Protein",
-        fatThreshold: "Fat",
-        carbohydratesThreshold: "Carbohydrates",
+        calorie_threshold: "Calories",
+        protein_threshold: "Protein",
+        fat_threshold: "Fat",
+        carbon_threshold: "Carbohydrates",
     };
 
 
@@ -182,6 +182,7 @@ class SettingsStore {
         return [minGrams, maxGrams];
     }
 
+
     /*
     async createPref() {
         const prefs = ApiService.createPref();
@@ -200,9 +201,9 @@ class SettingsStore {
     async setupSetting() {
         const response = ApiService.setupSettings();
         console.log("setup response", response);
-    }
+    }*/
 
-     */
+
 }
 
 export const settingsStore = new SettingsStore();

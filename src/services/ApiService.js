@@ -98,7 +98,7 @@ class ApiService {
         } catch (error) {
 
             console.error("Failed to analyze image:", error);
-            errorToast("Failed to upload image.");
+            errorToast("Failed to analyze product.");
         }
     }
 
@@ -218,10 +218,10 @@ class ApiService {
 
         const settings = {
             thresholds: {
-                fatThreshold: 600,
-                proteinThreshold: 100,
-                carbohydratesThreshold: 50,
-                caloriesThreshold: 1500
+                fat_threshold: 222,
+                protein_threshold: 500,
+                carbon_threshold: 875,
+                calorie_threshold: 5000
 
             },
             preferences: [
@@ -265,9 +265,9 @@ class ApiService {
 
             errorToast("Failed to save setting.");
         }
-    }
+    }*/
 
-     */
+
 
 
 
