@@ -8,7 +8,7 @@ const ProductTables =({ tags, allergens, ingredients }) => {
         }
 
         return (
-            <Table bordered striped rounded>
+            <Table bordered striped>
                 <thead className="table-primary">
                 <tr>
                     <th>Tag</th>
@@ -54,7 +54,7 @@ const ProductTables =({ tags, allergens, ingredients }) => {
         }
 
         return (
-            <Table bordered striped rounded>
+            <Table bordered striped >
                 <thead className="table-primary text-white">
                 <tr>
                     <th>Ingredient</th>

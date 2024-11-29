@@ -3,10 +3,8 @@ import { Button } from 'react-bootstrap';
 import { labelStore } from '../stores/LabelStore';
 import LabelButtonsWrapper from "./LabelButtonsWrapper";
 import LabelImgWrapper from "./LabelImgWrapper";
-import {useNavigate} from "react-router-dom";
 
-const LabelImage = ({ imageSrc, setImageSrc, setIsCropMode }) => {
-    const navigate = useNavigate();
+const LabelImage = ({ imageSrc, setImageSrc, setIsCropMode, labelSubmition }) => {
 
     const enableCropMode = () => setIsCropMode(true);
 
@@ -14,7 +12,7 @@ const LabelImage = ({ imageSrc, setImageSrc, setIsCropMode }) => {
 
     const analyzeLabel = () => {
         labelStore.setLabelImg(imageSrc);
-        navigate('/LabelAnalysis');
+        labelSubmition();
     }
 
     return (

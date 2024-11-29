@@ -1,15 +1,15 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-const LabelAnalysisHarmfulAdditivesTable = ({ title, additives }) => {
+const LabelAnalysisHarmfulAdditivesTable = ({ additives }) => {
     if (!additives || additives.length === 0) {
         return <p>No harmful additives found.</p>;
     }
 
     return (
         <div>
-            <Table striped bordered hover responsive>
-                <thead>
+            <Table bordered striped>
+                <thead className="table-primary text-white">
                 <tr>
                     <th>Code</th>
                     <th>Name</th>

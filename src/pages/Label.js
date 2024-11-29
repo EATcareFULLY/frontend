@@ -6,21 +6,26 @@ import LabelImageCrop from '../components/LabelImageCrop';
 import {Card} from "react-bootstrap";
 import CameraComponentsWrapper from "../components/CameraComponentsWrapper";
 import LabelForm from "../components/LabelForm";
+import {useNavigate} from "react-router-dom";
 
-//TODO - testy i keycloak refresh token
 
 const Label = () => {
     const [permissionsGranted, setPermissionsGranted] = useState(false);
     const [imageSrc, setImageSrc] = useState(null);
     const [isCropMode, setIsCropMode] = useState(false);
 
+    const navigate = useNavigate();
+
+    const labelSubmition = () => {
+        navigate("/LabelAnalysis");
+    };
 
     //consider container as a wrapper
 
     return (
         <div>
             <CameraComponentsWrapper>
-                <h3>Analyze label from photo</h3>
+                <h2>Analyze label from photo</h2>
                 <Card className="mt-3" style={{backgroundColor: "var(--bs-secondary-bg-subtle)"}}>
                     {!permissionsGranted && (
                         <LabelCameraPermissions
@@ -38,6 +43,7 @@ const Label = () => {
                             imageSrc={imageSrc}
                             setImageSrc={setImageSrc}
                             setIsCropMode={setIsCropMode}
+                            labelSubmition={labelSubmition}
                         />
                     )}
                     {imageSrc && isCropMode && (
@@ -51,8 +57,8 @@ const Label = () => {
             </CameraComponentsWrapper>
             <div className="row justify-content-center mt-4">
                 <div className="col-md-6">
-                    <h3>No camera? Input label here</h3>
-                    <LabelForm/>
+                    <h2>No camera? Input label here</h2>
+                    <LabelForm labelSubmition={labelSubmition}/>
                 </div>
             </div>
         </div>

@@ -99,6 +99,8 @@ class ApiService {
 
             console.error("Failed to analyze image:", error);
             errorToast("Failed to analyze product.");
+
+            throw error;
         }
     }
 

@@ -56,17 +56,21 @@ class LabelStore {
 
     async analyzeLabel() {
         this.resetLabelDescription();
-        let analysis;
 
-         if (this.labelImg) {
-             analysis = await this.analyzeLabelFromImage();
-         } else {
-             analysis = await this.analyzeLabelFromText();
-         }
+        try {
+            let analysis;
 
-        console.log("label analysis", analysis);
+            if (this.labelImg) {
+                analysis = await this.analyzeLabelFromImage();
+            } else {
+                analysis = await this.analyzeLabelFromText();
+            }
 
-        this.setLabelDescription(analysis);
+            console.log("label analysis", analysis);
+            this.setLabelDescription(analysis);
+        } catch (error) {
+            throw error;
+        }
     }
 
     async analyzeLabelFromText() {
@@ -83,7 +87,13 @@ class LabelStore {
         const imageBlob = this.base64ToBlob(this.labelImg, 'image/jpeg');
         console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
 
-        return  await ApiService.analyzeLabelImg(imageBlob);
+        try {
+            return  await ApiService.analyzeLabelImg(imageBlob);
+        } catch (error) {
+            throw error;
+        }
+
+
 
     }
 

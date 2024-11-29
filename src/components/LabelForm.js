@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import {Button, FormControl} from "react-bootstrap";
 import {labelStore} from "../stores/LabelStore";
-import {useNavigate} from "react-router-dom";
+import {errorToast} from "../utils/Toasts";
 
-const LabelForm = () => {
+const LabelForm = ({labelSubmition}) => {
     const [inputLabel, setInputLabel] = useState("");
-    const navigate = useNavigate()
 
     const handleInputChange = (e) => {
         setInputLabel(e.target.value);
@@ -14,9 +13,27 @@ const LabelForm = () => {
     };
 
     const handleInputSubmit = () => {
-        labelStore.setLabelText(inputLabel);
-        navigate('/LabelAnalysis');
+        if (validateLabel(inputLabel)) {
+            labelStore.setLabelText(inputLabel);
+            labelSubmition();
+        } else {
+            errorToast("Invalid label format.")
+        }
     };
+
+    const validateLabel = (label) => {
+
+        const forbiddenPattern = /[`<>$]/;
+        if (forbiddenPattern.test(label)) {
+            return false;
+        }
+
+        if (!label.trim()) {
+            return false;
+        }
+
+        return true;
+    }
 
     return (
         <div className="text-center">

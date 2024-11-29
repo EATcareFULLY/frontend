@@ -46,7 +46,7 @@ const Settings = observer(() => {
 
     return (
         <Container>
-            <h1 className="mb-4">Settings</h1>
+            <h2 className="mb-4">Settings</h2>
             <div>
                 <h4 className="mb-4 d-inline-flex align-items-center">
                     Daily nutrition thresholds
