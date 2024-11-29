@@ -91,13 +91,37 @@ class ApiService {
                 formData
             );
 
-            console.log("label response", response)
+            console.log("label response img", response)
 
             return response;
 
         } catch (error) {
 
             console.error("Failed to analyze image:", error);
+            errorToast("Failed to analyze product.");
+        }
+    }
+
+    static async analyzeLabelText(labelText) {
+
+        const dto = {
+            labelText: labelText
+        };
+
+        try {
+            const response =  await RestService.ajax(
+                `${API_URLS.label}/text`,
+                "POST",
+                dto
+            );
+
+            console.log("label response text", response)
+
+            return response;
+
+        } catch (error) {
+
+            console.error("Failed to analyze text:", error);
             errorToast("Failed to analyze product.");
         }
     }

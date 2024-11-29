@@ -1,10 +1,11 @@
-import { makeAutoObservable} from "mobx";
+import {makeAutoObservable} from "mobx";
 import ApiService from "../services/ApiService";
 
 
 class LabelStore {
     labelImg = localStorage.getItem('labelImg') || null;
-    labelDescription = localStorage.getItem('labelDescription') || '';
+    labelText = localStorage.getItem('labelText') || null;
+    labelAnalysis = null;
 
 
     constructor() {
@@ -24,36 +25,68 @@ class LabelStore {
 
 
     setLabelImg(image) {
+        this.resetLabelText();
         this.labelImg=image;
         localStorage.setItem('labelImg', image);
     }
 
+    setLabelText(label) {
+        this.resetLabelImg();
+        this.labelText=label;
+        localStorage.setItem('labelText', label);
+    }
+
     setLabelDescription(description) {
-        this.labelDescription = description;
-        localStorage.setItem('labelDescription', description);
+        this.labelAnalysis = description;
+    }
+
+    resetLabelImg() {
+        localStorage.removeItem('labelImg');
+        this.labelImg = null;
+    }
+
+    resetLabelText() {
+        localStorage.removeItem('labelText');
+        this.labelText = null;
     }
 
     resetLabelDescription() {
-        this.labelDescription = '';
-        localStorage.removeItem('labelDescription')
+        this.labelAnalysis = null;
     }
 
+    async analyzeLabel() {
+        this.resetLabelDescription();
+        let analysis;
 
-    async analyzeNewLabelFromImage(image) {
-        this.setLabelImg(image);
-        this.analyzeLabelFromImage();
+         if (this.labelImg) {
+             analysis = await this.analyzeLabelFromImage();
+         } else {
+             analysis = await this.analyzeLabelFromText();
+         }
+
+        console.log("label analysis", analysis);
+
+        this.setLabelDescription(analysis);
+    }
+
+    async analyzeLabelFromText() {
+        console.log("label text", this.labelText);
+        console.log("label image", this.labelImg);
+
+        return await ApiService.analyzeLabelText(this.labelText);
     }
 
     async analyzeLabelFromImage() {
-        this.resetLabelDescription();
+        console.log("label text", this.labelText);
+        console.log("label image", this.labelImg);
 
         const imageBlob = this.base64ToBlob(this.labelImg, 'image/jpeg');
         console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
 
-        const analysis = await ApiService.analyzeLabelImg(imageBlob);
+        return  await ApiService.analyzeLabelImg(imageBlob);
 
-        this.setLabelDescription(JSON.stringify(analysis));
     }
+
 
 }
 

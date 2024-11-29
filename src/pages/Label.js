@@ -5,6 +5,7 @@ import LabelImage from '../components/LabelImage';
 import LabelImageCrop from '../components/LabelImageCrop';
 import {Card} from "react-bootstrap";
 import CameraComponentsWrapper from "../components/CameraComponentsWrapper";
+import LabelForm from "../components/LabelForm";
 
 //TODO - testy i keycloak refresh token
 
@@ -19,7 +20,7 @@ const Label = () => {
     return (
         <div>
             <CameraComponentsWrapper>
-                <h2>Analyze label from photo</h2>
+                <h3>Analyze label from photo</h3>
                 <Card className="mt-3" style={{backgroundColor: "var(--bs-secondary-bg-subtle)"}}>
                     {!permissionsGranted && (
                         <LabelCameraPermissions
@@ -48,7 +49,12 @@ const Label = () => {
                     )}
                 </Card>
             </CameraComponentsWrapper>
-
+            <div className="row justify-content-center mt-4">
+                <div className="col-md-6">
+                    <h3>No camera? Input label here</h3>
+                    <LabelForm/>
+                </div>
+            </div>
         </div>
 
 

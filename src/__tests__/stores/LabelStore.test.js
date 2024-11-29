@@ -21,7 +21,7 @@ describe('LabelStore', () => {
     it('should initialize store with default values when there is no data in localStorage', () => {
 
         expect(labelStore.labelImg).toBe(null);
-        expect(labelStore.labelDescription).toBe('');
+        expect(labelStore.labelAnalysis).toBe('');
     });
 
     it('should convert base64 string to Blob', () => {
@@ -41,14 +41,14 @@ describe('LabelStore', () => {
     it('should set label description and save it to localStorage', () => {
         labelStore.setLabelDescription(mockDescription);
 
-        expect(labelStore.labelDescription).toBe(mockDescription);
+        expect(labelStore.labelAnalysis).toBe(mockDescription);
         expect(localStorage.getItem('labelDescription')).toBe(mockDescription);
     });
 
     it('should set default label description and remove it from localStorage', () => {
         labelStore.resetLabelDescription();
 
-        expect(labelStore.labelDescription).toBe('');
+        expect(labelStore.labelAnalysis).toBe('');
         expect(localStorage.getItem('labelDescription')).toBe(null);
     });
 
@@ -63,7 +63,7 @@ describe('LabelStore', () => {
 
         expect(labelStore.resetLabelDescription).toHaveBeenCalled();
         expect(ApiService.analyzeLabelImg).toHaveBeenCalledWith(expect.any(Blob));
-        expect(labelStore.labelDescription).toBe(mockAnalysis);
+        expect(labelStore.labelAnalysis).toBe(mockAnalysis);
     });
 
     it('should analyze new label from image and update label description', async () => {

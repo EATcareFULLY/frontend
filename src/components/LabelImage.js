@@ -13,7 +13,7 @@ const LabelImage = ({ imageSrc, setImageSrc, setIsCropMode }) => {
     const resetImage = () => setImageSrc(null);
 
     const analyzeLabel = () => {
-        labelStore.analyzeNewLabelFromImage(imageSrc);
+        labelStore.setLabelImg(imageSrc);
         navigate('/LabelAnalysis');
     }
 

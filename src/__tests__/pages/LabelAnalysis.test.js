@@ -54,7 +54,7 @@ describe("LabelAnalysis Component", () => {
     });
 
     it("renders the Loading component when labelDescription is empty", () => {
-        labelStore.labelDescription = "";
+        labelStore.labelAnalysis = "";
 
         render(<LabelAnalysis />);
 
