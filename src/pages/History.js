@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { observer } from "mobx-react";
 import { historyStore } from "../stores/HistoryStore";
 import { scanStore } from "../stores/ScanStore";
 import { FaChartBar } from "react-icons/fa";
 import { FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree } from "react-icons/fa";
+import { AiTwotoneLike } from "react-icons/ai";
+
 import MonthlyGroup from "../components/MonthlyGroup";
 import nutri_a from '../assets/nutri-score/nutri-score-a.png';
 import nutri_b from '../assets/nutri-score/nutri-score-b.png';
@@ -13,6 +15,7 @@ import nutri_d from '../assets/nutri-score/nutri-score-d.png';
 import nutri_e from '../assets/nutri-score/nutri-score-e.png';
 import nutri_unknown from '../assets/nutri-score/nutri-score-unknown.png';
 import './History.css';
+import RecommendationModal from '../components/recommendations/RecommendationModal';
 
 const monthIcons = {
     "01": <FaSnowflake className="text-blue-400" />,
@@ -30,6 +33,9 @@ const monthIcons = {
 };
 
 const History = observer(() => {
+
+    const [showRecommendationModal, setShowRecommendationModal] = useState(false);
+
     const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
@@ -46,6 +52,13 @@ const History = observer(() => {
     }
     const showAnalyze = () => {
         navigate('/Analyze')
+    }
+    const showModal = () => {
+        setShowRecommendationModal(true)
+        console.log("modal", showRecommendationModal)
+    }
+    const closeModal = () => {
+        setShowRecommendationModal(false)
     }
 
     const scoreImages = {
@@ -84,6 +97,13 @@ const History = observer(() => {
                     <span className="text-lg font-medium">General Analytics</span>
                     <FaChartBar size={24}/>
                 </button>
+                <button
+                    className="absolute top-0 left-8 flex items-center justify-center gap-2 w-80 h-20 bg-yellow-500 text-black rounded-lg shadow-lg"
+                    onClick={showModal}
+                >
+                    <span className="text-lg font-medium">New recommendations!</span>
+                    <AiTwotoneLike size={24}/>
+                </button>
             </div>
 
             {Object.keys(groupedHistory).length === 0 ? (
@@ -104,6 +124,7 @@ const History = observer(() => {
                     ))}
                 </ul>
             )}
+            {showRecommendationModal && <RecommendationModal closeModal = {closeModal}/>}
         </div>
     );
 });
