@@ -77,7 +77,11 @@ class LabelStore {
         console.log("label text", this.labelText);
         console.log("label image", this.labelImg);
 
-        return await ApiService.analyzeLabelText(this.labelText);
+        try {
+            return await ApiService.analyzeLabelText(this.labelText);
+        } catch (error) {
+            throw error;
+        }
     }
 
     async analyzeLabelFromImage() {
@@ -92,8 +96,6 @@ class LabelStore {
         } catch (error) {
             throw error;
         }
-
-
 
     }
 

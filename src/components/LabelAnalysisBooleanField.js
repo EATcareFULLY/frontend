@@ -5,11 +5,11 @@ const LabelAnalysisBooleanField = ({ title, value }) => {
     let icon;
 
     if (value === "true") {
-        icon = <FaCheck />;
+        icon = <FaCheck data-testid="fa-check-icon"/>;
     } else if (value === "false") {
-        icon = <FaTimes />;
+        icon = <FaTimes data-testid="fa-times-icon"/>;
     } else {
-        icon = <FaQuestion />;
+        icon = <FaQuestion data-testid="fa-question-icon"/>;
     }
 
     return (

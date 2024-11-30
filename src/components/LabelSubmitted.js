@@ -12,10 +12,10 @@ const LabelSubmitted = ({ image, text }) => {
                 </div>
             ) : text ? (
                 <div className="mt-2">
-                    <p className="p-3 text-muted bg-primary-subtle rounded border">{text}</p>
+                    <p className="p-4 text-muted bg-primary-subtle rounded border">{text}</p>
                 </div>
             ) : (
-                <p>No label submitted.</p>
+                <p>No label submitted - try reloading page.</p>
             )}
         </div>
     );

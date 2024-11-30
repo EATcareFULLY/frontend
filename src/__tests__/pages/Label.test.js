@@ -2,10 +2,21 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Label from '../../pages/Label';
 
-jest.mock('../../components/LabelCameraPermissions', () => () => <h1>LabelCameraPermissions</h1>);
-jest.mock('../../components/LabelCameraCapture', () => () => <h1>LabelCameraCapture</h1>);
-jest.mock('../../components/LabelImage', () => () => <h1>LabelImage</h1>);
-jest.mock('../../components/LabelImageCrop', () => () => <h1>LabelImageCrop</h1>);
+jest.mock('../../components/LabelCameraPermissions', () => (props) => <h1>LabelCameraPermissions</h1>);
+jest.mock('../../components/LabelCameraCapture', () => (props) => <h1>LabelCameraCapture</h1>);
+jest.mock('../../components/LabelImage', () => (props) => <h1>LabelImage</h1>);
+jest.mock('../../components/LabelImageCrop', () => (props) => <h1>LabelImageCrop</h1>);
+jest.mock('../../components/LabelForm', () => (props) => <h1>LabelForm</h1>);
+jest.mock('../../components/CameraComponentsWrapper', () => ({ children }) => (
+    <div>
+        <h1>CameraComponentsWrapper</h1>
+        {children}
+    </div>
+));
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+}));
 
 const mockSetState = jest.fn();
 
@@ -15,25 +26,31 @@ jest.mock('react', () => ({
 }));
 
 describe('Label Component', () => {
-    afterEach(() => {
+    let mockNavigate;
+
+    beforeEach(() => {
         jest.clearAllMocks();
+        mockNavigate = require('react-router-dom').useNavigate;
     });
 
     it('renders CameraComponentsWrapper and heading', () => {
         React.useState
-            .mockImplementationOnce(() => [false, mockSetState]) // Set permissionsGranted to false
+            .mockImplementationOnce(() => [false, mockSetState]) // permissionsGranted = false
             .mockImplementationOnce(() => [null, mockSetState]) // imageSrc = null
             .mockImplementationOnce(() => [false, mockSetState]); // isCropMode = false
+
         render(<Label />);
 
+        expect(screen.getByText('CameraComponentsWrapper')).toBeInTheDocument();
         expect(screen.getByText('Analyze label from photo')).toBeInTheDocument();
     });
 
     it('renders LabelCameraPermissions when permissions are not granted', () => {
         React.useState
-            .mockImplementationOnce(() => [false, mockSetState]) // Set permissionsGranted to false
+            .mockImplementationOnce(() => [false, mockSetState]) // permissionsGranted = false
             .mockImplementationOnce(() => [null, mockSetState]) // imageSrc = null
             .mockImplementationOnce(() => [false, mockSetState]); // isCropMode = false
+
         render(<Label />);
 
         expect(screen.getByText('LabelCameraPermissions')).toBeInTheDocument();
@@ -71,4 +88,17 @@ describe('Label Component', () => {
 
         expect(screen.getByText('LabelImageCrop')).toBeInTheDocument();
     });
+
+    it('renders LabelForm and heading for input label', () => {
+        React.useState
+            .mockImplementationOnce(() => [false, mockSetState]) // permissionsGranted = false
+            .mockImplementationOnce(() => [null, mockSetState]) // imageSrc = null
+            .mockImplementationOnce(() => [false, mockSetState]); // isCropMode = false
+
+        render(<Label />);
+
+        expect(screen.getByText('No camera? Input label here')).toBeInTheDocument();
+        expect(screen.getByText('LabelForm')).toBeInTheDocument();
+    });
+
 });

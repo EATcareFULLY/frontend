@@ -56,7 +56,6 @@ const LabelAnalysisDisplay = ({ analysis, additives }) => {
             </Row>
 
             <div className="mt-3">
-                <h5 className="mb-2">Harmful additives details</h5>
                 <LabelAnalysisTableField additives={additives} />
             </div>
         </div>
