@@ -37,7 +37,6 @@ function MainNavBar() {
               <Nav.Link as={Link} to="/Scan" onClick={closeNavbar}>Scan</Nav.Link>
               <Nav.Link as={Link} to="/Label" onClick={closeNavbar}>Label</Nav.Link>
               <Nav.Link as={Link} to="/History" onClick={closeNavbar}>History</Nav.Link>
-              <Nav.Link as={Link} to="/Analyze" onClick={closeNavbar}>Analyze</Nav.Link>
               <Nav.Link as={Link} to="/Leaderboard" onClick={closeNavbar}>Leaderboard</Nav.Link>
             </Nav>
             <Nav className="ms-auto">
