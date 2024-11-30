@@ -1,7 +1,7 @@
 import React from "react";
 import {observer} from "mobx-react";
 
-const Ranking = observer(() => {
+const Leaderboard = observer(() => {
 
     return (
         <div>
@@ -10,4 +10,4 @@ const Ranking = observer(() => {
     );
 });
 
-export default Ranking;
+export default Leaderboard;

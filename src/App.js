@@ -14,8 +14,8 @@ import Home from "./pages/Home";
 import Label from "./pages/Label";
 import LabelAnalysis from "./pages/LabelAnalysis";
 import Achievements from "./pages/Achievements";
-import Ranking from "./pages/Ranking";
 import Settings from "./pages/Settings";
+import Leaderboard from "./pages/Leaderboard";
 
 function App() {
   return (
@@ -83,10 +83,10 @@ function App() {
                       }
                   />
                   <Route
-                      path='/Ranking'
+                      path='/Leaderboard'
                       element={
                           <RequireAuth>
-                              <Ranking />
+                              <Leaderboard />
                           </RequireAuth>
                       }
                   />
