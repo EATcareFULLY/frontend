@@ -55,7 +55,13 @@ class ScanStore {
 
     async addScannedProductToPurchase(quantity){
 
-        await ApiService.addProductToPurchased(this.scannedProduct.id, quantity);
+        const response = await ApiService.addProductToPurchased(this.scannedProduct.id, quantity);
+
+        if (response && response.unlockedAchievements) {
+            return response.unlockedAchievements;
+        } else {
+            return null;
+        }
     }
 
     async getTestProduct(){

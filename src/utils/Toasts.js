@@ -38,7 +38,10 @@ export const errorToast = (message) => {
 
 export const achievementToast = (achievementName, achievementLevel) => {
     const message = `Congratulations! You just unlocked ${achievementName} - ${achievementLevel}!`;
-    const badge = achievementBadgePath(achievementName, achievementLevel);
+    const badgePath = achievementBadgePath(achievementName, achievementLevel);
+    const badge = <img src={badgePath} alt={`${achievementName} Badge`}/>;
+
+    console.log(message, badge);
 
     toast(message, {
         icon: badge,
@@ -51,5 +54,6 @@ export const achievementToast = (achievementName, achievementLevel) => {
         progress: undefined,
         theme: "light",
         transition: Slide,
+        className: "large-toast"
     });
 }

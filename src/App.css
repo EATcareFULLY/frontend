@@ -110,6 +110,10 @@ input[type=number] {
   background-color: #fff !important;
 }
 
+.large-toast .Toastify__toast-icon {
+  width: 75px !important;
+  height: 75px !important;
+}
 
 
 

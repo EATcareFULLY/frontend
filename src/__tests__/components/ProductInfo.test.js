@@ -1,8 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ProductInfo from "../../components/ProductInfo";
 import { scanStore } from "../../stores/ScanStore";
-import nutri_a from '../../assets/nutri-score/nutri-score-a.svg';
-import img_placeholder from '../../assets/placeholders/product-photo-placeholder.svg';
+import { achievementToast } from "../../utils/Toasts";
+import nutri_a from "../../assets/nutri-score/nutri-score-a.svg";
+import img_placeholder from "../../assets/placeholders/product-photo-placeholder.svg";
+import {act} from "react";
 
 jest.mock("../../stores/ScanStore", () => ({
     scanStore: {
@@ -10,6 +12,9 @@ jest.mock("../../stores/ScanStore", () => ({
     }
 }));
 
+jest.mock("../../utils/Toasts", () => ({
+    achievementToast: jest.fn()
+}));
 
 const mockProps = {
     imageURL: "",
@@ -19,10 +24,8 @@ const mockProps = {
     score: "a"
 };
 
-describe("ProductInfo Component", () => {
-    let input;
-    let decrementButton;
-    let incrementButton;
+describe("ProductInfo Component with Achievements", () => {
+    let input, decrementButton, incrementButton;
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -35,7 +38,6 @@ describe("ProductInfo Component", () => {
     });
 
     it("renders product information correctly", () => {
-
         expect(screen.getByText("Test Product")).toBeInTheDocument();
         expect(screen.getByText("Brands: Test Brand")).toBeInTheDocument();
         expect(screen.getByText("Barcode: 123456")).toBeInTheDocument();
@@ -43,12 +45,10 @@ describe("ProductInfo Component", () => {
     });
 
     it("displays placeholder image if no imageURL is provided", () => {
-
         expect(screen.getByAltText("Product-photo")).toHaveAttribute("src", img_placeholder);
     });
 
     it("updates quantity input value when incremented", () => {
-
         expect(input).toHaveValue(1);
 
         fireEvent.click(incrementButton);
@@ -57,7 +57,6 @@ describe("ProductInfo Component", () => {
     });
 
     it("updates quantity input value when decremented", () => {
-
         fireEvent.click(incrementButton);
         expect(input).toHaveValue(2);
 
@@ -66,7 +65,6 @@ describe("ProductInfo Component", () => {
     });
 
     it("does not decrement quantity below 1", () => {
-
         expect(input).toHaveValue(1);
 
         fireEvent.click(decrementButton);
@@ -75,7 +73,6 @@ describe("ProductInfo Component", () => {
     });
 
     it("does not increment quantity over 9999", () => {
-
         fireEvent.change(input, { target: { value: "9999" } });
 
         expect(input).toHaveValue(9999);
@@ -85,30 +82,53 @@ describe("ProductInfo Component", () => {
         expect(input).toHaveValue(9999);
     });
 
-    it("calls scanStore.addScannedProductToPurchase with correct quantity when button is clicked", async () => {
-
+    it("calls scanStore.addScannedProductToPurchase and achievementUnlockedToast correctly", async () => {
         const addButton = screen.getByRole("button", { name: /add to purchased products/i });
-        fireEvent.click(addButton);
+        const mockAchievements = [
+            { achievementName: "First Scan", level: 1 },
+            { achievementName: "Healthy Choices", level: 2 }
+        ];
+
+        scanStore.addScannedProductToPurchase.mockResolvedValue(mockAchievements);
+
+        await act(async () => {
+            fireEvent.click(addButton);
+        });
 
         expect(scanStore.addScannedProductToPurchase).toHaveBeenCalledWith(1);
+
+        expect(achievementToast).toHaveBeenCalledTimes(mockAchievements.length);
+        expect(achievementToast).toHaveBeenCalledWith("First Scan", 1);
+        expect(achievementToast).toHaveBeenCalledWith("Healthy Choices", 2);
+    });
+
+    it("does not trigger achievementToast if no achievements are unlocked", async () => {
+        const addButton = screen.getByRole("button", { name: /add to purchased products/i });
+
+        scanStore.addScannedProductToPurchase.mockResolvedValue(null);
+
+        await act(async () => {
+            fireEvent.click(addButton);
+        });
+
+        expect(scanStore.addScannedProductToPurchase).toHaveBeenCalledWith(1);
+
+        expect(achievementToast).not.toHaveBeenCalled();
     });
 
     it("updates quantity value on manual input change", () => {
-
         fireEvent.change(input, { target: { value: "3" } });
 
         expect(input).toHaveValue(3);
     });
 
-    it("does not updates quantity value on manual input chage over 9999", () => {
-
+    it("does not update quantity value on manual input over 9999", () => {
         fireEvent.change(input, { target: { value: "99999" } });
 
         expect(input).toHaveValue(1);
     });
 
-    it("does not updates quantity value on manual input chage below 1", () => {
-
+    it("does not update quantity value on manual input below 1", () => {
         fireEvent.change(input, { target: { value: "0" } });
 
         expect(input).toHaveValue(1);

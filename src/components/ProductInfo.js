@@ -9,6 +9,7 @@ import img_placeholder from '../assets/placeholders/product-photo-placeholder.sv
 import {scanStore} from "../stores/ScanStore";
 import {Dash, Plus} from "react-bootstrap-icons";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
+import {achievementToast} from "../utils/Toasts";
 
 const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 
@@ -25,8 +26,11 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 
     const handleAddProduct = async () => {
 
-        await scanStore.addScannedProductToPurchase(quantityToAdd);
+        const achievements = await scanStore.addScannedProductToPurchase(quantityToAdd);
 
+        console.log("achievements", achievements);
+
+        achievementUnlockedToasts(achievements);
     };
 
     const handleQuantityChange = (e) => {
@@ -47,6 +51,14 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
             setQuantityToAdd(quantityToAdd - 1);
         }
     };
+
+    const achievementUnlockedToasts = (achievements) => {
+        if(achievements && achievements.length > 0){
+            achievements.forEach(achievement => {
+                achievementToast(achievement.achievementName, achievement.level);
+            })
+        }
+    }
 
     return (
         <div className="row mb-3">
