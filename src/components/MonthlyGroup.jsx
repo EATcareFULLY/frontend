@@ -1,5 +1,5 @@
 import React from "react";
-import img_placeholder from '../assets/placeholders/product-photo-placeholder.png';
+import img_placeholder from '../assets/product-photo-placeholder.png';
 import { BsFillPieChartFill } from "react-icons/bs";
 import ApiService from '../services/ApiService';
 

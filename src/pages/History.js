@@ -6,12 +6,12 @@ import { scanStore } from "../stores/ScanStore";
 import { FaChartBar } from "react-icons/fa";
 import { FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree } from "react-icons/fa";
 import MonthlyGroup from "../components/MonthlyGroup";
-import nutri_a from '../assets/nutri-score/nutri-score-a.png';
-import nutri_b from '../assets/nutri-score/nutri-score-b.png';
-import nutri_c from '../assets/nutri-score/nutri-score-c.png';
-import nutri_d from '../assets/nutri-score/nutri-score-d.png';
-import nutri_e from '../assets/nutri-score/nutri-score-e.png';
-import nutri_unknown from '../assets/nutri-score/nutri-score-unknown.png';
+import nutri_a from '../assets/nutri-score-a.png';
+import nutri_b from '../assets/nutri-score-b.png';
+import nutri_c from '../assets/nutri-score-c.png';
+import nutri_d from '../assets/nutri-score-d.png';
+import nutri_e from '../assets/nutri-score-e.png';
+import nutri_unknown from '../assets/nutri-score-unknown.png';
 import './History.css';
 
 const monthIcons = {

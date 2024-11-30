@@ -1,7 +1,6 @@
 import RestService from "./RestService";
 import {errorToast, successToast} from "../utils/Toasts";
 import {API_URLS} from "../utils/URLS";
-import {clearCacheFor} from "../utils/Cache"
 
 class ApiService {
 
@@ -92,6 +91,7 @@ class ApiService {
             errorToast("Failed to add product to purchased products.");
         }
     }
+
 
     static async analyzeLabelImg(imageBlob) {
 

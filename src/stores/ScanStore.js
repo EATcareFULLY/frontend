@@ -1,6 +1,5 @@
 import { makeAutoObservable} from "mobx";
 import ApiService from "../services/ApiService";
-import { historyStore } from "./HistoryStore";
 
 
 class ScanStore {
