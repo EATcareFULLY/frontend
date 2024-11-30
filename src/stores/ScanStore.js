@@ -1,5 +1,6 @@
 import { makeAutoObservable} from "mobx";
 import ApiService from "../services/ApiService";
+import { historyStore } from "./HistoryStore";
 
 
 class ScanStore {
@@ -56,6 +57,8 @@ class ScanStore {
     async addScannedProductToPurchase(quantity){
 
         await ApiService.addProductToPurchased(this.scannedProduct.id, quantity);
+        console.log("added product")
+        await historyStore.fetchAllPurchases()
     }
 
     async getTestProduct(){
