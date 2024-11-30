@@ -2,8 +2,7 @@ import axios from "axios";
 import keycloak from "../utils/Keycloak";
 
 class RestService {
-    static async ajax(url, method, data, headers = {}) {
-
+    static async ajax(url, method, data, headers = {}, responseType = null, params = {}) {
         if (keycloak.authenticated) {
             await keycloak.updateToken(30).catch(() => {
                 keycloak.logout();
@@ -17,8 +16,15 @@ class RestService {
             method,
             data,
             headers,
-            withCredentials: true
+            withCredentials: true,
         };
+
+        if (responseType) {
+            config.responseType = responseType;
+        }
+        if (params) {
+            config.params = params;
+        }
 
         return await axios.request(config).then((response) => {
             return response.data;
@@ -27,4 +33,3 @@ class RestService {
 }
 
 export default RestService;
-

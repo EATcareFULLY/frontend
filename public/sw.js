@@ -35,49 +35,55 @@ self.addEventListener('activate', event => {
     );
     return self.clients.claim();
 });
-
 self.addEventListener('fetch', event => {
     console.log('Fetching:', event.request.url);
- ///TODO - Currently stores only /test endpoints
-    if (event.request.url.includes('/test/')) {
-        event.respondWith(
-            caches.match(event.request).then(cachedResponse => {
-                if (cachedResponse) {
-                    console.log("Returning cached response for:", event.request.url);
-                    return cachedResponse;
-                }
 
-                return fetch(event.request).then(response => {
-                    if (!response || response.status !== 200) {
-                        return response;
-                    }
+    event.respondWith(
+        fetch(event.request)
+            .then(response => {
+                // Jeśli odpowiedź jest poprawna, zapisujemy ją w cache i zwracamy użytkownikowi
+                if (response && response.status === 200) {
                     const responseClone = response.clone();
                     caches.open(CACHE_NAME).then(cache => {
                         cache.put(event.request, responseClone);
                     });
-                    return response;
-                });
-            }).catch(error => {
-                console.error("Fetch failed; returning offline page instead.", error);
-            })
-        );
-    } else {
-        event.respondWith(
-            caches.match(event.request).then(response => {
-                return response || fetch(event.request).then(fetchResponse => {
-                    return caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, fetchResponse.clone());
-                        return fetchResponse;
-                    });
-                });
-            }).catch(() => {
-                if (event.request.mode === 'navigate') {
-                    return caches.match('/index.html');
                 }
+                return response;
             })
-        );
+            .catch(() => {
+                // Jeśli sieć zawiedzie, próbujemy użyć cache
+                return caches.match(event.request).then(cachedResponse => {
+                    if (cachedResponse) {
+                        console.log("Returning cached response for:", event.request.url);
+                        return cachedResponse;
+                    }
+                    console.warn("No cached response available for:", event.request.url);
+                    return new Response("Service unavailable", { status: 503 });
+                });
+            })
+    );
+});
+
+
+
+self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'CLEAR_CACHE') {
+        const urlToClear = event.data.url;
+
+        caches.open(CACHE_NAME).then(cache => {
+            cache.delete(urlToClear).then(success => {
+                if (success) {
+                    console.log(`Cache for ${urlToClear} was removed`);
+                } else {
+                    console.log(`Cache for ${urlToClear} was NOT removed.`);
+                }
+            });
+        });
     }
 });
+
+
+
 
 self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
