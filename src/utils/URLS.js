@@ -8,7 +8,8 @@ export const API_URLS = {
     label: `${API_ROOT_URL}/services/label-analysis`,
     testproducts: `${API_ROOT_URL}/test/products`,
     testproduct: `${API_ROOT_URL}/test/product`,
-    testpurchases: `${API_ROOT_URL}/test/purchases`
+    testpurchases: `${API_ROOT_URL}/test/purchases`,
+    historyAnalysis: `${API_ROOT_URL}/services/history-analysis`,
 };
 
 export const APP_ROOT_URL = 'http://localhost:3000';
