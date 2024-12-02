@@ -6,7 +6,7 @@ import History from './pages/History';
 import Analyze from './pages/Analyze';
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom'
 import Details from "./pages/Details";
-import {ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
 import RequireAuth from "./components/RequireAuth";
@@ -16,10 +16,12 @@ import LabelAnalysis from "./pages/LabelAnalysis";
 import Achievements from "./pages/Achievements";
 import Ranking from "./pages/Ranking";
 import Settings from "./pages/Settings";
+import { ConnectionProvider } from "./utils/ConnectionContext";
 
 function App() {
   return (
     <div className="App">
+        <ConnectionProvider>
       <Router>
         <MainNavBar/>
         <ToastContainer limit={3}/>
@@ -102,6 +104,7 @@ function App() {
           </div>
         <Footer/>
       </Router>
+        </ConnectionProvider>
       
     </div>
   );

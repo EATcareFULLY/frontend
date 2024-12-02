@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import { useKeycloak } from "@react-keycloak/web";
 import logo from "../assets/logos/logo-horizontal.svg";
 import { NavDropdown } from "react-bootstrap";
+import {ConnectionContext} from "../utils/ConnectionContext"
 
 function MainNavBar() {
   const { keycloak, initialized } = useKeycloak();
   const [expanded, setExpanded] = useState(false);
-
+  const {connected} = useContext(ConnectionContext)
   const toggleNavbar = () => setExpanded(!expanded);
 
   const closeNavbar = () => setExpanded(false);
@@ -29,9 +30,9 @@ function MainNavBar() {
       <Navbar expand="lg" bg="primary" variant="dark" className="p-1" expanded={expanded}>
         <Container>
           <Navbar.Brand as={Link} to="/" onClick={closeNavbar}>
-            <img src={logo} width="150" className="d-inline-block align-top" alt="EATcareFULLY" />
+            <img src={logo} width="150" className="d-inline-block align-top" alt="EATcareFULLY"/>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNavbar} />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNavbar}/>
           <Navbar.Collapse id="responsive-navbar-nav" data-testid="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/Scan" onClick={closeNavbar}>Scan</Nav.Link>
@@ -48,6 +49,8 @@ function MainNavBar() {
             </Nav>
           </Navbar.Collapse>
         </Container>
+        {!connected && <div className={"bg-[#4f6b3b] h-[65%] text-3xl w-80 absolute right-[4%] text-gray-800  font-bold flex justify-center items-center "}>OFFLINE MODE</div>}
+
       </Navbar>
   );
 }

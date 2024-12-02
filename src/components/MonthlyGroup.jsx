@@ -1,18 +1,27 @@
 import React from "react";
 import img_placeholder from '../assets/placeholders/product-photo-placeholder.png';
 import { BsFillPieChartFill } from "react-icons/bs";
+import { PulseLoader } from 'react-spinners';
 import ApiService from '../services/ApiService';
 
 
 const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, formatMonth, scoreImages, showDetails }) => {
 
+    const [loading, setLoading] = React.useState(false);
 
     const handleGeneratePdf = async (month, year) => {
-        await ApiService.generatePdfReport(month, year);
+        await ApiService.generatePdfReport(month, year, startLoading, endLoading);
     };
 
+    const startLoading = () => {
+        setLoading(true)
+    }
+    const endLoading = () => {
+        setLoading(false)
+    }
+
     return (
-        <>
+        <div>
             <li className="py-4 bg-gray-300 text-2xl font-bold text-center text-black rounded flex items-center justify-center gap-4">
                 {monthIcon} {formatMonth(yearMonthString)}
                 <button
@@ -21,7 +30,9 @@ const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, format
                         handleGeneratePdf(yearMonth.month, yearMonth.year);
                     }}
                 >
-                    <BsFillPieChartFill size={25} />
+                    {
+                        loading ? <PulseLoader loading={true} size={5} color={"#5e4e2b"} />: <BsFillPieChartFill size={25} />
+                    }
                 </button>
             </li>
 
@@ -68,7 +79,7 @@ const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, format
                     </div>
                 </li>
             ))}
-        </>
+        </div>
     );
 };
 

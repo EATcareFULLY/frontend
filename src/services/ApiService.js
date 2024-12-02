@@ -2,8 +2,27 @@ import RestService from "./RestService";
 import {errorToast, successToast} from "../utils/Toasts";
 import {API_URLS} from "../utils/URLS";
 import {clearCacheFor} from "../utils/Cache"
+import { historyStore } from "../stores/HistoryStore";
+
 
 class ApiService {
+
+    static async checkConnection() {
+        try {
+            const response = await RestService.ajax(
+                `${API_URLS.checkConnection}`,
+                "GET",
+                null
+            );
+            if (response) {
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.error("Error checking connection:", error);
+            return false;
+        }
+    }
 
     static async getTestProducts() {
         try {
@@ -83,7 +102,7 @@ class ApiService {
             );
 
             successToast("Product added to purchased products.");
-
+            await historyStore.fetchAllPurchases()
             return response;
 
         } catch (error) {
@@ -310,7 +329,8 @@ class ApiService {
 
 
 
-    static async generatePdfReport(month, year) {
+    static async generatePdfReport(month, year, startLoading, endLoading) {
+        startLoading()
         try {
             const response = await RestService.ajax(
                 `${API_URLS.historyAnalysis}`,
@@ -332,10 +352,12 @@ class ApiService {
             a.download = "report.pdf";
             a.click();
             window.URL.revokeObjectURL(url);
+            endLoading()
 
         } catch (error) {
             console.error("Failed to generate PDF report:", error);
             errorToast("Failed to generate PDF report.");
+            endLoading()
         }
     }
 

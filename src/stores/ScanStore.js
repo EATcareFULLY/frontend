@@ -58,7 +58,6 @@ class ScanStore {
 
         await ApiService.addProductToPurchased(this.scannedProduct.id, quantity);
         console.log("added product")
-        await historyStore.fetchAllPurchases()
     }
 
     async getTestProduct(){
