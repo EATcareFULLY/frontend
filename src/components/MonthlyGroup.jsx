@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import img_placeholder from '../assets/placeholders/product-photo-placeholder.png';
 import { BsFillPieChartFill } from "react-icons/bs";
 import { PulseLoader } from 'react-spinners';
 import ApiService from '../services/ApiService';
+import {ConnectionContext} from "../utils/ConnectionContext"
 
 
 const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, formatMonth, scoreImages, showDetails }) => {
 
     const [loading, setLoading] = React.useState(false);
+    const {connected} = useContext(ConnectionContext)
 
     const handleGeneratePdf = async (month, year) => {
         await ApiService.generatePdfReport(month, year, startLoading, endLoading);
@@ -25,13 +27,14 @@ const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, format
             <li className="py-4 bg-gray-300 text-2xl font-bold text-center text-black rounded flex items-center justify-center gap-4">
                 {monthIcon} {formatMonth(yearMonthString)}
                 <button
-                    className="bg-[#648c4c] rounded h-12 w-12 flex items-center justify-center hover:bg-[#5e4e2b] text-[#5e4e2b] hover:text-[#648c4c]"
+                    className={` rounded h-12 w-12 flex items-center justify-center bg-[#648c4c] hover:bg-[#5e4e2b] text-[#5e4e2b] hover:text-[#648c4c] ${!connected ? 'bg-gray-400 hover:bg-gray-400 text-black hover:text-black': ''}`}
+                    disabled={!connected}
                     onClick={() => {
                         handleGeneratePdf(yearMonth.month, yearMonth.year);
                     }}
                 >
                     {
-                        loading ? <PulseLoader loading={true} size={5} color={"#5e4e2b"} />: <BsFillPieChartFill size={25} />
+                         loading ? <PulseLoader loading={true} size={5} color={"#5e4e2b"} />: <BsFillPieChartFill size={25} />
                     }
                 </button>
             </li>
