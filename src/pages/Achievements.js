@@ -24,7 +24,7 @@ const Achievements = observer(() => {
 
     return (
         <Container>
-            <h1>Achievements</h1>
+            <h2>Achievements</h2>
             <ProgressBar
                 now={achievementsStore.achievementsCompletedProcentage()}
                 label={`${achievementsStore.achievementsCompletedProcentage()}%`}

@@ -115,6 +115,22 @@ input[type=number] {
   height: 75px !important;
 }
 
+.bg-gold {
+  background-color: rgba(150, 120, 0, 0.75);
+  color: #fff;
+}
+
+.bg-silver {
+  background-color: rgba(80, 80, 80, 0.75);
+  color: #fff;
+}
+
+.bg-bronze {
+  background-color: rgba(61, 47, 28, 0.75);
+  color: #fff;
+}
+
+
 
 
 

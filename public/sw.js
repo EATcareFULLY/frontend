@@ -73,6 +73,12 @@ self.addEventListener('fetch', event => {
                 return caches.match(event.request);
             })
         );
+    } else if (event.request.url.includes('/leaderboard')) {
+        event.respondWith(
+            fetch(event.request).catch(() => {
+                return caches.match(event.request);
+            })
+        );
     } else {
         event.respondWith(
             caches.match(event.request).then(response => {

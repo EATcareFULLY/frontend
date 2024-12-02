@@ -140,15 +140,27 @@ class ApiService {
         }
     }
 
-    static async getRanking() {
+    static async getLeaderboardByUsername(username) {
         try {
             return await RestService.ajax(
-                `${API_URLS.leaderboard}`,
+                `${API_URLS.leaderboard}/${username}`,
                 "GET",
                 null
             );
         } catch (error) {
-            console.error("Failed to fetch achievements:", error);
+            console.error("Failed to fetch another user's leaderboard:", error);
+        }
+    }
+
+    static async getLeaderboard() {
+        try {
+            return await RestService.ajax(
+                `${API_URLS.leaderboard}/me`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to fetch leaderboard:", error);
         }
     }
 
