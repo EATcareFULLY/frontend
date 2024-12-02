@@ -14,12 +14,15 @@ import Home from "./pages/Home";
 import Label from "./pages/Label";
 import LabelAnalysis from "./pages/LabelAnalysis";
 import Achievements from "./pages/Achievements";
+import Ranking from "./pages/Ranking";
 import Settings from "./pages/Settings";
+import { ConnectionProvider } from "./utils/ConnectionContext";
 import Leaderboard from "./pages/Leaderboard";
 
 function App() {
   return (
     <div className="App">
+        <ConnectionProvider>
       <Router>
         <MainNavBar/>
         <ToastContainer limit={3}/>
@@ -102,7 +105,8 @@ function App() {
           </div>
         <Footer/>
       </Router>
-      
+        </ConnectionProvider>
+
     </div>
   );
 }

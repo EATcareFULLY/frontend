@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Remerged with the current version.">
-      <change afterPath="$PROJECT_DIR$/src/components/recommendations/ComparisonCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/recommendations/RecommendationModal.jsx" afterDir="false" />
+    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Added view for the recommendations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bootstrapColorsOverride.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/bootstrapColorsOverride.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/History.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/History.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Label.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Label.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LabelAnalysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LabelAnalysis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Scan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Scan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ApiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/HistoryStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/HistoryStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/ScanStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/ScanStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/URLS.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/URLS.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,18 +62,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;History+Analysis&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.ConnectionContext.js.executor": "Run",
+    "Node.js.sw.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "History+Analysis",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -91,7 +102,8 @@
       <workItem from="1732633367759" duration="7763000" />
       <workItem from="1732741086995" duration="3288000" />
       <workItem from="1732890069228" duration="3290000" />
-      <workItem from="1732921885805" duration="8181000" />
+      <workItem from="1732921885805" duration="10058000" />
+      <workItem from="1733163403069" duration="12376000" />
     </task>
     <task id="LOCAL-00001" summary="Renewed look for Analysis and History tab. &#10;Connected Analytical service">
       <option name="closed" value="true" />
@@ -109,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732928579507</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added view for the recommendations">
+      <option name="closed" value="true" />
+      <created>1732933038852</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732933038852</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +138,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Renewed look for Analysis and History tab. &#10;Connected Analytical service" />
     <MESSAGE value="Remerged with the current version." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remerged with the current version." />
+    <MESSAGE value="Added view for the recommendations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added view for the recommendations" />
   </component>
 </project>

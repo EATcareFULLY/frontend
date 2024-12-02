@@ -18,7 +18,8 @@ class HistoryStore {
                         purchaseDate: purchase.purchaseDate
                     }))
                 )
-            );            console.log('size',purchases.flatMap(purchase => purchase.purchaseItems).length);
+            );
+            console.log('history state',purchases.flatMap(purchase => purchase.purchaseItems).length);
         } catch (error) {
             console.error("Failed to fetch purchases");
         }

@@ -6,7 +6,7 @@ import { scanStore } from "../stores/ScanStore";
 import { FaChartBar } from "react-icons/fa";
 import { FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree } from "react-icons/fa";
 import { AiTwotoneLike } from "react-icons/ai";
-
+import Loading from "../components/Loading"
 import MonthlyGroup from "../components/MonthlyGroup";
 import nutri_a from '../assets/nutri-score-a.png';
 import nutri_b from '../assets/nutri-score-b.png';
@@ -107,9 +107,9 @@ const History = observer(() => {
             </div>
 
             {Object.keys(groupedHistory).length === 0 ? (
-                <p className="text-center">Loading...</p>
+                <Loading />
             ) : (
-                <ul className="divide-y divide-gray-300">
+                <ul className="divide-y space-y-10 divide-gray-300">
                     {Object.keys(groupedHistory).map((yearMonth) => (
                         <MonthlyGroup
                             key={yearMonth}

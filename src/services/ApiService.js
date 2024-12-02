@@ -1,8 +1,26 @@
 import RestService from "./RestService";
 import {errorToast, successToast} from "../utils/Toasts";
 import {API_URLS} from "../utils/URLS";
+import {clearCacheFor} from "../utils/Cache"
 
 class ApiService {
+
+    static async checkConnection() {
+        try {
+            const response = await RestService.ajax(
+                `${API_URLS.checkConnection}`,
+                "GET",
+                null
+            );
+            if (response) {
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.error("Error checking connection:", error);
+            return false;
+        }
+    }
 
     static async getTestProducts() {
         try {
@@ -82,7 +100,7 @@ class ApiService {
             );
 
             successToast("Product added to purchased products.");
-
+            await historyStore.fetchAllPurchases()
             return response;
 
         } catch (error) {
@@ -91,7 +109,6 @@ class ApiService {
             errorToast("Failed to add product to purchased products.");
         }
     }
-
 
     static async analyzeLabelImg(imageBlob) {
 
@@ -154,27 +171,15 @@ class ApiService {
         }
     }
 
-    static async getLeaderboardByUsername(username) {
+    static async getRanking() {
         try {
             return await RestService.ajax(
-                `${API_URLS.leaderboard}/${username}`,
+                `${API_URLS.leaderboard}`,
                 "GET",
                 null
             );
         } catch (error) {
-            console.error("Failed to fetch another user's leaderboard:", error);
-        }
-    }
-
-    static async getLeaderboard() {
-        try {
-            return await RestService.ajax(
-                `${API_URLS.leaderboard}/me`,
-                "GET",
-                null
-            );
-        } catch (error) {
-            console.error("Failed to fetch leaderboard:", error);
+            console.error("Failed to fetch achievements:", error);
         }
     }
 
