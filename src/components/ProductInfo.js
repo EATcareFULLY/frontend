@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import nutri_a from '../assets/nutri-score-a.svg';
-import nutri_b from '../assets/nutri-score-b.svg';
-import nutri_c from '../assets/nutri-score-c.svg';
-import nutri_d from '../assets/nutri-score-d.svg';
-import nutri_e from '../assets/nutri-score-e.svg';
-import nutri_unknown from '../assets/nutri-score-unknown.svg';
-import img_placeholder from '../assets/product-photo-placeholder.svg'
+import nutri_a from '../assets/nutri-score/nutri-score-a.svg';
+import nutri_b from '../assets/nutri-score/nutri-score-b.svg';
+import nutri_c from '../assets/nutri-score/nutri-score-c.svg';
+import nutri_d from '../assets/nutri-score/nutri-score-d.svg';
+import nutri_e from '../assets/nutri-score/nutri-score-e.svg';
+import nutri_unknown from '../assets/nutri-score/nutri-score-unknown.svg';
+import img_placeholder from '../assets/placeholders/product-photo-placeholder.svg'
 import {scanStore} from "../stores/ScanStore";
 import {Dash, Plus} from "react-bootstrap-icons";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
+import {achievementToast} from "../utils/Toasts";
 
 const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 
@@ -25,8 +26,11 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 
     const handleAddProduct = async () => {
 
-        await scanStore.addScannedProductToPurchase(quantityToAdd);
+        const achievements = await scanStore.addScannedProductToPurchase(quantityToAdd);
 
+        console.log("achievements", achievements);
+
+        achievementUnlockedToasts(achievements);
     };
 
     const handleQuantityChange = (e) => {
@@ -47,6 +51,14 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
             setQuantityToAdd(quantityToAdd - 1);
         }
     };
+
+    const achievementUnlockedToasts = (achievements) => {
+        if(achievements && achievements.length > 0){
+            achievements.forEach(achievement => {
+                achievementToast(achievement.achievementName, achievement.level);
+            })
+        }
+    }
 
     return (
         <div className="row mb-3">

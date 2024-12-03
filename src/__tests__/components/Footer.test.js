@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
-import eatcarefullylogo from "../../assets/logo-full.svg";
-import githublogo from "../../assets/github-logo.svg";
+import eatcarefullylogo from "../../assets/logos/logo-full.svg";
+import githublogo from "../../assets/logos/github-logo.svg";
 
 jest.mock("react-router-dom", () => ({
     useNavigate: jest.fn()

@@ -41,6 +41,16 @@ describe("Navbar Component", () => {
         expect(screen.getByText("Scan")).toBeInTheDocument();
         expect(screen.getByText("History")).toBeInTheDocument();
         expect(screen.getByText("Analyze")).toBeInTheDocument();
+        expect(screen.getByText("Label")).toBeInTheDocument();
+    });
+
+    it("renders the links in dropdown when user is authenticated", () => {
+        renderComponent();
+
+        fireEvent.click(screen.getByText("Logged in as: testuser"));
+
+        expect(screen.getByText("Logout")).toBeInTheDocument();
+        expect(screen.getByText("Achievements")).toBeInTheDocument();
     });
 
     it("displays the username in the dropdown when authenticated", () => {

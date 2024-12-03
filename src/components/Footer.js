@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import eatcarefullylogo from '../assets/logo-full.svg';
-import githublogo from '../assets/github-logo.svg';
+import eatcarefullylogo from '../assets/logos/logo-full.svg';
+import githublogo from '../assets/logos/github-logo.svg';
 import {useNavigate} from "react-router-dom";
 
 const Footer = () => {
@@ -17,7 +17,7 @@ const Footer = () => {
             <Container>
                 <Row className="justify-content-between align-items-center mt-1">
                     <Col md="auto" className="d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-                        <img src={eatcarefullylogo} alt="EATcareFULLY" onClick={handleHome} width="50px" height="50px"  />
+                        <img src={eatcarefullylogo} alt="EATcareFULLY" onClick={handleHome} width="50px" height="50px" style={{ cursor: "pointer" }}/>
                     </Col>
 
                     <Col md="auto" className="d-flex justify-content-center justify-content-md-end">

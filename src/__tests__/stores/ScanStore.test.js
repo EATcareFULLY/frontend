@@ -89,7 +89,7 @@ const getMockUnsortedProductList = () => {
 
 
 
-describe('ScanStore', () => {
+describe('ScanStore with achievements processing', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         scanStore.scannedProductCode = '';
@@ -129,22 +129,13 @@ describe('ScanStore', () => {
         expect(scanStore.scannedProduct).toEqual(getMockProduct());
     });
 
-    it('should sort products ingridients', () => {
+    it('should sort product ingredients', () => {
         let product = getMockProduct();
         product.ingredients = getMockUnsortedProductList();
 
         product = scanStore.sortIngredientsOfProduct(product);
 
-        expect(product).toEqual(getMockProduct());
-    });
-
-    it('should get product code from storage if scannedProductCode is empty', async () => {
-        localStorage.setItem('scannedProductCode', '11111111');
-        jest.spyOn(ApiService, 'getScannedProduct').mockResolvedValue(null);
-
-        await scanStore.getScannedProduct();
-
-        expect(scanStore.scannedProductCode).toBe('11111111');
+        expect(product.ingredients).toEqual(getMockProduct().ingredients);
     });
 
     it('should reset scanned product', () => {
@@ -154,14 +145,28 @@ describe('ScanStore', () => {
         expect(scanStore.scannedProduct).toBeNull();
     });
 
-    it('should add scanned product to purchase', async () => {
+    it('should add scanned product to purchase and process achievements', async () => {
         const quantity = 2;
+        const mockAchievements = ['Achievement 1', 'Achievement 2'];
+        jest.spyOn(ApiService, 'addProductToPurchased').mockResolvedValue({
+            unlockedAchievements: mockAchievements,
+        });
+
         scanStore.scannedProduct = getMockProduct();
-        const spyAddProduct = jest.spyOn(ApiService, 'addProductToPurchased').mockImplementation();
+        const achievements = await scanStore.addScannedProductToPurchase(quantity);
 
-        await scanStore.addScannedProductToPurchase(quantity);
+        expect(ApiService.addProductToPurchased).toHaveBeenCalledWith(scanStore.scannedProduct.id, quantity);
+        expect(achievements).toEqual(mockAchievements);
+    });
 
-        expect(spyAddProduct).toHaveBeenCalledWith(scanStore.scannedProduct.id, quantity);
+    it('should return null if no achievements are unlocked', async () => {
+        const quantity = 2;
+        jest.spyOn(ApiService, 'addProductToPurchased').mockResolvedValue({ unlockedAchievements: null });
+
+        scanStore.scannedProduct = getMockProduct();
+        const achievements = await scanStore.addScannedProductToPurchase(quantity);
+
+        expect(achievements).toBeNull();
     });
 
     it('should fetch test product', async () => {

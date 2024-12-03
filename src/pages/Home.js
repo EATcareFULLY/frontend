@@ -5,7 +5,7 @@ import { errorToast } from "../utils/Toasts";
 import Loading from "../components/Loading";
 import { APP_URLS } from "../utils/URLS";
 import HomeCard from "../components/HomeCard";
-import videoBg from "../assets/video-home.mp4";
+import videoBg from "../assets/videos/video-home.mp4";
 
 
 function Home() {

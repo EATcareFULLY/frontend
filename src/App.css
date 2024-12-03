@@ -110,6 +110,26 @@ input[type=number] {
   background-color: #fff !important;
 }
 
+.large-toast .Toastify__toast-icon {
+  width: 75px !important;
+  height: 75px !important;
+}
+
+.bg-gold {
+  background-color: rgba(150, 120, 0, 0.75);
+  color: #fff;
+}
+
+.bg-silver {
+  background-color: rgba(80, 80, 80, 0.75);
+  color: #fff;
+}
+
+.bg-bronze {
+  background-color: rgba(61, 47, 28, 0.75);
+  color: #fff;
+}
+
 
 
 

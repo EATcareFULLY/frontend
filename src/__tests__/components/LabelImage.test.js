@@ -6,7 +6,7 @@ import LabelImage from '../../components/LabelImage';
 
 jest.mock('../../stores/LabelStore', () => ({
     labelStore: {
-        analyzeNewLabelFromImage: jest.fn(),
+        setLabelImg: jest.fn(),
     },
 }));
 
@@ -21,6 +21,7 @@ describe('LabelImage Component', () => {
     const mockNavigate = jest.fn();
     const mockSetImageSrc = jest.fn();
     const mockSetIsCropMode = jest.fn();
+    const mockLabelSubmition = jest.fn();
     const mockImageSrc = 'mockImage.png';
 
     beforeEach(() => {
@@ -32,12 +33,12 @@ describe('LabelImage Component', () => {
                 imageSrc={mockImageSrc}
                 setImageSrc={mockSetImageSrc}
                 setIsCropMode={mockSetIsCropMode}
+                labelSubmition={mockLabelSubmition}
             />
         );
     });
 
     it('renders the image with the correct src and alt attributes', () => {
-
         const imgElement = screen.getByAltText('Captured');
 
         expect(imgElement).toBeInTheDocument();
@@ -46,7 +47,6 @@ describe('LabelImage Component', () => {
     });
 
     it('renders buttons correctly', () => {
-
         const retakeButton = screen.getByText('Retake Photo');
         const cropButton = screen.getByText('Crop Photo');
         const analyzeButton = screen.getByText('Analyze Label');
@@ -54,11 +54,9 @@ describe('LabelImage Component', () => {
         expect(retakeButton).toBeInTheDocument();
         expect(cropButton).toBeInTheDocument();
         expect(analyzeButton).toBeInTheDocument();
-
     });
 
     it('calls setImageSrc with null when Retake Photo button is clicked', () => {
-
         const retakeButton = screen.getByText('Retake Photo');
         fireEvent.click(retakeButton);
 
@@ -66,19 +64,17 @@ describe('LabelImage Component', () => {
     });
 
     it('calls setIsCropMode with true when Crop Photo button is clicked', () => {
-
         const cropButton = screen.getByText('Crop Photo');
         fireEvent.click(cropButton);
 
         expect(mockSetIsCropMode).toHaveBeenCalledWith(true);
     });
 
-    it('calls analyzeNewLabelFromImage and navigates to /LabelAnalysis when Analyze Label button is clicked', () => {
-
+    it('calls setLabelImg and labelSubmition when Analyze Label button is clicked', () => {
         const analyzeButton = screen.getByText('Analyze Label');
         fireEvent.click(analyzeButton);
 
-        expect(labelStore.analyzeNewLabelFromImage).toHaveBeenCalledWith(mockImageSrc);
-        expect(mockNavigate).toHaveBeenCalledWith('/LabelAnalysis');
+        expect(labelStore.setLabelImg).toHaveBeenCalledWith(mockImageSrc);
+        expect(mockLabelSubmition).toHaveBeenCalled();
     });
 });

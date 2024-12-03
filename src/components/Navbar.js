@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { useKeycloak } from "@react-keycloak/web";
-import logo from "../assets/logo-horizontal.svg";
+import logo from "../assets/logos/logo-horizontal.svg";
 import { NavDropdown } from "react-bootstrap";
 
 function MainNavBar() {
@@ -38,9 +38,12 @@ function MainNavBar() {
               <Nav.Link as={Link} to="/Label" onClick={closeNavbar}>Label</Nav.Link>
               <Nav.Link as={Link} to="/History" onClick={closeNavbar}>History</Nav.Link>
               <Nav.Link as={Link} to="/Analyze" onClick={closeNavbar}>Analyze</Nav.Link>
+              <Nav.Link as={Link} to="/Leaderboard" onClick={closeNavbar}>Leaderboard</Nav.Link>
             </Nav>
             <Nav className="ms-auto">
               <NavDropdown title={`Logged in as: ${keycloak.tokenParsed?.preferred_username}`} id="basic-nav-dropdown">
+                <NavDropdown.Item as={Link} to="/Achievements" onClick={closeNavbar}>Achievements</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/Settings" onClick={closeNavbar}>Settings</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
             </Nav>

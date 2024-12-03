@@ -10,16 +10,37 @@ jest.mock("react-router-dom", () => ({
 
 jest.mock("../../stores/LabelStore", () => ({
     labelStore: {
-        labelDescription: "Mock analysis description",
+        labelAnalysis: {
+            chat_response: "Mock general analysis",
+            harmful_additive_list: ["Mock additive 1", "Mock additive 2"],
+        },
         labelImg: "data:image/jpeg;base64,testbase64data",
-        analyzeLabelFromImage: jest.fn()
-    }
+        labelText: "Mock label text",
+        analyzeLabel: jest.fn(),
+        resetLabelDescription: jest.fn(),
+    },
 }));
 
 jest.mock("../../components/Loading", () => () => <div>Loading...</div>);
+jest.mock("../../components/LabelSubmitted", () => ({ image, text }) => (
+    <div>
+        <img alt="Submitted label" src={image} />
+        <p>{text}</p>
+    </div>
+));
+jest.mock("../../components/LabelAnalysisDisplay", () => ({ analysis, additives }) => (
+    <div>
+        <p>{analysis}</p>
+        <ul>
+            {additives.map((item, index) => (
+                <li key={index}>{item}</li>
+            ))}
+        </ul>
+    </div>
+));
+jest.mock("../../components/LabelButtonsWrapper", () => ({ children }) => <div>{children}</div>);
 
-
-describe("LabelAnalysis Component", () => {
+describe("LabelAnalysis Page", () => {
     const mockNavigate = jest.fn();
 
     beforeEach(() => {
@@ -27,21 +48,35 @@ describe("LabelAnalysis Component", () => {
         jest.clearAllMocks();
     });
 
-    it("renders the analysis UI when labelDescription is not empty", () => {
+    it("calls analyzeLabel when the component renders", () => {
         render(<LabelAnalysis />);
 
-        expect(screen.getByText("Our analysis")).toBeInTheDocument();
-        expect(screen.getByText("Mock analysis description")).toBeInTheDocument();
-        expect(screen.getByAltText("Label")).toBeInTheDocument();
+        expect(labelStore.analyzeLabel).toHaveBeenCalledTimes(1);
     });
 
-    it("calls analyzeLabelFromImage when Regenerate analysis button is clicked", () => {
+
+    it("renders the analysis UI when labelAnalysis is defined", () => {
+        render(<LabelAnalysis />);
+
+        expect(screen.getByText("Submitted label")).toBeInTheDocument();
+        expect(screen.getByAltText("Submitted label")).toHaveAttribute(
+            "src",
+            "data:image/jpeg;base64,testbase64data"
+        );
+        expect(screen.getByText("Mock label text")).toBeInTheDocument();
+
+        expect(screen.getByText("Mock general analysis")).toBeInTheDocument();
+        expect(screen.getByText("Mock additive 1")).toBeInTheDocument();
+        expect(screen.getByText("Mock additive 2")).toBeInTheDocument();
+    });
+
+    it("calls analyzeLabel when Regenerate analysis button is clicked", () => {
         render(<LabelAnalysis />);
 
         const regenerateButton = screen.getByText("Regenerate analysis");
         fireEvent.click(regenerateButton);
 
-        expect(labelStore.analyzeLabelFromImage).toHaveBeenCalled();
+        expect(labelStore.analyzeLabel).toHaveBeenCalledTimes(2);
     });
 
     it("navigates to /Label when Analyze another label button is clicked", () => {
@@ -53,11 +88,20 @@ describe("LabelAnalysis Component", () => {
         expect(mockNavigate).toHaveBeenCalledWith("/Label");
     });
 
-    it("renders the Loading component when labelDescription is empty", () => {
-        labelStore.labelDescription = "";
+    it("calls resetLabelDescription on unmount", () => {
+        const { unmount } = render(<LabelAnalysis />);
+
+        unmount();
+
+        expect(labelStore.resetLabelDescription).toHaveBeenCalledTimes(1);
+    });
+
+    it("renders the loading component when labelAnalysis is undefined", () => {
+        labelStore.labelAnalysis = null;
 
         render(<LabelAnalysis />);
 
         expect(screen.getByText("Loading...")).toBeInTheDocument();
+        expect(labelStore.analyzeLabel).toHaveBeenCalled();
     });
 });

@@ -1,37 +1,52 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {observer} from "mobx-react";
 import {labelStore} from "../stores/LabelStore";
 import Loading from "../components/Loading";
-import {Button, Card, CardBody, Container} from "react-bootstrap";
+import {Button, Card, CardBody, Col, Container} from "react-bootstrap";
 import LabelButtonsWrapper from "../components/LabelButtonsWrapper";
 import {useNavigate} from "react-router-dom";
+import LabelSubmitted from "../components/LabelSubmitted";
+import LabelAnalysisDisplay from "../components/LabelAnalysisDisplay";
 
 const LabelAnalysis = observer(() => {
     const navigate = useNavigate();
 
-    if (labelStore.labelDescription === '') {
-        return (
-            <Loading />
-        );
-    }
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                await labelStore.analyzeLabel();
+            } catch (error) {
+                navigate("/Label");
+            }
+        }
 
-    const handleRegenerateAnalysis = () => labelStore.analyzeLabelFromImage();
+        fetchData();
 
+        return () => {
+            labelStore.resetLabelDescription();
+        };
+    }, [navigate]);
+
+    const generalAnalysis = () => labelStore.labelAnalysis?.chat_response;
+    const additives = () => labelStore.labelAnalysis?.harmful_additive_list;
+
+    const handleRegenerateAnalysis = () => labelStore.analyzeLabel();
     const handleAnalyzeAnotherLabel = () => navigate('/Label');
+
+    if (!labelStore.labelAnalysis) {
+        return <Loading />;
+    }
 
     return (
         <Container className="mt-4">
             <Card>
                 <CardBody>
-                    <div className="row">
-                        <div className="col-md-6 d-flex justify-content-center align-items-center">
-                            <div className="bg-black rounded h-100 w-100 d-flex justify-content-center align-items-center">
-                                <img src={labelStore.labelImg} alt="Label" className="img-fluid"/>
-                            </div>
-                        </div>
-                        <div className="col-md-6 mt-2 text-center">
+                    <Col>
+                        <h2>Submitted label</h2>
+                        <LabelSubmitted image={labelStore.labelImg} text={labelStore.labelText} />
+                        <div className="mt-2">
                             <h2>Our analysis</h2>
-                            <p>{labelStore.labelDescription}</p>
+                            <LabelAnalysisDisplay analysis={generalAnalysis()} additives={additives()} />
                             <LabelButtonsWrapper>
                                 <Button onClick={handleRegenerateAnalysis}>
                                     Regenerate analysis
@@ -41,7 +56,7 @@ const LabelAnalysis = observer(() => {
                                 </Button>
                             </LabelButtonsWrapper>
                         </div>
-                    </div>
+                    </Col>
                 </CardBody>
             </Card>
         </Container>
