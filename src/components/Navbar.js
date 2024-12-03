@@ -49,7 +49,7 @@ function MainNavBar() {
             </Nav>
           </Navbar.Collapse>
         </Container>
-        {!connected && <div className={"bg-[#4f6b3b] h-[65%] text-3xl w-80 absolute right-[4%] text-gray-800  font-bold flex justify-center items-center "}>OFFLINE MODE</div>}
+        {!connected && <div className={"bg-[#4f6b3b] h-[65%] text-3xl w-80 absolute right-[4%] text-gray-800 rounded font-bold flex justify-center items-center "}>OFFLINE MODE</div>}
 
       </Navbar>
   );

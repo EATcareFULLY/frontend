@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
             <img
                 src={product.nutriScoreImage}
                 alt="Nutri-Score"
-                className="w-24 h-12 object-contain"
+                className="w-28 h-14 object-contain"
             />
         </div>
     );

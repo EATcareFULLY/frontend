@@ -1,0 +1,92 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4d8d7e98-b3eb-42d2-a06b-532d3b44e726\" name=\"Changes\" comment=\"Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/MonthlyGroup.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/MonthlyGroup.jsx\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"JSX File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Wiarr3&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/stingsek/EATcareFULLY-frontend.git&quot;,\r\n    &quot;accountId&quot;: &quot;a39a6a8c-b5bc-40e8-b6fc-ca42bd41c3cf&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2o7NFwVtQjNZn0jZCaK5kKpIts8\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Node.js.ConnectionContext.js.executor\": \"Run\",\r\n    \"Node.js.sw.js.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"History+Analysis\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4d8d7e98-b3eb-42d2-a06b-532d3b44e726\" name=\"Changes\" comment=\"\" />\r\n      <created>1730216554584</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1730216554584</updated>\r\n      <workItem from=\"1730216555936\" duration=\"3634000\" />\r\n      <workItem from=\"1730666289754\" duration=\"10607000\" />\r\n      <workItem from=\"1731797227111\" duration=\"4237000\" />\r\n      <workItem from=\"1731891811539\" duration=\"5129000\" />\r\n      <workItem from=\"1732026737382\" duration=\"13716000\" />\r\n      <workItem from=\"1732470303211\" duration=\"9571000\" />\r\n      <workItem from=\"1732503725078\" duration=\"1555000\" />\r\n      <workItem from=\"1732614326255\" duration=\"960000\" />\r\n      <workItem from=\"1732633367759\" duration=\"7763000\" />\r\n      <workItem from=\"1732741086995\" duration=\"3288000\" />\r\n      <workItem from=\"1732890069228\" duration=\"3290000\" />\r\n      <workItem from=\"1732921885805\" duration=\"10058000\" />\r\n      <workItem from=\"1733163403069\" duration=\"12950000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Renewed look for Analysis and History tab. &#10;Connected Analytical service\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732927117421</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732927117421</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Remerged with the current version.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732928579507</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732928579507</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Added view for the recommendations\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732933038852</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732933038852</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733182659091</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733182659091</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Renewed look for Analysis and History tab. &#10;Connected Analytical service\" />\r\n    <MESSAGE value=\"Remerged with the current version.\" />\r\n    <MESSAGE value=\"Added view for the recommendations\" />\r\n    <MESSAGE value=\"Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 21482351991ba3fc826668ba2edfbfb39249d949)
++++ b/.idea/workspace.xml	(date 1733238953264)
+@@ -4,9 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode">
++    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Blocked report generation for offline mode">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -50,20 +49,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Node.js.ConnectionContext.js.executor": "Run",
+-    "Node.js.sw.js.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "History+Analysis",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Node.js.ConnectionContext.js.executor&quot;: &quot;Run&quot;,
++    &quot;Node.js.sw.js.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;History+Analysis&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+@@ -91,7 +90,8 @@
+       <workItem from="1732741086995" duration="3288000" />
+       <workItem from="1732890069228" duration="3290000" />
+       <workItem from="1732921885805" duration="10058000" />
+-      <workItem from="1733163403069" duration="12950000" />
++      <workItem from="1733163403069" duration="15083000" />
++      <workItem from="1733238113964" duration="828000" />
+     </task>
+     <task id="LOCAL-00001" summary="Renewed look for Analysis and History tab. &#10;Connected Analytical service">
+       <option name="closed" value="true" />
+@@ -125,7 +125,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1733182659091</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="Blocked report generation for offline mode">
++      <option name="closed" value="true" />
++      <created>1733183195382</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1733183195382</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -136,6 +144,7 @@
+     <MESSAGE value="Remerged with the current version." />
+     <MESSAGE value="Added view for the recommendations" />
+     <MESSAGE value="Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode" />
++    <MESSAGE value="Blocked report generation for offline mode" />
++    <option name="LAST_COMMIT_MESSAGE" value="Blocked report generation for offline mode" />
+   </component>
+ </project>
+\ No newline at end of file

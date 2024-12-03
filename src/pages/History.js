@@ -8,12 +8,12 @@ import { FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree } from "rea
 import { AiTwotoneLike } from "react-icons/ai";
 import Loading from "../components/Loading"
 import MonthlyGroup from "../components/MonthlyGroup";
-import nutri_a from '../assets/nutri-score-a.png';
-import nutri_b from '../assets/nutri-score-b.png';
-import nutri_c from '../assets/nutri-score-c.png';
-import nutri_d from '../assets/nutri-score-d.png';
-import nutri_e from '../assets/nutri-score-e.png';
-import nutri_unknown from '../assets/nutri-score-unknown.png';
+import nutri_a from '../assets/nutri-score/nutri-score-a.svg';
+import nutri_b from '../assets/nutri-score/nutri-score-b.svg';
+import nutri_c from '../assets/nutri-score/nutri-score-c.svg';
+import nutri_d from '../assets/nutri-score/nutri-score-d.svg';
+import nutri_e from '../assets/nutri-score/nutri-score-e.svg';
+import nutri_unknown from '../assets/nutri-score/nutri-score-unknown.svg';
 import './History.css';
 import RecommendationModal from '../components/recommendations/RecommendationModal';
 

@@ -2,6 +2,7 @@ import RestService from "./RestService";
 import {errorToast, successToast} from "../utils/Toasts";
 import {API_URLS} from "../utils/URLS";
 import {clearCacheFor} from "../utils/Cache"
+import { historyStore } from "../stores/HistoryStore";
 
 class ApiService {
 
@@ -327,7 +328,8 @@ class ApiService {
 
 
 
-    static async generatePdfReport(month, year) {
+    static async generatePdfReport(month, year, startLoading, stopLoading) {
+        startLoading()
         try {
             const response = await RestService.ajax(
                 `${API_URLS.historyAnalysis}`,
@@ -349,10 +351,12 @@ class ApiService {
             a.download = "report.pdf";
             a.click();
             window.URL.revokeObjectURL(url);
+            stopLoading()
 
         } catch (error) {
             console.error("Failed to generate PDF report:", error);
             errorToast("Failed to generate PDF report.");
+            stopLoading()
         }
     }
 

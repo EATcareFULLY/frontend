@@ -14,10 +14,9 @@ import Home from "./pages/Home";
 import Label from "./pages/Label";
 import LabelAnalysis from "./pages/LabelAnalysis";
 import Achievements from "./pages/Achievements";
-import Ranking from "./pages/Ranking";
+import Leaderboard from "./pages/Leaderboard";
 import Settings from "./pages/Settings";
 import { ConnectionProvider } from "./utils/ConnectionContext";
-import Leaderboard from "./pages/Leaderboard";
 
 function App() {
   return (

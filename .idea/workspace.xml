@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode">
+    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Blocked report generation for offline mode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/History.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/History.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ApiService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,20 +54,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.ConnectionContext.js.executor": "Run",
-    "Node.js.sw.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "History+Analysis",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.ConnectionContext.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.sw.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;History+Analysis&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -91,7 +95,9 @@
       <workItem from="1732741086995" duration="3288000" />
       <workItem from="1732890069228" duration="3290000" />
       <workItem from="1732921885805" duration="10058000" />
-      <workItem from="1733163403069" duration="12950000" />
+      <workItem from="1733163403069" duration="15083000" />
+      <workItem from="1733238113964" duration="1682000" />
+      <workItem from="1733240126568" duration="1491000" />
     </task>
     <task id="LOCAL-00001" summary="Renewed look for Analysis and History tab. &#10;Connected Analytical service">
       <option name="closed" value="true" />
@@ -125,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733182659091</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Blocked report generation for offline mode">
+      <option name="closed" value="true" />
+      <created>1733183195382</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733183195382</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +150,7 @@
     <MESSAGE value="Remerged with the current version." />
     <MESSAGE value="Added view for the recommendations" />
     <MESSAGE value="Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode" />
+    <MESSAGE value="Blocked report generation for offline mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Blocked report generation for offline mode" />
   </component>
 </project>
