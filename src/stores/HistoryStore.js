@@ -10,8 +10,25 @@ class HistoryStore {
 
     async fetchAllPurchases() {
         try {
-            const products = await ApiService.getTestPurchases();
-            this.setHistory(products);
+            const purchases = await ApiService.getPurchases();
+            this.setHistory(
+                purchases.flatMap(purchase =>
+                    purchase.purchaseItems.map(item => ({
+                        ...item,
+                        purchaseDate: purchase.purchaseDate
+                    }))
+                )
+            );
+            console.log('history state',purchases.flatMap(purchase => purchase.purchaseItems).length);
+        } catch (error) {
+            console.error("Failed to fetch purchases");
+        }
+    }
+    async fetchAllTestPurchases() {
+        try {
+            const purchases = await ApiService.getTestPurchases();
+            this.setHistory(purchases.flatMap(purchase => purchase.purchaseItems));
+            console.log('size',purchases.flatMap(purchase => purchase.purchaseItems).length);
         } catch (error) {
             console.error("Failed to fetch purchases");
         }
@@ -48,12 +65,46 @@ class HistoryStore {
         return brandNames.reduce((a, b) => mostFrequentBrand[a] > mostFrequentBrand[b] ? a : b, brandNames[0]);
     }
 
+    getSortedBrands() {
+        const brandCounts = this.history.reduce((acc, purchase) => {
+            const brand = purchase.product.brand;
+            acc[brand] = acc[brand] ? acc[brand] + purchase.quantity : purchase.quantity;
+            return acc;
+        }, {});
+
+        const sortedBrands = Object.entries(brandCounts)
+            .map(([name, quantity]) => ({ name, quantity }))
+            .sort((a, b) => b.quantity - a.quantity)
+            .slice(0, 10); // Pobieramy top 10
+
+        return sortedBrands;
+    }
+    getTopIngredients() {
+        const ingredientCounts = {};
+
+        this.history.forEach(purchase => {
+            purchase.product.ingredients.forEach(ingredient => {
+                const ingredientName = ingredient.name;
+                ingredientCounts[ingredientName] = (ingredientCounts[ingredientName] || 0) + 1;
+            });
+        });
+
+        const sortedIngredients = Object.entries(ingredientCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+
+        return sortedIngredients.map(([name, count]) => ({ name, count }));
+    }
+
+
     getAverageScore() {
         const scoreMap = {
-            'A': 4,
-            'B': 3,
-            'C': 2,
-            'D': 1
+            'a': 5,
+            'b': 4,
+            'c': 3,
+            'd': 2,
+            'e': 1,
+            'unknown': 1
         };
 
         const totalScore = this.history
@@ -78,6 +129,7 @@ class HistoryStore {
     };
 
     getScoreCount() {
+        console.log("score store", this.history.map(a => a.product.score));
         return this.history.reduce((acc, purchase) => {
             const score = purchase.product.score;
             acc[score] = acc[score] ? acc[score] + 1 : 1;
@@ -96,31 +148,48 @@ class HistoryStore {
     }
 
     getTagStatistics() {
-        const tagCategories = {
-            'Organic': 0,
-            'Vegan': 0,
-            'Gluten-Free': 0,
-            'Non-GMO': 0,
-            'Low Sugar': 0
-        };
+        const tagCounts = {};
 
         this.history.forEach(purchase => {
             const productTags = toJS(purchase.product.tags);
             productTags.forEach(tag => {
-                if (tagCategories[tag.name] !== undefined) {
-                    tagCategories[tag.name]++;
+                const tagName = tag.name;
+                if (tagCounts[tagName]) {
+                    tagCounts[tagName]++;
+                } else {
+                    tagCounts[tagName] = 1;
                 }
             });
         });
 
-        const totalPurchases = this.history.length;
+        const sortedTags = Object.entries(tagCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+
+        const totalTopTagsCount = sortedTags.reduce((total, [, count]) => total + count, 0);
+
         const tagPercentages = {};
-        Object.keys(tagCategories).forEach(tag => {
-            tagPercentages[tag] = (tagCategories[tag] / totalPurchases) * 100;
+        sortedTags.forEach(([tag, count]) => {
+            tagPercentages[tag] = ((count / totalTopTagsCount) * 100).toFixed(2); // Zaokrąglenie do 2 miejsc po przecinku
         });
 
         return tagPercentages;
     }
+
+    getProductsGroupedByMonth() {
+        return this.history.reduce((grouped, purchase) => {
+            const date = new Date(purchase.purchaseDate);
+            const yearMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+
+            if (!grouped[yearMonth]) {
+                grouped[yearMonth] = [];
+            }
+
+            grouped[yearMonth].push(purchase);
+            return grouped;
+        }, {});
+    }
+
 }
 
 export const historyStore = new HistoryStore();

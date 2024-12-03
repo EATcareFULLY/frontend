@@ -1,5 +1,6 @@
 import { makeAutoObservable} from "mobx";
 import ApiService from "../services/ApiService";
+import { historyStore } from "./HistoryStore";
 
 
 class ScanStore {
@@ -56,7 +57,6 @@ class ScanStore {
     async addScannedProductToPurchase(quantity){
 
         const response = await ApiService.addProductToPurchased(this.scannedProduct.id, quantity);
-
         if (response && response.unlockedAchievements) {
             return response.unlockedAchievements;
         } else {

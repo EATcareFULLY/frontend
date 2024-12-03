@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-pwa-cache-v1";
+const CACHE_NAME = "eatcareFULLY-cache";
 const urlsToCache = [
     '/',
     '/index.html',
@@ -38,63 +38,31 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
     console.log('Fetching:', event.request.url);
- ///TODO - Currently stores only /test endpoints
-    if (event.request.url.includes('/test/')) {
-        event.respondWith(
-            caches.match(event.request).then(cachedResponse => {
-                if (cachedResponse) {
-                    console.log("Returning cached response for:", event.request.url);
-                    return cachedResponse;
+
+    event.respondWith(
+        fetch(event.request)
+            .then(networkResponse => {
+                if (!event.request.url.includes('/test/')) {
+                    return caches.open(CACHE_NAME).then(cache => {
+                        cache.put(event.request, networkResponse.clone());
+                        return networkResponse;
+                    });
                 }
 
-                return fetch(event.request).then(response => {
-                    if (!response || response.status !== 200) {
-                        return response;
+                return networkResponse;
+            })
+            .catch(() => {
+                return caches.match(event.request).then(cachedResponse => {
+                    if (cachedResponse) {
+                        console.log("Returning cached response as fallback:", event.request.url);
                     }
-                    const responseClone = response.clone();
-                    caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, responseClone);
-                    });
-                    return response;
-                });
-            }).catch(error => {
-                console.error("Fetch failed; returning offline page instead.", error);
-            })
-        );
-    } else if (event.request.url.includes('/user-profile')) {
-        event.respondWith(
-            fetch(event.request).catch(() => {
-                return caches.match(event.request);
-            })
-        );
-    } else if (event.request.url.includes('/achievements')) {
-        event.respondWith(
-            fetch(event.request).catch(() => {
-                return caches.match(event.request);
-            })
-        );
-    } else if (event.request.url.includes('/leaderboard')) {
-        event.respondWith(
-            fetch(event.request).catch(() => {
-                return caches.match(event.request);
-            })
-        );
-    } else {
-        event.respondWith(
-            caches.match(event.request).then(response => {
-                return response || fetch(event.request).then(fetchResponse => {
-                    return caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, fetchResponse.clone());
-                        return fetchResponse;
+                    return cachedResponse || new Response("Offline and no cache available", {
+                        status: 503,
+                        statusText: "Service Unavailable"
                     });
                 });
-            }).catch(() => {
-                if (event.request.mode === 'navigate') {
-                    return caches.match('/index.html');
-                }
             })
-        );
-    }
+    );
 });
 
 self.addEventListener('message', event => {

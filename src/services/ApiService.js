@@ -1,8 +1,27 @@
 import RestService from "./RestService";
 import {errorToast, successToast} from "../utils/Toasts";
 import {API_URLS} from "../utils/URLS";
+import {clearCacheFor} from "../utils/Cache"
+import { historyStore } from "../stores/HistoryStore";
 
 class ApiService {
+
+    static async checkConnection() {
+        try {
+            const response = await RestService.ajax(
+                `${API_URLS.checkConnection}`,
+                "GET",
+                null
+            );
+            if (response) {
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.error("Error checking connection:", error);
+            return false;
+        }
+    }
 
     static async getTestProducts() {
         try {
@@ -15,6 +34,19 @@ class ApiService {
             console.error("Failed to fetch test products:", error);
         }
     }
+
+    static async getPurchases() {
+        try {
+            return await RestService.ajax(
+                `${API_URLS.allpurchases}`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to fetch purchases:", error);
+        }
+    }
+
     static async getTestPurchases() {
         try {
             return await RestService.ajax(
@@ -60,7 +92,7 @@ class ApiService {
             barcode: barcode,
             quantity: quantity
         };
-
+        clearCacheFor(API_URLS.allpurchases);
         try {
             const response =  await RestService.ajax(
                 `${API_URLS.purchases}`,
@@ -69,7 +101,7 @@ class ApiService {
             );
 
             successToast("Product added to purchased products.");
-
+            await historyStore.fetchAllPurchases()
             return response;
 
         } catch (error) {
@@ -140,27 +172,15 @@ class ApiService {
         }
     }
 
-    static async getLeaderboardByUsername(username) {
+    static async getRanking() {
         try {
             return await RestService.ajax(
-                `${API_URLS.leaderboard}/${username}`,
+                `${API_URLS.leaderboard}`,
                 "GET",
                 null
             );
         } catch (error) {
-            console.error("Failed to fetch another user's leaderboard:", error);
-        }
-    }
-
-    static async getLeaderboard() {
-        try {
-            return await RestService.ajax(
-                `${API_URLS.leaderboard}/me`,
-                "GET",
-                null
-            );
-        } catch (error) {
-            console.error("Failed to fetch leaderboard:", error);
+            console.error("Failed to fetch achievements:", error);
         }
     }
 
@@ -307,6 +327,38 @@ class ApiService {
 
 
 
+
+    static async generatePdfReport(month, year, startLoading, stopLoading) {
+        startLoading()
+        try {
+            const response = await RestService.ajax(
+                `${API_URLS.historyAnalysis}`,
+                "GET",
+                {},
+                {},
+                "arraybuffer",
+                {
+                    year: year,
+                    month: month
+                }
+            );
+
+            const blob = new Blob([response], { type: "application/pdf" });
+            const url = window.URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "report.pdf";
+            a.click();
+            window.URL.revokeObjectURL(url);
+            stopLoading()
+
+        } catch (error) {
+            console.error("Failed to generate PDF report:", error);
+            errorToast("Failed to generate PDF report.");
+            stopLoading()
+        }
+    }
 
 
 }
