@@ -18,3 +18,5 @@ export const APP_ROOT_URL = 'http://localhost:3000';
 export const APP_URLS = {
     home: `${APP_ROOT_URL}/`,
 };
+
+export const KEYCLOAK_ROOT_URL = 'http://localhost:8080/';

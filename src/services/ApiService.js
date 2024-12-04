@@ -172,15 +172,28 @@ class ApiService {
         }
     }
 
-    static async getRanking() {
+    static async getLeaderboardByUsername(username) {
         try {
             return await RestService.ajax(
                 `${API_URLS.leaderboard}`,
+                `${API_URLS.leaderboard}/${username}`,
                 "GET",
                 null
             );
         } catch (error) {
             console.error("Failed to fetch achievements:", error);
+            console.error("Failed to fetch another user's leaderboard:", error);
+        }
+    }
+    static async getLeaderboard() {
+        try {
+            return await RestService.ajax(
+                `${API_URLS.leaderboard}/me`,
+                "GET",
+                null
+            );
+        } catch (error) {
+            console.error("Failed to fetch leaderboard:", error);
         }
     }
 
@@ -221,7 +234,7 @@ class ApiService {
         }
     }
 
-    /* FUNCTION TO SETUP PREFERENCES DURING TESTING
+    // FUNCTION TO SETUP PREFERENCES DURING TESTING
     static async createPref() {
         try {
             await RestService.ajax(
@@ -323,7 +336,7 @@ class ApiService {
 
             errorToast("Failed to save setting.");
         }
-    }*/
+    }
 
 
 

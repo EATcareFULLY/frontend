@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,6 +7,7 @@ import { useKeycloak } from "@react-keycloak/web";
 import logo from "../assets/logos/logo-horizontal.svg";
 import { NavDropdown } from "react-bootstrap";
 import {ConnectionContext} from "../utils/ConnectionContext"
+import {APP_URLS} from "../utils/URLS";
 
 function MainNavBar() {
   const { keycloak, initialized } = useKeycloak();
@@ -18,7 +19,7 @@ function MainNavBar() {
 
   const handleLogout = () => {
     if (initialized) {
-      keycloak.logout({ redirectUri: "http://localhost:3000/" });
+      keycloak.logout({ redirectUri: `${APP_URLS.home}` });
       closeNavbar();
     }
   };

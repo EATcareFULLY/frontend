@@ -11,7 +11,7 @@ const RequireAuth = ({ children }) => {
         if (initialized && !keycloak.authenticated) {
             navigate("/", {replace: true});
         }
-    }, [initialized, keycloak]);
+    }, [initialized, keycloak, navigate]);
 
     if (!initialized) {
         return <Loading />;

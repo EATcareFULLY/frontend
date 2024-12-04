@@ -183,7 +183,7 @@ class SettingsStore {
     }
 
 
-    /*
+
     async createPref() {
         const prefs = ApiService.createPref();
 
@@ -201,7 +201,7 @@ class SettingsStore {
     async setupSetting() {
         const response = ApiService.setupSettings();
         console.log("setup response", response);
-    }*/
+    }
 
 
 }

@@ -1,6 +1,7 @@
+import {APP_ROOT_URL} from "./utils/URLS";
 
 function swDev() {
-    let url = `http://localhost:3000/sw.js`;
+    let url = `${APP_ROOT_URL}/sw.js`;
     console.log(url);
 
     if ('serviceWorker' in navigator) {
