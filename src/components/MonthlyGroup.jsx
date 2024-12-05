@@ -24,10 +24,10 @@ const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, format
 
     return (
         <div>
-            <li className="py-4 bg-gray-300 text-2xl font-bold text-center text-black rounded flex items-center justify-center gap-4">
+            <li className="py-4 text-2xl font-bold text-center text-white rounded flex items-center justify-center gap-4 bg-primary">
                 {monthIcon} {formatMonth(yearMonthString)}
                 <button
-                    className={` rounded h-12 w-12 flex items-center justify-center bg-[#648c4c] hover:bg-[#5e4e2b] text-[#5e4e2b] hover:text-[#648c4c] ${!connected ? 'bg-gray-400 hover:bg-gray-400 text-black hover:text-black': ''}`}
+                    className={` rounded h-12 w-12 flex items-center justify-center bg-[#5e4e2b] text-[#648c4c] hover:text-white ${!connected ? 'bg-gray-400 hover:bg-gray-400 text-black hover:text-black': ''}`}
                     disabled={!connected}
                     onClick={() => {
                         handleGeneratePdf(yearMonth.month, yearMonth.year);
@@ -42,14 +42,16 @@ const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, format
             {purchases.map((purchase, index) => (
                 <li
                     key={`${yearMonthString}-${index}`}
-                        className="flex items-center justify-between py-6 gap-4 even:bg-[#5e4e2b] odd:bg-[#648c4c] hover:brightness-90 border border-black rounded my-1"
+                    className={`flex items-center justify-between py-6 gap-4 hover:brightness-90 border rounded my-1 ${
+                        index % 2 === 0 ? 'bg-primary-subtle' : 'bg-white'
+                    }`}
                     onClick={() => showDetails(purchase.product.id)}
                 >
                     <div className="flex-shrink-0">
                         <img
                             src={purchase.product.imageURL || img_placeholder}
                             alt={purchase.product.name}
-                            className="ml-2 w-32 h-32 rounded-full object-cover border-4 border-dashed border-yellow-600"
+                            className="ml-2 w-32 h-32 rounded-full object-cover border-2"
                         />
                     </div>
 

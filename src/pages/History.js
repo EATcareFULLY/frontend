@@ -18,18 +18,18 @@ import './History.css';
 import RecommendationModal from '../components/recommendations/RecommendationModal';
 
 const monthIcons = {
-    "01": <FaSnowflake className="text-blue-400" />,
-    "02": <FaSnowflake className="text-blue-300" />,
-    "03": <FaLeaf className="text-green-400" />,
-    "04": <FaUmbrella className="text-blue-600" />,
-    "05": <FaSun className="text-yellow-500" />,
-    "06": <FaSun className="text-yellow-400" />,
-    "07": <FaSun className="text-orange-400" />,
-    "08": <FaSun className="text-yellow-600" />,
-    "09": <FaLeaf className="text-green-600" />,
-    "10": <FaTree className="text-orange-700" />,
-    "11": <FaCloudRain className="text-gray-500" />,
-    "12": <FaSnowflake className="text-blue-500" />
+    "01": <FaSnowflake className="text-white" />,
+    "02": <FaSnowflake className="text-white" />,
+    "03": <FaLeaf className="text-white" />,
+    "04": <FaUmbrella className="text-white" />,
+    "05": <FaSun className="text-white" />,
+    "06": <FaSun className="text-white" />,
+    "07": <FaSun className="text-white" />,
+    "08": <FaSun className="text-white" />,
+    "09": <FaLeaf className="text-white" />,
+    "10": <FaTree className="text-white" />,
+    "11": <FaCloudRain className="text-white" />,
+    "12": <FaSnowflake className="text-white" />
 };
 
 const History = observer(() => {
@@ -87,44 +87,47 @@ const History = observer(() => {
     }
 
     return (
-        <div className="my-10 px-6 bg-gradient-to-r from-gray-100 to-gray-200 py-10 rounded-lg shadow-lg">
-            <div className="relative mb-16 ">
-                <h1 className="text-4xl font-extrabold text-gray-800 text-center">Purchase List</h1>
+        <div>
+            <div className="relative mb-4 ">
                 <button
-                    className="absolute top-0 right-0 flex items-center justify-center gap-2 w-60 h-20 bg-red-500 text-black rounded-lg shadow-lg"
+                    className="absolute top-0 right-0 flex items-center gap-2 bg-primary text-white rounded p-2"
                     onClick={showAnalyze}
                 >
                     <span className="text-lg font-medium">General Analytics</span>
                     <FaChartBar size={24}/>
                 </button>
+                <h2 className="mt-2">Purchase List</h2>
                 <button
-                    className="absolute top-0 left-8 flex items-center justify-center gap-2 w-80 h-20 bg-yellow-500 text-black rounded-lg shadow-lg"
+                    className="absolute top-0 left-8 flex items-center gap-2 bg-primary text-white rounded p-2"
                     onClick={showModal}
                 >
                     <span className="text-lg font-medium">New recommendations!</span>
                     <AiTwotoneLike size={24}/>
                 </button>
-            </div>
 
-            {Object.keys(groupedHistory).length === 0 ? (
-                <Loading />
-            ) : (
-                <ul className="divide-y space-y-10 divide-gray-300">
-                    {Object.keys(groupedHistory).map((yearMonth) => (
-                        <MonthlyGroup
-                            key={yearMonth}
-                            yearMonthString={yearMonth}
-                            yearMonth = {getMonthAndYear(yearMonth)}
-                            purchases={groupedHistory[yearMonth]}
-                            monthIcon={monthIcons[yearMonth.split('-')[1]]}
-                            formatMonth={formatMonth}
-                            scoreImages={scoreImages}
-                            showDetails={showDetails}
-                        />
-                    ))}
-                </ul>
-            )}
-            {showRecommendationModal && <RecommendationModal closeModal = {closeModal}/>}
+            </div>
+            <div className="my-10 px-6 py-2 rounded-lg border">
+
+                {Object.keys(groupedHistory).length === 0 ? (
+                    <Loading/>
+                ) : (
+                    <ul className="divide-y space-y-10 divide-gray-300">
+                        {Object.keys(groupedHistory).map((yearMonth) => (
+                            <MonthlyGroup
+                                key={yearMonth}
+                                yearMonthString={yearMonth}
+                                yearMonth={getMonthAndYear(yearMonth)}
+                                purchases={groupedHistory[yearMonth]}
+                                monthIcon={monthIcons[yearMonth.split('-')[1]]}
+                                formatMonth={formatMonth}
+                                scoreImages={scoreImages}
+                                showDetails={showDetails}
+                            />
+                        ))}
+                    </ul>
+                )}
+                {showRecommendationModal && <RecommendationModal closeModal={closeModal}/>}
+            </div>
         </div>
     );
 });
