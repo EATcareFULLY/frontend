@@ -7,13 +7,18 @@ const LeaderboardSearchBar = ({ initialUsername, onSearch, onReset }) => {
     const [input, setInput] = useState("");
     const [currentUsername, setCurrentUsername] = useState(initialUsername);
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         const newUsername = input.trim();
 
-        if (validateUsername(newUsername)){
-            setCurrentUsername(newUsername);
-            setInput("");
-            onSearch(newUsername);
+        if (validateUsername(newUsername)) {
+            try {
+                await onSearch(newUsername);
+                setCurrentUsername(newUsername);
+                setInput("");
+            } catch (error) {
+                console.error("Error during search:", error);
+            }
+
         } else {
             errorToast("Invalid username format.");
         }

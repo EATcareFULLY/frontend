@@ -175,14 +175,14 @@ class ApiService {
     static async getLeaderboardByUsername(username) {
         try {
             return await RestService.ajax(
-                `${API_URLS.leaderboard}`,
                 `${API_URLS.leaderboard}/${username}`,
                 "GET",
                 null
             );
         } catch (error) {
-            console.error("Failed to fetch achievements:", error);
-            console.error("Failed to fetch another user's leaderboard:", error);
+            if (error.response?.status===404) errorToast("Searched user does not exist or is not in leaderboard.");
+            else errorToast("Failed to fetch user's leaderboard.");
+            throw error;
         }
     }
     static async getLeaderboard() {
