@@ -30,8 +30,20 @@ function MainNavBar() {
   return (
       <Navbar expand="lg" bg="primary" variant="dark" className="p-1" expanded={expanded}>
         <Container>
-          <Navbar.Brand as={Link} to="/" onClick={closeNavbar}>
-            <img src={logo} width="150" className="d-inline-block align-top" alt="EATcareFULLY"/>
+          <Navbar.Brand as={Link} to="/" onClick={closeNavbar} className="d-flex">
+            <img src={logo} width="150" className="d-inline-block align-top" alt="EATcareFULLY" />
+            {!connected && (
+                <div
+                    className="ms-auto text-white mt-2"
+                    style={{
+                      fontSize: "0.8rem",
+                      whiteSpace: "nowrap",
+                      alignSelf: "flex-start",
+                    }}
+                >
+                  OFFLINE
+                </div>
+            )}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNavbar}/>
           <Navbar.Collapse id="responsive-navbar-nav" data-testid="responsive-navbar-nav">
@@ -50,8 +62,6 @@ function MainNavBar() {
             </Nav>
           </Navbar.Collapse>
         </Container>
-        {!connected && <div className={"bg-[#4f6b3b] h-[65%] text-3xl w-80 absolute right-[4%] text-gray-800 rounded font-bold flex justify-center items-center "}>OFFLINE MODE</div>}
-
       </Navbar>
   );
 }
