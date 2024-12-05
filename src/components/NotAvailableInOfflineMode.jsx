@@ -1,11 +1,15 @@
+import React from 'react';
 
-const NotAvailableInOfflineMode = ({serviceName}) => {
+const NotAvailableInOfflineMode = () => {
     return (
-        <div className="mt-10">
-            <h3 className={"font-bold text-3xl"}>Not available in Offline Mode</h3>
-            <h6>To enable {serviceName} connect application to the web.</h6>
+        <div className="container mt-5">
+            <div className="text-center">
+                <h2>Not Available</h2>
+                <p>To use this feature, please connect the application to the internet.</p>
+                <p>Reconnect and try again.</p>
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default NotAvailableInOfflineMode
+export default NotAvailableInOfflineMode;

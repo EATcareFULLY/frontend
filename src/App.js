@@ -17,6 +17,7 @@ import Achievements from "./pages/Achievements";
 import Leaderboard from "./pages/Leaderboard";
 import Settings from "./pages/Settings";
 import { ConnectionProvider } from "./utils/ConnectionContext";
+import RequireConnection from "./components/RequireConnection";
 
 function App() {
   return (
@@ -32,7 +33,9 @@ function App() {
                       path='/Scan'
                       element={
                           <RequireAuth>
-                              <Scan />
+                              <RequireConnection>
+                                  <Scan />
+                              </RequireConnection>
                           </RequireAuth>
                       }
                   />
@@ -40,7 +43,9 @@ function App() {
                       path='/Label'
                       element={
                           <RequireAuth>
-                              <Label />
+                              <RequireConnection>
+                                  <Label />
+                              </RequireConnection>
                           </RequireAuth>
                       }
                   />
@@ -72,7 +77,9 @@ function App() {
                       path='/LabelAnalysis'
                       element={
                           <RequireAuth>
-                              <LabelAnalysis />
+                              <RequireConnection>
+                                  <LabelAnalysis />
+                              </RequireConnection>
                           </RequireAuth>
                       }
                   />
@@ -80,7 +87,9 @@ function App() {
                       path='/Achievements'
                       element={
                           <RequireAuth>
-                              <Achievements />
+                              <RequireConnection>
+                                  <Achievements />
+                              </RequireConnection>
                           </RequireAuth>
                       }
                   />
@@ -88,7 +97,9 @@ function App() {
                       path='/Leaderboard'
                       element={
                           <RequireAuth>
-                              <Leaderboard />
+                              <RequireConnection>
+                                  <Leaderboard />
+                              </RequireConnection>
                           </RequireAuth>
                       }
                   />
@@ -96,7 +107,9 @@ function App() {
                       path='/Settings'
                       element={
                           <RequireAuth>
-                              <Settings />
+                              <RequireConnection>
+                                  <Settings />
+                              </RequireConnection>
                           </RequireAuth>
                       }
                   />

@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react";
+import React, {useEffect} from "react";
 import {observer} from "mobx-react";
 import {labelStore} from "../stores/LabelStore";
 import Loading from "../components/Loading";
@@ -7,13 +7,10 @@ import LabelButtonsWrapper from "../components/LabelButtonsWrapper";
 import {useNavigate} from "react-router-dom";
 import LabelSubmitted from "../components/LabelSubmitted";
 import LabelAnalysisDisplay from "../components/LabelAnalysisDisplay";
-import {ConnectionContext} from "../utils/ConnectionContext"
-import NotAvailableInOfflineMode from "../components/NotAvailableInOfflineMode";
 
 
 const LabelAnalysis = observer(() => {
     const navigate = useNavigate();
-    const {connected} = useContext(ConnectionContext)
 
     useEffect(() => {
         async function fetchData() {
@@ -42,7 +39,6 @@ const LabelAnalysis = observer(() => {
     }
 
     return (
-        connected ? (
         <Container className="mt-4">
             <Card>
                 <CardBody>
@@ -64,8 +60,7 @@ const LabelAnalysis = observer(() => {
                     </Col>
                 </CardBody>
             </Card>
-        </Container> ):
-            <NotAvailableInOfflineMode serviceName={"Label Analysis"}/>
+        </Container>
     );
 });
 
