@@ -113,7 +113,7 @@ const Analyze = observer(() => {
     return (
         <div className="my-10 px-6 bg-gradient-to-r from-gray-100 to-gray-200 py-10 rounded-lg shadow-lg">
             <button
-                className=" absolute right-6 flex items-center justify-center gap-2 w-60 h-20 bg-red-500 text-black rounded-lg shadow-lg"
+                className=" absolute right-6 flex items-center  bg-primary text-white rounded p-2"
                 onClick={() => {
                     showHistory()
                 }}
