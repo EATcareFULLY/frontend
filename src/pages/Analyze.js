@@ -133,10 +133,10 @@ const Analyze = observer(() => {
                     <div className="overflow-x-auto">
                         <table className="table-auto w-full border-collapse border border-gray-200 text-left">
                             <thead>
-                            <tr className="bg-gray-100 border-b border-gray-300">
-                                <th className="px-4 py-2 text-gray-600 font-semibold">#</th>
-                                <th className="px-4 py-2 text-gray-600 font-semibold">Product Name</th>
-                                <th className="px-4 py-2 text-gray-600 font-semibold">Quantity</th>
+                            <tr className="bg-primary text-white border-b border-gray-300">
+                                <th className="px-4 py-2 font-semibold">#</th>
+                                <th className="px-4 py-2 font-semibold">Product Name</th>
+                                <th className="px-4 py-2 font-semibold">Quantity</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -144,7 +144,7 @@ const Analyze = observer(() => {
                                 <tr
                                     key={index}
                                     className={`border-b border-gray-200 ${
-                                        index % 2 === 0 ? 'bg-gray-50' : ''
+                                        index % 2 === 0 ? 'bg-primary-subtle' : ''
                                     } hover:bg-gray-100 transition`}
                                 >
                                     <td className="px-4 py-2 text-gray-700">{index + 1}</td>
@@ -162,10 +162,10 @@ const Analyze = observer(() => {
                     <div className="overflow-x-auto">
                         <table className="table-auto w-full border-collapse border border-gray-200 text-left">
                             <thead>
-                            <tr className="bg-gray-100 border-b border-gray-300">
-                                <th className="px-4 py-2 text-gray-600 font-semibold">#</th>
-                                <th className="px-4 py-2 text-gray-600 font-semibold">Brand Name</th>
-                                <th className="px-4 py-2 text-gray-600 font-semibold">Quantity</th>
+                            <tr className="bg-primary border-b text-white border-gray-300">
+                                <th className="px-4 py-2 font-semibold">#</th>
+                                <th className="px-4 py-2 font-semibold">Brand Name</th>
+                                <th className="px-4 py-2 font-semibold">Quantity</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -173,7 +173,7 @@ const Analyze = observer(() => {
                                 <tr
                                     key={index}
                                     className={`border-b border-gray-200 ${
-                                        index % 2 === 0 ? 'bg-gray-50' : ''
+                                        index % 2 === 0 ? 'bg-primary-subtle' : ''
                                     } hover:bg-gray-100 transition`}
                                 >
                                     <td className="px-4 py-2 text-gray-700">{index + 1}</td>
@@ -192,13 +192,13 @@ const Analyze = observer(() => {
                 </div>
 
                 <div className="bg-white shadow-md rounded-lg p-6">
-                    <h3 className="text-center text-2xl font-semibold mb-6 text-gray-700">Score Frequency</h3>
-                    <Doughnut data={scoreChartData}/>
+                    <h3 className="text-center text-2xl font-semibold mb-6 text-gray-700">Most Frequent Tags (%)</h3>
+                    <Bar data={tagChartData}/>
                 </div>
 
                 <div className="bg-white shadow-md rounded-lg p-6">
-                    <h3 className="text-center text-2xl font-semibold mb-6 text-gray-700">Most Frequent Tags (%)</h3>
-                    <Bar data={tagChartData}/>
+                    <h3 className="text-center text-2xl font-semibold mb-6 text-gray-700">Score Frequency</h3>
+                    <Doughnut data={scoreChartData}/>
                 </div>
             </div>
 
