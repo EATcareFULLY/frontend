@@ -5,10 +5,13 @@ import Loading from "../components/Loading";
 import ProductNotFound from "../components/ProductNotFound";
 import ProductInfo from "../components/ProductInfo";
 import ProductTables from "../components/ProductTables";
-import {Card, CardBody, Container} from "react-bootstrap";
+import {Button, Card, CardBody, Container} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import {BiArrowBack} from "react-icons/bi";
 
 const Details = observer(() => {
     console.log("Details component rendering");
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
@@ -21,6 +24,10 @@ const Details = observer(() => {
             scanStore.resetScannedProduct();
         };
     }, []);
+
+    const handleBack = () => {
+        navigate("/Scan");
+    }
 
     if (!scanStore.scannedProduct) {
         return <Loading />;
@@ -49,6 +56,15 @@ const Details = observer(() => {
                     />
                 </CardBody>
             </Card>
+            <div className="d-flex align-items-center justify-content-center">
+                <Button
+                className="mt-3 d-flex align-items-center justify-content-center gap-2"
+                onClick={handleBack}
+                >
+                <BiArrowBack size={20}/>
+                <span>Scan another product</span>
+            </Button>
+            </div>
         </Container>
     );
 });

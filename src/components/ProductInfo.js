@@ -35,13 +35,13 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 
     const handleQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
-        if (!isNaN(value) && value >= 1 && value <= 9999) {
+        if (!isNaN(value) && value >= 1 && value <= 9) {
             setQuantityToAdd(value);
         }
     };
 
     const handleIncrement = () => {
-        if (quantityToAdd < 9999) {
+        if (quantityToAdd < 9) {
             setQuantityToAdd(quantityToAdd + 1);
         }
     };
@@ -81,11 +81,12 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
                     <FormControl
                         type="number"
                         aria-label="Quantity"
+                        disabled
                         value={quantityToAdd}
                         min="1"
-                        max="9999"
+                        max="9"
                         onChange={(e) => handleQuantityChange(e)}
-                        className="text-center"
+                        className="text-center bg-white"
                         data-testid="quantity-input"
                     />
                     <Button
