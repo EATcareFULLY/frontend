@@ -56,6 +56,8 @@ const Settings = observer(() => {
                             <Tooltip id="info-tooltip">
                                 Minimum and maximum thresholds are set based on dietary guidelines,
                                 adapting to your daily caloric intake for balanced nutrition.
+                                The sliders represent your input value positioned between
+                                the minimum and maximum thresholds, reflecting where it stands within the possible range.
                             </Tooltip>
                         }
                     >
