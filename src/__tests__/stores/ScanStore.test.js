@@ -89,7 +89,7 @@ const getMockUnsortedProductList = () => {
 
 
 
-describe('ScanStore with achievements processing', () => {
+describe('ScanStore', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         scanStore.scannedProductCode = '';

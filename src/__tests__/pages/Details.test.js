@@ -1,6 +1,7 @@
-import { render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import Details from "../../pages/Details";
 import { scanStore } from "../../stores/ScanStore";
+import {useNavigate} from "react-router-dom";
 
 const getMockProduct = () => {
     return {
@@ -71,10 +72,17 @@ jest.mock("../../components/ProductNotFound", () => () => <div>Product Not Found
 jest.mock("../../components/ProductInfo", () => () => <div>Product Info</div>);
 jest.mock("../../components/ProductTables", () => () => <div>Product Tables</div>);
 
+jest.mock("react-router-dom", () => ({
+    useNavigate: jest.fn(),
+}));
+
+const mockNavigate = jest.fn();
+
 describe("Details Page", () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
+        useNavigate.mockReturnValue(mockNavigate);
     });
 
     it("renders loading component while waiting for the product", async () => {
@@ -112,5 +120,17 @@ describe("Details Page", () => {
         expect(scanStore.getScannedProduct).toHaveBeenCalledTimes(1);
         expect(scanStore.scannedProduct).toEqual(getMockProduct());
 
+    });
+
+    it("navigates to /Scan when 'Scan another product' button is clicked", () => {
+        scanStore.scannedProduct = getMockProduct();
+
+        render(<Details />);
+
+        const button = screen.getByTestId("back-button");
+        fireEvent.click(button);
+
+        expect(mockNavigate).toHaveBeenCalledWith("/Scan");
+        expect(mockNavigate).toHaveBeenCalledTimes(1);
     });
 });

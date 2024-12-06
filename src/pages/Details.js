@@ -60,6 +60,7 @@ const Details = observer(() => {
                 <Button
                 className="mt-3 d-flex align-items-center justify-content-center gap-2"
                 onClick={handleBack}
+                data-testid="back-button"
                 >
                 <BiArrowBack size={20}/>
                 <span>Scan another product</span>
