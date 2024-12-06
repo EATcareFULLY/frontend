@@ -1,7 +1,18 @@
 import React from "react";
-import {Table} from "react-bootstrap";
+import { Table } from "react-bootstrap";
+import { FaLeaf, FaSeedling, FaRecycle } from "react-icons/fa";
+import { GiPalmTree} from "react-icons/gi";
+import { LuWheatOff } from "react-icons/lu";
 
-const ProductTables =({ tags, allergens, ingredients }) => {
+const ProductTables = ({ tags, allergens, ingredients }) => {
+    const tagIcons = {
+        "Contains palm oil": <GiPalmTree size={20} />,
+        "Gluten free": <LuWheatOff size={20} />,
+        "Eco packaging": <FaRecycle size={20} />,
+        "Vegan": <FaSeedling size={20} />,
+        "Vegetarian": <FaLeaf size={20} />,
+    };
+
     const renderTags = () => {
         if (!tags || tags.length === 0) {
             return <p>No tags found.</p>;
@@ -17,7 +28,9 @@ const ProductTables =({ tags, allergens, ingredients }) => {
                 <tbody>
                 {tags.map((tag) => (
                     <tr key={tag.id}>
-                        <td>{tag.name}</td>
+                        <td className="d-flex justify-content-center align-items-center gap-2">
+                            {tag.name} {tagIcons[tag.name] || null}
+                        </td>
                     </tr>
                 ))}
                 </tbody>
@@ -31,7 +44,7 @@ const ProductTables =({ tags, allergens, ingredients }) => {
         }
 
         return (
-            <Table bordered striped >
+            <Table bordered striped>
                 <thead className="table-primary text-white">
                 <tr>
                     <th>Allergen</th>
@@ -54,7 +67,7 @@ const ProductTables =({ tags, allergens, ingredients }) => {
         }
 
         return (
-            <Table bordered striped >
+            <Table bordered striped>
                 <thead className="table-primary text-white">
                 <tr>
                     <th>Ingredient</th>
