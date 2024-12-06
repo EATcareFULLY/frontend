@@ -56,7 +56,7 @@ const LeaderboardSearchBar = ({ initialUsername, onSearch, onReset }) => {
             {currentUsername !== initialUsername &&
                 <div className="d-flex align-items-center justify-content-center ">
                     <p className="mb-0">Leaderboard displayed for: <strong>{currentUsername}</strong></p>
-                    <X color="red" size={24} style={{cursor: "pointer"}} onClick={handleReset} data-testid="resetButton" />
+                    <X color="red" size={24} style={{cursor: "pointer"}} onClick={handleReset}/>
                 </div>
             }
         </div>

@@ -16,7 +16,7 @@ const LeaderboardRules = () => {
             >
                 <p className="mb-0 "><strong>Leaderboard Rules and Scoring</strong></p>
                 <span className="ms-2">
-                    {open ? <FaChevronDown data-testid="icon-down"/> : <FaChevronRight data-testid="icon-right"/>}
+                    {open ? <FaChevronDown /> : <FaChevronRight />}
                 </span>
             </div>
             <Collapse in={open}>

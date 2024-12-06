@@ -4,7 +4,7 @@ import { useKeycloak } from "@react-keycloak/web";
 import {Container} from "react-bootstrap";
 import LeaderboardHeader from "../components/LeaderboardHeader";
 import LeaderboardRow from "../components/LeaderboardRow";
-import LeaderboardDivider from "../components/LeaderboardDivider";
+import Divider from "../components/LeaderboardDivider";
 import Loading from "../components/Loading";
 import { leaderboardStore } from "../stores/LeaderboardStore";
 import LeaderboardSearchBar from "../components/LeaderboardSearchBar";
@@ -58,7 +58,7 @@ const Leaderboard = observer(() => {
                     </div>
                     {leaderboardStore.totalPositions > 2 &&
                         leaderboardStore.userContext.length > 0 &&
-                        leaderboardStore.userContext[0].position !== 4 && <LeaderboardDivider />}
+                        leaderboardStore.userContext[0].position !== 4 && <Divider />}
                     <div className="border-top">
                         {leaderboardStore.userContext.length > 0 &&
                             leaderboardStore.userContext.map((user) => (
@@ -76,7 +76,7 @@ const Leaderboard = observer(() => {
                     {((leaderboardStore.totalPositions > 12 && leaderboardStore.totalPositions>leaderboardStore.userPosition+4) ||
                         (leaderboardStore.totalPositions > 10 && leaderboardStore.userPosition<9))
                         &&
-                        <LeaderboardDivider />}
+                        <Divider />}
                 </div>
             </section>
             <div>

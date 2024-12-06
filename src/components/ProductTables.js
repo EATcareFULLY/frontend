@@ -6,11 +6,11 @@ import { LuWheatOff } from "react-icons/lu";
 
 const ProductTables = ({ tags, allergens, ingredients }) => {
     const tagIcons = {
-        "Contains palm oil": <GiPalmTree size={20} data-testid="GiPalmTree" />,
-        "Gluten free": <LuWheatOff size={20} data-testid="LuWheatOff" />,
-        "Eco packaging": <FaRecycle size={20} data-testid="FaRecycle" />,
-        "Vegan": <FaSeedling size={20} data-testid="FaSeedling" />,
-        "Vegetarian": <FaLeaf size={20} data-testid="FaLeaf" />,
+        "Contains palm oil": <GiPalmTree size={20} />,
+        "Gluten free": <LuWheatOff size={20} />,
+        "Eco packaging": <FaRecycle size={20} />,
+        "Vegan": <FaSeedling size={20} />,
+        "Vegetarian": <FaLeaf size={20} />,
     };
 
     const renderTags = () => {
