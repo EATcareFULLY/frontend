@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import SettingsWrapper from "../../components/SettingsWrapper";
 
-describe('AchievementWrapper Component', () => {
+describe('SettingWrapper Component', () => {
     it('renders children correctly', () => {
 
         render(
