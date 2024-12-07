@@ -1,72 +1,80 @@
 import { render, screen } from "@testing-library/react";
 import ProductTables from "../../components/ProductTables";
 
-const mockTags = [{ id: 1, name: "Vegan" }, { id: 2, name: "Organic" }];
+const mockTags = [
+    { id: 1, name: "Vegan" },
+    { id: 2, name: "Eco packaging" },
+    { id: 3, name: "Gluten free" },
+];
 const mockAllergens = [{ id: 1, name: "Peanuts" }, { id: 2, name: "Soy" }];
 const mockIngredients = [
     { id: 1, name: "Sugar", content: 10.001 },
-    { id: 2, name: "Salt", content: 5 }
+    { id: 2, name: "Salt", content: 5 },
 ];
 
 describe("ProductTables Component", () => {
-
-    it("should render 'No tags found.' if tags list is empty", () => {
+    it("renders 'No tags found.' if the tags list is empty", () => {
         render(<ProductTables tags={[]} allergens={[]} ingredients={[]} />);
         expect(screen.getByText("No tags found.")).toBeInTheDocument();
     });
 
-    it("should render 'No allergens found.' if allergens list is empty", () => {
+    it("renders 'No allergens found.' if the allergens list is empty", () => {
         render(<ProductTables tags={[]} allergens={[]} ingredients={[]} />);
         expect(screen.getByText("No allergens found.")).toBeInTheDocument();
     });
 
-    it("should render 'No ingredients found.' if ingredients list is empty", () => {
+    it("renders 'No ingredients found.' if the ingredients list is empty", () => {
         render(<ProductTables tags={[]} allergens={[]} ingredients={[]} />);
         expect(screen.getByText("No ingredients found.")).toBeInTheDocument();
     });
 
-    it("should render all sections with no data", () => {
+    it("renders all sections with no data", () => {
         render(<ProductTables tags={[]} allergens={[]} ingredients={[]} />);
-
-        expect(screen.getByText("No ingredients found.")).toBeInTheDocument();
-        expect(screen.getByText("No allergens found.")).toBeInTheDocument();
         expect(screen.getByText("No tags found.")).toBeInTheDocument();
+        expect(screen.getByText("No allergens found.")).toBeInTheDocument();
+        expect(screen.getByText("No ingredients found.")).toBeInTheDocument();
     });
 
-    it("should render a list of tags", () => {
+    it("renders a list of tags with corresponding icons", () => {
         render(<ProductTables tags={mockTags} allergens={[]} ingredients={[]} />);
-
         expect(screen.getByText("Vegan")).toBeInTheDocument();
-        expect(screen.getByText("Organic")).toBeInTheDocument();
+        expect(screen.getByText("Eco packaging")).toBeInTheDocument();
+        expect(screen.getByText("Gluten free")).toBeInTheDocument();
+
+        expect(screen.getByTestId("FaSeedling")).toBeInTheDocument();
+        expect(screen.getByTestId("FaRecycle")).toBeInTheDocument();
+        expect(screen.getByTestId("LuWheatOff")).toBeInTheDocument();
     });
 
-    it("should render a list of allergens", () => {
+    it("renders a list of allergens", () => {
         render(<ProductTables tags={[]} allergens={mockAllergens} ingredients={[]} />);
-
         expect(screen.getByText("Peanuts")).toBeInTheDocument();
         expect(screen.getByText("Soy")).toBeInTheDocument();
     });
 
-    it("should render a list of ingredients", () => {
+    it("renders a list of ingredients with content rounded to 2 decimals", () => {
         render(<ProductTables tags={[]} allergens={[]} ingredients={mockIngredients} />);
-
         expect(screen.getByText("Sugar")).toBeInTheDocument();
         expect(screen.getByText("10.00")).toBeInTheDocument();
         expect(screen.getByText("Salt")).toBeInTheDocument();
         expect(screen.getByText("5.00")).toBeInTheDocument();
     });
 
-    it("should render all sections with data", () => {
-        render(<ProductTables tags={mockTags} allergens={mockAllergens} ingredients={mockIngredients} />);
+    it("renders all sections with data, including icons for tags", () => {
+        render(
+            <ProductTables
+                tags={mockTags}
+                allergens={mockAllergens}
+                ingredients={mockIngredients}
+            />
+        );
 
         expect(screen.getByText("Vegan")).toBeInTheDocument();
-        expect(screen.getByText("Peanuts")).toBeInTheDocument();
-        expect(screen.getByText("Sugar")).toBeInTheDocument();
-        expect(screen.getByText("10.00")).toBeInTheDocument();
-    });
+        expect(screen.getByText("Eco packaging")).toBeInTheDocument();
+        expect(screen.getByText("Gluten free")).toBeInTheDocument();
 
-    it("should round ingridients content to 2 decimal", () => {
-        render(<ProductTables tags={mockTags} allergens={mockAllergens} ingredients={mockIngredients} />);
+        expect(screen.getByText("Peanuts")).toBeInTheDocument();
+        expect(screen.getByText("Soy")).toBeInTheDocument();
 
         expect(screen.getByText("Sugar")).toBeInTheDocument();
         expect(screen.getByText("10.00")).toBeInTheDocument();

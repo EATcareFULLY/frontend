@@ -4,16 +4,16 @@ import { scanStore } from "../../stores/ScanStore";
 import { achievementToast } from "../../utils/Toasts";
 import nutri_a from "../../assets/nutri-score/nutri-score-a.svg";
 import img_placeholder from "../../assets/placeholders/product-photo-placeholder.svg";
-import {act} from "react";
+import { act } from "react";
 
 jest.mock("../../stores/ScanStore", () => ({
     scanStore: {
-        addScannedProductToPurchase: jest.fn()
-    }
+        addScannedProductToPurchase: jest.fn(),
+    },
 }));
 
 jest.mock("../../utils/Toasts", () => ({
-    achievementToast: jest.fn()
+    achievementToast: jest.fn(),
 }));
 
 const mockProps = {
@@ -21,11 +21,11 @@ const mockProps = {
     id: "123456",
     name: "Test Product",
     brand: "Test Brand",
-    score: "a"
+    score: "a",
 };
 
 describe("ProductInfo Component with Achievements", () => {
-    let input, decrementButton, incrementButton;
+    let decrementButton, incrementButton, input;
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -72,21 +72,23 @@ describe("ProductInfo Component with Achievements", () => {
         expect(input).toHaveValue(1);
     });
 
-    it("does not increment quantity over 9999", () => {
-        fireEvent.change(input, { target: { value: "9999" } });
+    it("does not increment quantity over 9", () => {
+        for (let i = 0; i < 10; i++) {
+            fireEvent.click(incrementButton);
+        }
 
-        expect(input).toHaveValue(9999);
+        expect(input).toHaveValue(9);
 
         fireEvent.click(incrementButton);
 
-        expect(input).toHaveValue(9999);
+        expect(input).toHaveValue(9);
     });
 
-    it("calls scanStore.addScannedProductToPurchase and achievementUnlockedToast correctly", async () => {
+    it("calls scanStore.addScannedProductToPurchase and achievementToast correctly", async () => {
         const addButton = screen.getByRole("button", { name: /add to purchased products/i });
         const mockAchievements = [
             { achievementName: "First Scan", level: 1 },
-            { achievementName: "Healthy Choices", level: 2 }
+            { achievementName: "Healthy Choices", level: 2 },
         ];
 
         scanStore.addScannedProductToPurchase.mockResolvedValue(mockAchievements);
@@ -114,23 +116,5 @@ describe("ProductInfo Component with Achievements", () => {
         expect(scanStore.addScannedProductToPurchase).toHaveBeenCalledWith(1);
 
         expect(achievementToast).not.toHaveBeenCalled();
-    });
-
-    it("updates quantity value on manual input change", () => {
-        fireEvent.change(input, { target: { value: "3" } });
-
-        expect(input).toHaveValue(3);
-    });
-
-    it("does not update quantity value on manual input over 9999", () => {
-        fireEvent.change(input, { target: { value: "99999" } });
-
-        expect(input).toHaveValue(1);
-    });
-
-    it("does not update quantity value on manual input below 1", () => {
-        fireEvent.change(input, { target: { value: "0" } });
-
-        expect(input).toHaveValue(1);
     });
 });
