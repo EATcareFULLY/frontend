@@ -18,6 +18,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Settings from "./pages/Settings";
 import { ConnectionProvider } from "./utils/ConnectionContext";
 import RequireConnection from "./components/require/RequireConnection";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -113,6 +114,7 @@ function App() {
                           </RequireAuth>
                       }
                   />
+                  <Route path='*' element={<PageNotFound />} />
               </Routes>
           </div>
         <Footer/>
