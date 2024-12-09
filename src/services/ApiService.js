@@ -3,7 +3,6 @@ import {errorToast, successToast} from "../utils/Toasts";
 import {API_URLS} from "../utils/URLS";
 import {clearCacheFor} from "../utils/Cache"
 import { historyStore } from "../stores/HistoryStore";
-import RecommendationError from "../errors/RecommendationError";
 
 class ApiService {
 

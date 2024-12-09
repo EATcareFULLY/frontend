@@ -1,7 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import ApiService from "../services/ApiService";
-import StorageManager from "../utils/StorageManager";
-import RecommendationError from "../errors/RecommendationError";
 import { historyStore } from "./HistoryStore";
 import nutri_a from '../assets/nutri-score/nutri-score-a.png';
 import nutri_b from '../assets/nutri-score/nutri-score-b.png';
