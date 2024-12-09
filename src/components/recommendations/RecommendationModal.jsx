@@ -10,7 +10,7 @@ import ComparisonCard from "./ComparisonCard";
 import { historyStore } from "../../stores/HistoryStore";
 import { observer } from "mobx-react";
 import { recommendationsStore } from "../../stores/RecommendationsStore";
-import ProductRecommendation from "../../stores/RecommendationsStore";
+import RecommendedProduct from "../../stores/RecommendationsStore";
 
 
     const scoreImages = {
@@ -25,11 +25,8 @@ import ProductRecommendation from "../../stores/RecommendationsStore";
 
 const RecommendationModal = ({ closeModal }) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [recommendationsData, setRecommendationsData] = useState([]);
-    const [recommendations, setRecommendations] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
     const isMounted = useRef(true);
-    const [sourceProduct, setSourceProduct] = useState(null);
 
     const COMPONENT_NAME = 'RecommendationModal';
 
@@ -60,45 +57,12 @@ const RecommendationModal = ({ closeModal }) => {
             setIsLoading(true);
             try {
                 console.log(`[INFO] ${COMPONENT_NAME}: Starting fetch`);
-                const recommendationsData = await recommendationsStore.fetchRecommendations();
-                console.log(`[INFO] ${COMPONENT_NAME}: Fetch complete`, recommendationsData);
-
-                const recommendationsArray = recommendationsData.recommendations || [];
-
-                const transformedRecommendations = recommendationsArray.map((recommendation) => {
-                    return new ProductRecommendation(recommendation, scoreImages[recommendation.nutriscore]);
-                });
-
-                const sourcePurchase = historyStore.history.find(purchase => purchase.product.id === recommendationsData.source_product_code);
-                // Then transform that single product if found
-                const product = sourcePurchase ? {
-                    ...sourcePurchase.product,
-                    nutriScoreImage: scoreImages[sourcePurchase.product.score.toUpperCase() || 'unknown']
-                } : null;
-
+                await recommendationsStore.fetchRecommendations();
+                console.log(`[INFO] ${COMPONENT_NAME}: Fetch complete`, recommendationsStore.productRecommendationsData);
     
-
-
-
-                console.log('Extracted recommendations:', {
-                    original: recommendationsData,
-                    extracted: recommendationsArray,
-                    count: recommendationsArray.length
-                });
-    
-                if (isMounted.current) {
-                    setRecommendationsData(recommendationsData);
-                    setRecommendations(transformedRecommendations);
-                    setSourceProduct(product);
-
-                }
             } catch (error) {
                 console.error(`[ERROR] ${COMPONENT_NAME}: Fetch failed`, error);
-                if (isMounted.current) {
-                    setRecommendationsData([]);
-                    setRecommendations([]); // Clear recommendations on error
-
-                }
+                
             } finally {
                 if (isMounted.current) {
                     setIsLoading(false);
@@ -107,6 +71,8 @@ const RecommendationModal = ({ closeModal }) => {
         }
         loadRecommendations();
     }, []);
+
+    console.log('recommendationsStore', recommendationsStore.recommendations);
 
     // Handle the close modal action with animation
     const handleClose = () => {
@@ -136,12 +102,12 @@ const RecommendationModal = ({ closeModal }) => {
                     <div className="flex justify-center items-center flex-1">
                     <p className="text-gray-500 text-3xl font-semibold"> Loading recommendations...</p>
                     </div>
-                ) : Array.isArray(recommendations) && recommendations.length > 0 ? (
+                ) : Array.isArray(recommendationsStore.recommendations) && recommendationsStore.recommendations.length > 0 ? (
                     <ul className="flex flex-col gap-4 overflow-y-auto py-4 px-3 flex-1 bg-white border border-yellow-500">
-                        {recommendations.map((product, index) => (
+                        {recommendationsStore.recommendations.map((product, index) => (
                             <li key={index}>
                                 <ComparisonCard
-                                    productA={sourceProduct}
+                                    productA={recommendationsStore.getSourceProduct()}
                                     productB={product}
                                 />
                             </li>

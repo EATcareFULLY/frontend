@@ -2,8 +2,15 @@ import { makeAutoObservable } from "mobx";
 import ApiService from "../services/ApiService";
 import StorageManager from "../utils/StorageManager";
 import RecommendationError from "../errors/RecommendationError";
+import { historyStore } from "./HistoryStore";
+import nutri_a from '../assets/nutri-score/nutri-score-a.png';
+import nutri_b from '../assets/nutri-score/nutri-score-b.png';
+import nutri_c from '../assets/nutri-score/nutri-score-c.png';
+import nutri_d from '../assets/nutri-score/nutri-score-d.png';
+import nutri_e from '../assets/nutri-score/nutri-score-e.png';
+import nutri_unknown from '../assets/nutri-score/nutri-score-unknown.png';
 
-export class ProductRecommendation{
+export class RecommendedProduct{
 constructor(recommendation_data, nutriScoreImage) {
     this.id = recommendation_data['code'];
     this.name = recommendation_data['name'];
@@ -12,42 +19,58 @@ constructor(recommendation_data, nutriScoreImage) {
     this.nutriScoreImage = nutriScoreImage;
 }
 }
-export default ProductRecommendation;
+
+
+const scoreImages = {
+    'A': nutri_a,
+    'B': nutri_b,
+    'C': nutri_c,
+    'D': nutri_d,
+    'E': nutri_e,
+    'unknown': nutri_unknown
+};
+
+
+
+export default RecommendedProduct;
 
 class RecommendationsStore {
-    currentProductsRecommendations = {};
+    productRecommendationsData = [];
+    recommendations = [];
+    
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    setCurrentProductsRecommendations(productsRecommendations) {
-        this.currentProductsRecommendations=productsRecommendations;
-        console.log('currentProductsRecommendations', this.currentProductsRecommendations);
+    setRecommendations(recommendations) {
+        this.recommendations = recommendations;
     }
 
-    // setCurrentProductsRecommendations(productsRecommendations) {
-    //     this.currentProductsRecommendations=productsRecommendations;
-    //     StorageManager.saveData('currentProductsRecommendations', productsRecommendations);
-    //     console.log('currentProductsRecommendations', this.currentProductsRecommendations);
-    // }
-
-    // getCurrentProductsRecommendationsFromStorage(){
-    //     const storedCurrentRecommendations = StorageManager.getData('currentProductsRecommendations');
-
-    //     if (storedCurrentRecommendations) {
-    //         this.currentProductsRecommendations = storedCurrentRecommendations;
-    //     } else {
-    //         this.currentProductsRecommendations = {};
-    //     }
-
-    // }
-
-    // setRecommendationsForProduct(productCode, recommendations) {
-    //     this.currentProductsRecommendations[productCode] = recommendations;
-    // }
+    setProductRecommendationsData(productRecommendationsData) {
+        this.productRecommendationsData=productRecommendationsData;
+        console.log('currentProductsRecommendations', this.productRecommendationsData);
+    }
 
 
+    transformIntoRecommendedProducts() 
+    {
+        return this.recommendations.map((recommendation) => {
+            return new RecommendedProduct(recommendation, scoreImages[recommendation.nutriscore]);
+        });
+    }
+
+    getSourceProduct() 
+    {
+        const sourcePurchase = historyStore.history.find(purchase => purchase.product.id === this.productRecommendationsData['source_product_code']);
+                // Then transform that single product if found
+                const product = sourcePurchase ? {
+                    ...sourcePurchase.product,
+                    nutriScoreImage: scoreImages[sourcePurchase.product.score.toUpperCase() || 'unknown']
+                } : null;
+
+        return product
+    }
 
 
     async fetchRecommendations() {
@@ -75,10 +98,12 @@ class RecommendationsStore {
                 return [];
             }
     
-            // If we got here, result contains valid recommendations
             console.log('Successfully fetched recommendations:', result);
-            this.setCurrentProductsRecommendations(result);
-            console.log('Successfully stored recommendations:', result);
+            this.setProductRecommendationsData(result);
+            console.log('currentProductsRecommendations', this.productRecommendationsData);
+            this.setRecommendations(result['recommendations']);
+            this.recommendations = this.transformIntoRecommendedProducts();
+            console.log('recommendations', this.recommendations);
             return result;
             
         } catch (error) {
@@ -87,7 +112,7 @@ class RecommendationsStore {
             this.showErrorState();
             return [];
         }
-    }
+    
 
     
 
@@ -162,6 +187,7 @@ class RecommendationsStore {
     //     }
     // }
 
+}
 }
 
 export const recommendationsStore = new RecommendationsStore();
