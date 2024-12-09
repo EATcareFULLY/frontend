@@ -102,7 +102,7 @@ const History = observer(() => {
                     className="absolute top-0 left-8 flex items-center gap-2 bg-primary text-white rounded p-2"
                     onClick={showModal}
                 >
-                    <span className="text-lg font-medium">New recommendations!</span>
+                    <span className="text-lg font-medium">Today's Recommendations</span>
                     <AiTwotoneLike size={24}/>
                 </button>
 

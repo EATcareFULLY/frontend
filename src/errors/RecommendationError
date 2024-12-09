@@ -1,0 +1,10 @@
+export class RecommendationError extends Error {
+    constructor(status, message) {
+        super(message);
+        this.status = status;
+        this.name = 'RecommendationError';
+    }
+}
+
+// Notice we're exporting the class directly, not as default
+export default RecommendationError;

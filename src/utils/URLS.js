@@ -12,7 +12,7 @@ export const API_URLS = {
     testproduct: `${API_ROOT_URL}/test/product`,
     testpurchases: `${API_ROOT_URL}/test/purchases`,
     historyAnalysis: `${API_ROOT_URL}/services/history-analysis`,
-    recommendation: `${API_ROOT_URL}/services/recommendation`,
+    recommendation: `${API_ROOT_URL}/services/recommendation-system`,
 };
 
 export const APP_ROOT_URL = 'http://localhost:3000';

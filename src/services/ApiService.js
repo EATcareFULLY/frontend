@@ -3,6 +3,7 @@ import {errorToast, successToast} from "../utils/Toasts";
 import {API_URLS} from "../utils/URLS";
 import {clearCacheFor} from "../utils/Cache"
 import { historyStore } from "../stores/HistoryStore";
+import RecommendationError from "../errors/RecommendationError";
 
 class ApiService {
 
@@ -54,19 +55,37 @@ class ApiService {
                 "POST",
                 null,
             );
-            return response;
-        } catch (error) {
-            if (error.status === 404) {
-                throw new Error("No purchases found for today");
-            } else if (error.status === 503) {
-                throw new Error("Recommendation service is currently unavailable");
-            } else if (error.status === 504) {
-                throw new Error("Recommendation service timed out");
-            }
             
-            // Log and rethrow general errors
-            console.error("Failed to fetch recommendations:", error);
-            throw new Error("Failed to get recommendations");
+            return response; // RestService already handles response.data
+    
+        } catch (error) {
+            const status = error.response?.status || 0;
+            let errorMessage = 'Network or server error';
+    
+            if (error.response) {
+                switch (error.response.status) {
+                    case 404:
+                        errorMessage = 'No recommendations found for today';
+                        break;
+                    case 503:
+                        errorMessage = 'Recommendation service unavailable';
+                        break;
+                }
+            }
+    
+            // Create error without using 'new' in case constructor isn't available
+            console.error('Recommendation fetch failed:', {
+                status,
+                message: errorMessage,
+                originalError: error
+            });
+    
+            // Instead of throwing a custom error, return an error object
+            return {
+                error: true,
+                status,
+                message: errorMessage
+            };
         }
     }
 
