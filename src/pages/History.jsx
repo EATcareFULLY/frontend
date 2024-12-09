@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { observer } from "mobx-react";
 import { historyStore } from "../stores/HistoryStore";
+import { recommendationsStore } from "../stores/RecommendationsStore";
 import { scanStore } from "../stores/ScanStore";
 import { FaChartBar } from "react-icons/fa";
 import { FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree } from "react-icons/fa";
@@ -85,49 +86,60 @@ const History = observer(() => {
             year: year
         }
     }
-
     return (
-        <div>
-            <div className="relative mb-4 ">
-                <button
-                    className="absolute top-0 right-0 flex items-center gap-2 bg-primary text-white rounded p-2"
-                    onClick={showAnalyze}
-                >
-                    <span className="text-lg font-medium">General Analytics</span>
-                    <FaChartBar size={24}/>
-                </button>
-                <h2 className="mt-2">Purchase List</h2>
-                <button
-                    className="absolute top-0 left-8 flex items-center gap-2 bg-primary text-white rounded p-2"
-                    onClick={showModal}
-                >
-                    <span className="text-lg font-medium">New recommendations!</span>
-                    <AiTwotoneLike size={24}/>
-                </button>
+        <div className="w-full text-left"> {/* Dodane text-left aby przesłonić globalne text-align: center */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                {/* Header Section */}
+                <div className="mb-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-lg p-4 shadow-sm">
+                        <h2 className="text-2xl font-bold text-gray-800">Purchase List</h2>
+                        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                            <button
+                                onClick={showModal}
+                                className="w-full sm:w-auto flex justify-center items-center gap-2 bg-primary text-white rounded-lg px-4 py-2 hover:bg-primary/90 transition-colors"
+                            >
+                                <span className="text-base font-medium whitespace-nowrap">Today's Recommendations</span>
+                                <AiTwotoneLike size={20} className="flex-shrink-0" />
+                            </button>
+                            <button
+                                onClick={showAnalyze}
+                                className="w-full sm:w-auto flex justify-center items-center gap-2 bg-primary text-white rounded-lg px-4 py-2 hover:bg-primary/90 transition-colors"
+                            >
+                                <span className="text-base font-medium whitespace-nowrap">General Analytics</span>
+                                <FaChartBar size={20} className="flex-shrink-0" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
+                {/* Content Section */}
+                <div className="bg-white rounded-lg shadow-sm">
+                    <div className="p-0"> {/* Usunięte paddingi */}
+                        {Object.keys(groupedHistory).length === 0 ? (
+                            <div className="flex justify-center items-center min-h-[200px]">
+                                <Loading />
+                            </div>
+                        ) : (
+                            <ul className="divide-y divide-gray-200 pl-0 ml-0">
+                                {Object.keys(groupedHistory).map((yearMonth) => (
+                                    <li key={yearMonth} className="pt-6 first:pt-0">
+                                        <MonthlyGroup
+                                            yearMonthString={yearMonth}
+                                            yearMonth={getMonthAndYear(yearMonth)}
+                                            purchases={groupedHistory[yearMonth]}
+                                            monthIcon={monthIcons[yearMonth.split('-')[1]]}
+                                            formatMonth={formatMonth}
+                                            scoreImages={scoreImages}
+                                            showDetails={showDetails}
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                </div>
             </div>
-            <div className="my-10 px-6 py-2 rounded-lg border">
-
-                {Object.keys(groupedHistory).length === 0 ? (
-                    <Loading/>
-                ) : (
-                    <ul className="divide-y space-y-10 divide-gray-300">
-                        {Object.keys(groupedHistory).map((yearMonth) => (
-                            <MonthlyGroup
-                                key={yearMonth}
-                                yearMonthString={yearMonth}
-                                yearMonth={getMonthAndYear(yearMonth)}
-                                purchases={groupedHistory[yearMonth]}
-                                monthIcon={monthIcons[yearMonth.split('-')[1]]}
-                                formatMonth={formatMonth}
-                                scoreImages={scoreImages}
-                                showDetails={showDetails}
-                            />
-                        ))}
-                    </ul>
-                )}
-                {showRecommendationModal && <RecommendationModal closeModal={closeModal}/>}
-            </div>
+            {showRecommendationModal && <RecommendationModal closeModal={closeModal} />}
         </div>
     );
 });
