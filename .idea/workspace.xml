@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Blocked report generation for offline mode">
+      <change afterPath="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__tests__/utils/ConnectionContext.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__tests__/stores/HistoryStore.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/stores/HistoryStore.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/recommendations/ComparisonCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/ComparisonCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Analyze.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Analyze.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/History.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/History.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ApiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/HistoryStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/HistoryStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -54,20 +59,95 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.ConnectionContext.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.sw.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;History+Analysis&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.Analyze Page.executor": "Run",
+    "Jest.Analyze Page.renders most popular brands.executor": "Run",
+    "Jest.Analyze.test.jsx.executor": "Run",
+    "Jest.ConnectionContext.test.js.executor": "Run",
+    "Jest.History.test.jsx (1).executor": "Run",
+    "Jest.History.test.jsx (2).executor": "Run",
+    "Jest.History.test.jsx.executor": "Run",
+    "Jest.HistoryStore.test.js.executor": "Run",
+    "Jest.MonthlyGroup.test.jsx.executor": "Run",
+    "Jest.Scan.test.js.executor": "Run",
+    "Node.js.ConnectionContext.js.executor": "Run",
+    "Node.js.sw.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/wiora/WebstormProjects/EATcareFULLY-frontend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/wiora/WebstormProjects/EATcareFULLY-frontend/node_modules/@craco/craco",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager" selected="Jest.MonthlyGroup.test.jsx">
+    <configuration name="Analyze Page" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" />
+      <test-names>
+        <test-name value="Analyze Page" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Analyze Page.renders most popular brands" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" />
+      <test-names>
+        <test-name value="Analyze Page" />
+        <test-name value="renders most popular brands" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Analyze.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" />
+      <method v="2" />
+    </configuration>
+    <configuration name="History.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MonthlyGroup.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.MonthlyGroup.test.jsx" />
+        <item itemvalue="Jest.History.test.jsx" />
+        <item itemvalue="Jest.Analyze.test.jsx" />
+        <item itemvalue="Jest.Analyze Page" />
+        <item itemvalue="Jest.Analyze Page.renders most popular brands" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -98,6 +178,11 @@
       <workItem from="1733163403069" duration="15083000" />
       <workItem from="1733238113964" duration="1682000" />
       <workItem from="1733240126568" duration="1491000" />
+      <workItem from="1733496876392" duration="4946000" />
+      <workItem from="1733623047268" duration="50000" />
+      <workItem from="1733651138067" duration="2143000" />
+      <workItem from="1733667281758" duration="214000" />
+      <workItem from="1733667712346" duration="15274000" />
     </task>
     <task id="LOCAL-00001" summary="Renewed look for Analysis and History tab. &#10;Connected Analytical service">
       <option name="closed" value="true" />
@@ -144,6 +229,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Renewed look for Analysis and History tab. &#10;Connected Analytical service" />
