@@ -1,7 +1,7 @@
 import './App.css';
-import MainNavBar from './components/Navbar';
+import MainNavBar from './components/layout/Navbar';
 import Scan from './pages/Scan';
-import Footer from './components/Footer'
+import Footer from './components/layout/Footer'
 import History from './pages/History';
 import Analyze from './pages/Analyze';
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom'
@@ -9,7 +9,7 @@ import Details from "./pages/Details";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
-import RequireAuth from "./components/RequireAuth";
+import RequireAuth from "./components/require/RequireAuth";
 import Home from "./pages/Home";
 import Label from "./pages/Label";
 import LabelAnalysis from "./pages/LabelAnalysis";
@@ -17,7 +17,8 @@ import Achievements from "./pages/Achievements";
 import Leaderboard from "./pages/Leaderboard";
 import Settings from "./pages/Settings";
 import { ConnectionProvider } from "./utils/ConnectionContext";
-import RequireConnection from "./components/RequireConnection";
+import RequireConnection from "./components/require/RequireConnection";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -113,6 +114,7 @@ function App() {
                           </RequireAuth>
                       }
                   />
+                  <Route path='*' element={<PageNotFound />} />
               </Routes>
           </div>
         <Footer/>

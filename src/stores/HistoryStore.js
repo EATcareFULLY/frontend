@@ -128,6 +128,7 @@ class HistoryStore {
         }
     };
 
+
     getScoreCount() {
         console.log("score store", this.history.map(a => a.product.score));
         return this.history.reduce((acc, purchase) => {
