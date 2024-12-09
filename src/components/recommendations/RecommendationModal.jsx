@@ -9,28 +9,51 @@ import nutri_unknown from '../../assets/nutri-score/nutri-score-unknown.png';
 import ComparisonCard from "./ComparisonCard";
 import { historyStore } from "../../stores/HistoryStore";
 import { observer } from "mobx-react";
+import { get } from "mobx";
 
 const RecommendationModal = ({ closeModal }) => {
     const [isVisible, setIsVisible] = useState(false);
+    const [recommendationsReady, setRecommendationsReady] = useState(false);
 
     const scoreImages = {
-        'a': nutri_a,
-        'b': nutri_b,
-        'c': nutri_c,
-        'd': nutri_d,
-        'e': nutri_e,
+        'A': nutri_a,
+        'B': nutri_b,
+        'C': nutri_c,
+        'D': nutri_d,
+        'E': nutri_e,
         'unknown': nutri_unknown
     };
 
+    // useEffect(() => {
+    //     if (recommendations && recommendations.length > 0) {
+    //         setRecommendationsReady(true);
+    //     } else {
+    //         setRecommendationsReady(false);
+    //         setIsVisible(false);
+    //     }
+    // }, [recommendations]);
+
     useEffect(() => {
-        const timeout = setTimeout(() => setIsVisible(true), 100);
-        return () => clearTimeout(timeout);
-    }, []);
+            
+                setIsVisible(true);
+            }
+        ,[]);
+
+    useEffect(() => {
+        if (recommendationsReady)
+        {
+            const timeout = setTimeout(() => setIsVisible(true), 100);
+            return () => clearTimeout(timeout);
+        }
+    }, [recommendationsReady]);
+
+        
 
     const recommendations = historyStore.history.map((purchase) => ({
         ...purchase.product,
         nutriScoreImage: scoreImages[purchase.product.score || 'unknown']
     }));
+
 
     return (
         <div

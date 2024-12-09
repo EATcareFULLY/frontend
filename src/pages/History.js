@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { observer } from "mobx-react";
 import { historyStore } from "../stores/HistoryStore";
+import { recommendationsStore } from "../stores/RecommendationsStore";
 import { scanStore } from "../stores/ScanStore";
 import { FaChartBar } from "react-icons/fa";
 import { FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree } from "react-icons/fa";

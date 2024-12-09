@@ -47,6 +47,29 @@ class ApiService {
         }
     }
 
+    static async getRecommendations() {
+        try {
+            const response = await RestService.ajax(
+                `${API_URLS.recommendation}`,
+                "POST",
+                null,
+            );
+            return response;
+        } catch (error) {
+            if (error.status === 404) {
+                throw new Error("No purchases found for today");
+            } else if (error.status === 503) {
+                throw new Error("Recommendation service is currently unavailable");
+            } else if (error.status === 504) {
+                throw new Error("Recommendation service timed out");
+            }
+            
+            // Log and rethrow general errors
+            console.error("Failed to fetch recommendations:", error);
+            throw new Error("Failed to get recommendations");
+        }
+    }
+
     static async getTestPurchases() {
         try {
             return await RestService.ajax(
