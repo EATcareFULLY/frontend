@@ -27,6 +27,7 @@ const RecommendationModal = ({ closeModal }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isVisible, setIsVisible] = useState(false);
     const isMounted = useRef(true);
+    const [contentVisible, setContentVisible] = useState(false);
 
     const COMPONENT_NAME = 'RecommendationModal';
 
@@ -59,13 +60,21 @@ const RecommendationModal = ({ closeModal }) => {
                 console.log(`[INFO] ${COMPONENT_NAME}: Starting fetch`);
                 await recommendationsStore.fetchRecommendations();
                 console.log(`[INFO] ${COMPONENT_NAME}: Fetch complete`, recommendationsStore.productRecommendationsData);
-    
+                if (isMounted.current) {
+                    setIsLoading(false);
+                    setTimeout(() => {
+                        setContentVisible(true);
+                    }, 100);
+                }
+
             } catch (error) {
                 console.error(`[ERROR] ${COMPONENT_NAME}: Fetch failed`, error);
                 
             } finally {
                 if (isMounted.current) {
                     setIsLoading(false);
+
+                    
                 }
             }
         }
@@ -76,6 +85,7 @@ const RecommendationModal = ({ closeModal }) => {
 
     // Handle the close modal action with animation
     const handleClose = () => {
+        setContentVisible(false);
         setIsVisible(false);
         // Wait for the animation to complete before actually closing
         setTimeout(closeModal, 500); // Match this with your CSS transition duration
@@ -103,8 +113,10 @@ const RecommendationModal = ({ closeModal }) => {
                     <p className="text-gray-500 text-3xl font-semibold"> Loading recommendations...</p>
                     </div>
                 ) : Array.isArray(recommendationsStore.recommendations) && recommendationsStore.recommendations.length > 0 ? (
-                    <ul className="flex flex-col gap-4 overflow-y-auto py-4 px-3 flex-1 bg-white border border-yellow-500">
-                        {recommendationsStore.recommendations.map((product, index) => (
+                        <ul className={`flex flex-col gap-4 overflow-y-auto py-4 px-3 flex-1 bg-white border border-yellow-500
+                        transition-all duration-500 transform
+                        ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                    >                        {recommendationsStore.recommendations.map((product, index) => (
                             <li key={index}>
                                 <ComparisonCard
                                     productA={recommendationsStore.getSourceProduct()}
@@ -114,7 +126,10 @@ const RecommendationModal = ({ closeModal }) => {
                         ))}
                     </ul>
                 ) : (
-                    <div className="flex justify-center items-center flex-1">
+                    <div className={`flex justify-center items-center flex-1
+                        transition-all duration-500 transform
+                        ${contentVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                    >
                     <p className="text-gray-500 text-3xl font-semibold flex items-center gap-4">
                         <span>No new recommendations.</span>
                         <FaSadTear size={48} />

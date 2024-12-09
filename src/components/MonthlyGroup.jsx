@@ -1,89 +1,105 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import img_placeholder from '../assets/placeholders/product-photo-placeholder.png';
 import { BsFillPieChartFill } from "react-icons/bs";
 import { PulseLoader } from 'react-spinners';
 import ApiService from '../services/ApiService';
-import {ConnectionContext} from "../utils/ConnectionContext"
-
+import { ConnectionContext } from "../utils/ConnectionContext";
 
 const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, formatMonth, scoreImages, showDetails }) => {
-
     const [loading, setLoading] = React.useState(false);
-    const {connected} = useContext(ConnectionContext)
+    const { connected } = useContext(ConnectionContext);
 
     const handleGeneratePdf = async (month, year) => {
         await ApiService.generatePdfReport(month, year, startLoading, endLoading);
     };
 
-    const startLoading = () => {
-        setLoading(true)
-    }
-    const endLoading = () => {
-        setLoading(false)
-    }
+    const startLoading = () => setLoading(true);
+    const endLoading = () => setLoading(false);
 
     return (
-        <div>
-            <li className="py-4 text-2xl font-bold text-center text-white rounded flex items-center justify-center gap-4 bg-primary">
-                {monthIcon} {formatMonth(yearMonthString)}
-                <button
-                    className={` rounded h-12 w-12 flex items-center justify-center bg-[#5e4e2b] text-[#648c4c] hover:text-white ${!connected ? 'bg-gray-400 hover:bg-gray-400 text-black hover:text-black': ''}`}
-                    disabled={!connected}
-                    onClick={() => {
-                        handleGeneratePdf(yearMonth.month, yearMonth.year);
-                    }}
-                >
-                    {
-                         loading ? <PulseLoader loading={true} size={5} color={"#5e4e2b"} />: <BsFillPieChartFill size={25} />
-                    }
-                </button>
-            </li>
-
-            {purchases.map((purchase, index) => (
-                <li
-                    key={`${yearMonthString}-${index}`}
-                    className={`flex items-center justify-between py-6 gap-4 hover:brightness-90 border rounded my-1 ${
-                        index % 2 === 0 ? 'bg-primary-subtle' : 'bg-white'
-                    }`}
-                    onClick={() => showDetails(purchase.product.id)}
-                >
-                    <div className="flex-shrink-0">
-                        <img
-                            src={purchase.product.imageURL || img_placeholder}
-                            alt={purchase.product.name}
-                            className="ml-2 w-32 h-32 rounded-full object-cover border-2"
-                        />
+        <div className="w-full">
+            {/* Header */}
+            <div className="bg-primary rounded-lg mb-4">
+                <div className="flex flex-col sm:flex-row items-center justify-between p-4 gap-4">
+                    <div className="flex items-center gap-2 text-white w-full sm:w-auto justify-center sm:justify-start">
+                        <span className="text-xl md:text-2xl font-bold flex items-center gap-2">
+                            {monthIcon} {formatMonth(yearMonthString)}
+                        </span>
                     </div>
-
-                    <div className="flex-1 text-2xl font-semibold text-black">
-                        {purchase.product.name}
+                    <div className="flex justify-center w-full sm:w-auto">
+                        <button
+                            className={`rounded h-10 w-10 md:h-12 md:w-12 flex items-center justify-center 
+                                ${connected 
+                                    ? 'bg-[#5e4e2b] text-[#648c4c] hover:text-white' 
+                                    : 'bg-gray-400 text-black cursor-not-allowed'
+                                }`}
+                            disabled={!connected}
+                            onClick={() => handleGeneratePdf(yearMonth.month, yearMonth.year)}
+                        >
+                            {loading 
+                                ? <PulseLoader loading={true} size={5} color={"#5e4e2b"} />
+                                : <BsFillPieChartFill size={20} />
+                            }
+                        </button>
                     </div>
+                </div>
+            </div>
 
-                    <div className="flex-1 text-xl text-black">
-                        Brand: {purchase.product.brand}
-                    </div>
+            {/* Purchases List */}
+            <div className="space-y-2">
+                {purchases.map((purchase, index) => (
+                    <div
+                        key={`${yearMonthString}-${index}`}
+                        className={`rounded-lg p-4 cursor-pointer transition-all
+                            ${index % 2 === 0 ? 'bg-primary-subtle' : 'bg-white'}
+                            hover:brightness-95 border`}
+                        onClick={() => showDetails(purchase.product.id)}
+                    >
+                        <div className="flex flex-col md:flex-row items-center gap-4">
+                            {/* Product Image */}
+                            <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+                                <img
+                                    src={purchase.product.imageURL || img_placeholder}
+                                    alt={purchase.product.name}
+                                    className="w-full h-full rounded-full object-cover border-2"
+                                />
+                            </div>
 
-                    <div className="flex-1 text-xl text-black">
-                        Quantity: {purchase.quantity}
-                    </div>
+                            {/* Product Info */}
+                            <div className="flex-1 space-y-2 text-center md:text-left">
+                                <h3 className="text-lg md:text-xl font-semibold text-black line-clamp-2">
+                                    {purchase.product.name}
+                                </h3>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm md:text-base">
+                                    <p className="text-gray-700">
+                                        Brand: {purchase.product.brand}
+                                    </p>
+                                    <p className="text-gray-700">
+                                        Quantity: {purchase.quantity}
+                                    </p>
+                                    <p className="text-gray-700">
+                                        {new Date(purchase.purchaseDate).toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                        })}
+                                    </p>
+                                </div>
+                            </div>
 
-                    <div className="flex-1 text-xl text-black font-medium">
-                        {new Date(purchase.purchaseDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: '2-digit',
-                            day: '2-digit',
-                        })}
+                            {/* Nutri Score */}
+                            <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+                                <img
+                                    src={scoreImages[purchase.product.score || 'unknown']}
+                                    alt="Nutri-Score"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="flex-shrink-0">
-                        <img
-                            src={scoreImages[purchase.product.score || 'unknown']}
-                            alt="Nutri-Score"
-                            className="w-32 h-32 object-contain mr-20"
-                        />
-                    </div>
-                </li>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };
