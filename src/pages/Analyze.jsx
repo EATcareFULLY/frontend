@@ -72,16 +72,17 @@ const Analyze = observer(() => {
     const tagColors = ['#f87171', '#60a5fa', '#fbbf24', '#34d399', '#c084fc'];
 
     const scoreChartData = {
-        labels: ['A', 'B', 'C', 'D', '?'],
+        labels: ['A', 'B', 'C', 'D', 'E', '?'],
         datasets: [
             {
                 label: 'Score Frequency',
-                data: ['a', 'b', 'c', 'd', 'unknown'].map(score => scoreCount[score] || 0),
+                data: ['a', 'b', 'c', 'd', 'e', 'unknown'].map(score => scoreCount[score] || 0),
                 backgroundColor: [
                     '#34d399',
                     '#60a5fa',
                     '#fbbf24',
                     '#f87171',
+                    '#f33141',
                     '#a3a3a3',
                 ],
             },
@@ -112,16 +113,21 @@ const Analyze = observer(() => {
 
     return (
         <div className="my-10 px-6 bg-gradient-to-r from-gray-100 to-gray-200 py-10 rounded-lg shadow-lg">
-            <button
-                className=" absolute right-6 flex items-center  bg-primary text-white rounded p-2"
-                onClick={() => {
-                    showHistory()
-                }}
-            >
-                <span className="text-lg font-medium mr-1">History List</span>
-                <FaHistory size={24}/>
-            </button>
-            <h1 className="text-center text-4xl font-extrabold mb-8 text-gray-800">Purchase Analysis</h1>
+            <div className="relative">
+                <h1 className="text-center text-4xl font-extrabold mb-4 text-gray-800">
+                    Purchase Analysis
+                </h1>
+                <button
+                    className="block mb-6 md:absolute md:top-0 md:right-0 mx-auto md:mx-0 bg-primary text-white rounded p-2 flex items-center"
+                    onClick={() => {
+                        showHistory();
+                    }}
+                >
+                    <span className="text-lg font-medium mr-1">History List</span>
+                    <FaHistory size={24}/>
+                </button>
+            </div>
+
             <h2 className="text-center text-2xl font-semibold mb-8 text-gray-600">
                 Your healthy score:{' '}
                 <span className={`${scoreColorClass(averageScore)}`}>{averageScore}</span>

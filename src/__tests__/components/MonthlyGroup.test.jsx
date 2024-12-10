@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import MonthlyGroup from '../../components/MonthlyGroup';
+import MonthlyGroup from '../../components/history/MonthlyGroup';
 import ApiService from '../../services/ApiService';
 import { ConnectionContext } from '../../utils/ConnectionContext';
 
@@ -97,7 +97,7 @@ describe('MonthlyGroup Component', () => {
             </ConnectionContext.Provider>
         );
 
-        const pdfButton = screen.getByTestId('report-button-January 2024');
+        const pdfButton = screen.getAllByTestId('report-button-2024-01')[0];
         fireEvent.click(pdfButton);
 
         expect(ApiService.generatePdfReport).toHaveBeenCalledWith(
@@ -123,7 +123,7 @@ describe('MonthlyGroup Component', () => {
             </ConnectionContext.Provider>
         );
 
-        const pdfButton = screen.getByTestId('report-button-January 2024');
+        const pdfButton = screen.getAllByTestId('report-button-2024-01')[0];
         expect(pdfButton).toBeDisabled();
         fireEvent.click(pdfButton);
         expect(ApiService.generatePdfReport).not.toHaveBeenCalled();

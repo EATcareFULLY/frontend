@@ -83,7 +83,7 @@ describe('History Component', () => {
     test('displays recommendation modal when button is clicked', () => {
         renderWithContext(<History />);
 
-        const recommendationButton = screen.getByText(/New recommendations!/);
+        const recommendationButton = screen.getByText(/Today's Recommendations/);
         fireEvent.click(recommendationButton);
 
         expect(screen.getByText(/Recommended Products/i)).toBeInTheDocument();
@@ -92,7 +92,7 @@ describe('History Component', () => {
     test('disables buttons when disconnected', () => {
         renderWithContext(<History />, { connected: false, setConnected: jest.fn() });
 
-        const reportButton = screen.getByTestId('report-button-2024-01')
+        const reportButton = screen.getAllByTestId('report-button-2024-01')[0]
 
         expect(reportButton).toBeDisabled();
     });

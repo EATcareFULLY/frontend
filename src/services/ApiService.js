@@ -35,6 +35,47 @@ class ApiService {
         }
     }
 
+    static async getRecommendations() {
+        try {
+            const response = await RestService.ajax(
+                `${API_URLS.recommendation}`,
+                "POST",
+                null,
+            );
+
+            return response; // RestService already handles response.data
+
+        } catch (error) {
+            const status = error.response?.status || 0;
+            let errorMessage = 'Network or server error';
+
+            if (error.response) {
+                switch (error.response.status) {
+                    case 404:
+                        errorMessage = 'No recommendations found for today';
+                        break;
+                    case 503:
+                        errorMessage = 'Recommendation service unavailable';
+                        break;
+                }
+            }
+
+            // Create error without using 'new' in case constructor isn't available
+            console.error('Recommendation fetch failed:', {
+                status,
+                message: errorMessage,
+                originalError: error
+            });
+
+            // Instead of throwing a custom error, return an error object
+            return {
+                error: true,
+                status,
+                message: errorMessage
+            };
+        }
+    }
+
     static async getPurchases() {
         try {
             return await RestService.ajax(

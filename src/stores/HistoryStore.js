@@ -21,7 +21,7 @@ class HistoryStore {
             );
             console.log('history state',purchases.flatMap(purchase => purchase.purchaseItems).length);
         } catch (error) {
-            console.error("Failed to fetch purchases");
+            console.error("Failed to fetch purchases", error);
         }
     }
     async fetchAllTestPurchases() {

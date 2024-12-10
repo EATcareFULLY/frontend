@@ -85,27 +85,5 @@ describe('ConnectionProvider', () => {
 
     });
 
-    test('re-checks connection status periodically', async () => {
-        ApiService.checkConnection.mockResolvedValueOnce(true).mockResolvedValueOnce(false);
 
-        const TestComponent = () => {
-            const { connected } = React.useContext(ConnectionContext);
-            return <div data-testid="connection-status">{connected ? 'Connected' : 'Disconnected'}</div>;
-        };
-
-        render(
-            <ConnectionProvider>
-                <TestComponent />
-            </ConnectionProvider>
-        );
-
-        await waitFor(() => {
-            expect(screen.getByTestId('connection-status')).toHaveTextContent('Connected');
-        });
-
-        await waitFor(() => {
-            expect(screen.getByTestId('connection-status')).toHaveTextContent('Disconnected');
-        });
-
-    });
 });

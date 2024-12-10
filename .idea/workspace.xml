@@ -5,17 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Blocked report generation for offline mode">
-      <change afterPath="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__tests__/utils/ConnectionContext.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/__tests__/stores/HistoryStore.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/stores/HistoryStore.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MonthlyGroup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__tests__/utils/ConnectionContext.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/utils/ConnectionContext.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/history/MonthlyGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/history/MonthlyGroup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/recommendations/ComparisonCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/ComparisonCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Analyze.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Analyze.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/History.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/History.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/recommendations/RecommendationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/RecommendationModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Analyze.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Analyze.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/History.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/History.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ApiService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/stores/HistoryStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/HistoryStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/RecommendationsStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/RecommendationsStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/URLS.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/URLS.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="History+Analysis" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,13 +72,17 @@
     "Jest.History.test.jsx (1).executor": "Run",
     "Jest.History.test.jsx (2).executor": "Run",
     "Jest.History.test.jsx.executor": "Run",
+    "Jest.HistoryStore Tests.executor": "Run",
     "Jest.HistoryStore.test.js.executor": "Run",
+    "Jest.MonthlyGroup Component.handles PDF generation click.executor": "Run",
     "Jest.MonthlyGroup.test.jsx.executor": "Run",
     "Jest.Scan.test.js.executor": "Run",
     "Node.js.ConnectionContext.js.executor": "Run",
+    "Node.js.History.jsx.executor": "Run",
+    "Node.js.MonthlyGroup.jsx.executor": "Run",
     "Node.js.sw.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "History/Analysis-fixes",
     "last_opened_file_path": "C:/Users/wiora/WebstormProjects/EATcareFULLY-frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -86,47 +94,26 @@
   }
 }]]></component>
   <component name="RunManager" selected="Jest.MonthlyGroup.test.jsx">
-    <configuration name="Analyze Page" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" />
-      <test-names>
-        <test-name value="Analyze Page" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Analyze Page.renders most popular brands" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" />
-      <test-names>
-        <test-name value="Analyze Page" />
-        <test-name value="renders most popular brands" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Analyze.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST_FILE" />
-      <test-file value="$PROJECT_DIR$/src/__tests__/pages/Analyze.test.jsx" />
-      <method v="2" />
-    </configuration>
-    <configuration name="History.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="History.test.jsx (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST_FILE" />
       <test-file value="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MonthlyGroup Component.handles PDF generation click" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" />
+      <test-names>
+        <test-name value="MonthlyGroup Component" />
+        <test-name value="handles PDF generation click" />
+      </test-names>
       <method v="2" />
     </configuration>
     <configuration name="MonthlyGroup.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
@@ -138,13 +125,19 @@
       <test-file value="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" />
       <method v="2" />
     </configuration>
+    <configuration name="History.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/pages/History.jsx" working-dir="$PROJECT_DIR$/src/pages">
+      <method v="2" />
+    </configuration>
+    <configuration name="MonthlyGroup.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/components/history/MonthlyGroup.jsx" working-dir="$PROJECT_DIR$/src/components/history">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Jest.MonthlyGroup.test.jsx" />
-        <item itemvalue="Jest.History.test.jsx" />
-        <item itemvalue="Jest.Analyze.test.jsx" />
-        <item itemvalue="Jest.Analyze Page" />
-        <item itemvalue="Jest.Analyze Page.renders most popular brands" />
+        <item itemvalue="Jest.MonthlyGroup Component.handles PDF generation click" />
+        <item itemvalue="Node.js.MonthlyGroup.jsx" />
+        <item itemvalue="Jest.History.test.jsx (1)" />
+        <item itemvalue="Node.js.History.jsx" />
       </list>
     </recent_temporary>
   </component>
