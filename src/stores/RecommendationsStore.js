@@ -107,7 +107,6 @@ class RecommendationsStore {
         } catch (error) {
             // Handle any unexpected errors
             console.error('Unexpected error in fetchRecommendations:', error);
-            this.showErrorState();
             return [];
         }
 

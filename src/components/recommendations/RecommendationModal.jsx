@@ -1,26 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaSadTear } from "react-icons/fa";
-import nutri_a from '../../assets/nutri-score/nutri-score-a.png';
-import nutri_b from '../../assets/nutri-score/nutri-score-b.png';
-import nutri_c from '../../assets/nutri-score/nutri-score-c.png';
-import nutri_d from '../../assets/nutri-score/nutri-score-d.png';
-import nutri_e from '../../assets/nutri-score/nutri-score-e.png';
-import nutri_unknown from '../../assets/nutri-score/nutri-score-unknown.png';
 import ComparisonCard from "./ComparisonCard";
-import { historyStore } from "../../stores/HistoryStore";
 import { observer } from "mobx-react";
 import { recommendationsStore } from "../../stores/RecommendationsStore";
-import RecommendedProduct from "../../stores/RecommendationsStore";
-
-
-const scoreImages = {
-    'A': nutri_a,
-    'B': nutri_b,
-    'C': nutri_c,
-    'D': nutri_d,
-    'E': nutri_e,
-    'unknown': nutri_unknown
-};
 
 
 const RecommendationModal = ({ closeModal }) => {
