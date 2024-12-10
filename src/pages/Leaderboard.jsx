@@ -30,7 +30,7 @@ const Leaderboard = observer(() => {
         await leaderboardStore.fetchUsersLeaderboard();
     };
 
-    if (!leaderboardStore.totalPositions) {
+    if (leaderboardStore.totalPositions == null) {
         return <Loading />;
     }
 
