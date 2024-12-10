@@ -6,7 +6,7 @@ import {APP_URLS} from "../utils/URLS";
 class RestService {
     static async ajax(url, method, data, headers = {}, responseType = null, params = {}) {
         if (keycloak.authenticated) {
-            await keycloak.updateToken(30).catch(() => {
+            await keycloak.updateToken(300).catch(() => {
                 errorToast("Failed to refresh token. You are being logged out.");
                 console.log("failed to update token");
                 keycloak.logout({ redirectUri: `${APP_URLS.home}` });

@@ -45,7 +45,7 @@ const MonthlyGroup = ({ yearMonthString, yearMonth, purchases, monthIcon, format
                             onClick={() => handleGeneratePdf(yearMonth.month, yearMonth.year)}
                         >
                             {loading
-                                ? <PulseLoader loading={true} size={5} color={"#5e4e2b"}/>
+                                ? <PulseLoader loading={true} size={5} color={"white"}/>
                                 : <BsFillPieChartFill size={20}/>
                             }
                         </button>
