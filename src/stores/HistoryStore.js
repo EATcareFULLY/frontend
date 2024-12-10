@@ -8,7 +8,7 @@ class HistoryStore {
         makeAutoObservable(this);
     }
 
-    async fetchAllPurchases() {
+    async fetchAllPurchases(loadingFinished) {
         try {
             const purchases = await ApiService.getPurchases();
             this.setHistory(
@@ -19,6 +19,7 @@ class HistoryStore {
                     }))
                 )
             );
+            loadingFinished()
             console.log('history state',purchases.flatMap(purchase => purchase.purchaseItems).length);
         } catch (error) {
             console.error("Failed to fetch purchases", error);

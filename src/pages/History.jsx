@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { observer } from "mobx-react";
-import { historyStore } from "../stores/HistoryStore";
-import { scanStore } from "../stores/ScanStore";
-import { FaChartBar } from "react-icons/fa";
-import { FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree } from "react-icons/fa";
-import { AiTwotoneLike } from "react-icons/ai";
+import React, {useEffect, useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import {observer} from "mobx-react";
+import {historyStore} from "../stores/HistoryStore";
+import {scanStore} from "../stores/ScanStore";
+import {FaChartBar} from "react-icons/fa";
+import {FaSnowflake, FaSun, FaLeaf, FaCloudRain, FaUmbrella, FaTree} from "react-icons/fa";
+import {AiTwotoneLike} from "react-icons/ai";
 import Loading from "../components/layout/Loading"
 import MonthlyGroup from "../components/history/MonthlyGroup";
 import nutri_a from '../assets/nutri-score/nutri-score-a.svg';
@@ -16,30 +16,32 @@ import nutri_e from '../assets/nutri-score/nutri-score-e.svg';
 import nutri_unknown from '../assets/nutri-score/nutri-score-unknown.svg';
 import './History.css';
 import RecommendationModal from '../components/recommendations/RecommendationModal';
+import {Link} from "react-router-dom"
 
 const monthIcons = {
-    "01": <FaSnowflake className="text-white" />,
-    "02": <FaSnowflake className="text-white" />,
-    "03": <FaLeaf className="text-white" />,
-    "04": <FaUmbrella className="text-white" />,
-    "05": <FaSun className="text-white" />,
-    "06": <FaSun className="text-white" />,
-    "07": <FaSun className="text-white" />,
-    "08": <FaSun className="text-white" />,
-    "09": <FaLeaf className="text-white" />,
-    "10": <FaTree className="text-white" />,
-    "11": <FaCloudRain className="text-white" />,
-    "12": <FaSnowflake className="text-white" />
+    "01": <FaSnowflake className="text-white"/>,
+    "02": <FaSnowflake className="text-white"/>,
+    "03": <FaLeaf className="text-white"/>,
+    "04": <FaUmbrella className="text-white"/>,
+    "05": <FaSun className="text-white"/>,
+    "06": <FaSun className="text-white"/>,
+    "07": <FaSun className="text-white"/>,
+    "08": <FaSun className="text-white"/>,
+    "09": <FaLeaf className="text-white"/>,
+    "10": <FaTree className="text-white"/>,
+    "11": <FaCloudRain className="text-white"/>,
+    "12": <FaSnowflake className="text-white"/>
 };
 
 const History = observer(() => {
 
     const [showRecommendationModal, setShowRecommendationModal] = useState(false);
+    const [isFetched, setIsFetched] = useState(false);
 
     const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
-            await historyStore.fetchAllPurchases();
+            await historyStore.fetchAllPurchases(loadingFinished);
             console.log("history", historyStore.history);
         };
 
@@ -49,6 +51,10 @@ const History = observer(() => {
     const showDetails = (barcode) => {
         scanStore.setProductCode(barcode);
         navigate('/Details')
+    }
+    const loadingFinished = () => {
+        setIsFetched(true)
+        console.log("fetched set", isFetched)
     }
     const showAnalyze = () => {
         navigate('/Analyze')
@@ -75,7 +81,7 @@ const History = observer(() => {
     const formatMonth = (yearMonth) => {
         const [year, month] = yearMonth.split('-');
         const date = new Date(year, month - 1);
-        return date.toLocaleString('en-US', { year: 'numeric', month: 'long' });
+        return date.toLocaleString('en-US', {year: 'numeric', month: 'long'});
     };
 
     const getMonthAndYear = (yearMonth) => {
@@ -114,26 +120,38 @@ const History = observer(() => {
 
                 <div className="bg-white rounded-lg shadow-sm">
                     <div className="p-0">
-                        {Object.keys(groupedHistory).length === 0 ? (
+                        {isFetched ? (
+                            Object.keys(groupedHistory).length === 0 ? (
+                                <div className="flex justify-center items-center min-h-[200px]">
+                                    <p className="text-black font-bold text-lg text-center text-justify">
+                                        Your history is empty. <br/>
+                                        <span className="text-primary hover:underline">
+                                            <Link to="/scan">Scan</Link>
+                                        </span>{' '}
+                                        your first products!
+                                    </p>
+                                </div>
+                            ) : (
+                                <ul className="divide-y divide-gray-200 pl-0 ml-0">
+                                    {Object.keys(groupedHistory).map((yearMonth) => (
+                                        <li key={yearMonth} className="pt-6 first:pt-0">
+                                            <MonthlyGroup
+                                                yearMonthString={yearMonth}
+                                                yearMonth={getMonthAndYear(yearMonth)}
+                                                purchases={groupedHistory[yearMonth]}
+                                                monthIcon={monthIcons[yearMonth.split('-')[1]]}
+                                                formatMonth={formatMonth}
+                                                scoreImages={scoreImages}
+                                                showDetails={showDetails}
+                                            />
+                                        </li>
+                                    ))}
+                                </ul>
+                            )
+                        ) : (
                             <div className="flex justify-center items-center min-h-[200px]">
                                 <Loading/>
                             </div>
-                        ) : (
-                            <ul className="divide-y divide-gray-200 pl-0 ml-0">
-                                {Object.keys(groupedHistory).map((yearMonth) => (
-                                    <li key={yearMonth} className="pt-6 first:pt-0">
-                                        <MonthlyGroup
-                                            yearMonthString={yearMonth}
-                                            yearMonth={getMonthAndYear(yearMonth)}
-                                            purchases={groupedHistory[yearMonth]}
-                                            monthIcon={monthIcons[yearMonth.split('-')[1]]}
-                                            formatMonth={formatMonth}
-                                            scoreImages={scoreImages}
-                                            showDetails={showDetails}
-                                        />
-                                    </li>
-                                ))}
-                            </ul>
                         )}
                     </div>
                 </div>
