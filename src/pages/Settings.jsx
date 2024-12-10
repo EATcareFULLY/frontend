@@ -78,11 +78,11 @@ const Settings = observer(() => {
                 </SettingsWrapper>
                 <h4 className="mb-4 mt-2">Recommendation preferences</h4>
                 <SettingsWrapper>
-                    {Object.entries(settingsStore.preferences).map(([name, wanted]) => (
+                    {Object.entries(settingsStore.preferences).map(([name, status]) => (
                         <SettingPreference
                             key={name}
                             name={name}
-                            wanted={wanted}
+                            status={status}
                             onUpdate={handlePreferenceUpdate}
                         />
                     ))}

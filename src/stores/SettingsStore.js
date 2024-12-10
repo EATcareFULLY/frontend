@@ -56,8 +56,8 @@ class SettingsStore {
 
         this.resetPreferences();
 
-        preferences.forEach(({ name, wanted }) => {
-            this.updatePreference(name, wanted)
+        preferences.forEach(({ name, status }) => {
+            this.updatePreference(name, status)
         });
     }
 
@@ -105,9 +105,9 @@ class SettingsStore {
         });
     }
 
-    updatePreference(name, wanted) {
+    updatePreference(name, status) {
         if (this.preferences.hasOwnProperty(name)) {
-            this.preferences[name] = wanted;
+            this.preferences[name] = status;
         }
     }
 
@@ -149,7 +149,7 @@ class SettingsStore {
     }
 
     dictionaryPreferencesToList() {
-        return Object.entries(this.preferences).map(([name, wanted]) => ({ name, wanted }));
+        return Object.entries(this.preferences).map(([name, status]) => ({ name, status }));
     }
 
     getDynamicRangeForNutrient(nutrient) {
