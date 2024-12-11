@@ -58,18 +58,23 @@ describe('History Component', () => {
     };
 
     test('renders grouped purchases correctly', async () => {
+        jest.spyOn(historyStore, 'fetchAllPurchases').mockImplementation(async (loadingFinished) => {
+            historyStore.setHistory(mockGroupedHistory);
+            loadingFinished();
+        });
+
         renderWithContext(<History />);
 
-        expect(await screen.findByText(/Purchase List/)).toBeInTheDocument();
+        expect(await screen.findByText(/Purchase List/i)).toBeInTheDocument();
 
         Object.keys(mockGroupedHistory).forEach((yearMonth) => {
-
             mockGroupedHistory[yearMonth].forEach((purchase) => {
                 expect(screen.getByText(purchase.product.name)).toBeInTheDocument();
                 expect(screen.getByText(`Brand: ${purchase.product.brand}`)).toBeInTheDocument();
             });
         });
     });
+
 
     test('navigates to analytics page on button click', () => {
         renderWithContext(<History />);
@@ -89,11 +94,38 @@ describe('History Component', () => {
         expect(screen.getByText(/Recommended Products/i)).toBeInTheDocument();
     });
 
-    test('disables buttons when disconnected', () => {
+    test('disables buttons when disconnected', async () => {
+        jest.spyOn(historyStore, 'fetchAllPurchases').mockImplementation(async (loadingFinished) => {
+            historyStore.setHistory(mockGroupedHistory);
+            loadingFinished();
+        });
+
         renderWithContext(<History />, { connected: false, setConnected: jest.fn() });
 
-        const reportButton = screen.getAllByTestId('report-button-2024-01')[0]
+        expect(await screen.findByText(/Purchase List/i)).toBeInTheDocument();
+
+        const reportButton = screen.getAllByTestId('report-button-2024-01')[0];
 
         expect(reportButton).toBeDisabled();
+    });
+
+    test('displays "Scan your first products!" with link when history is empty', async () => {
+        const mockLoadingFinished = jest.fn();
+        jest.spyOn(historyStore, 'fetchAllPurchases').mockImplementation(async (loadingFinished) => {
+            historyStore.setHistory([]);
+            loadingFinished();
+        });
+
+        jest.spyOn(historyStore, 'getProductsGroupedByMonth').mockReturnValue({});
+
+        renderWithContext(<History />);
+
+        expect(await screen.findByText(/Your history is empty./i)).toBeInTheDocument();
+
+        const scanLink = screen.getByText(/Scan/i);
+        expect(scanLink).toBeInTheDocument();
+        expect(scanLink).toHaveAttribute('href', '/scan');
+
+
     });
 });

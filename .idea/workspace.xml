@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Blocked report generation for offline mode">
+    <list default="true" id="4d8d7e98-b3eb-42d2-a06b-532d3b44e726" name="Changes" comment="Combined recommendations with history fixes">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/stores/HistoryStore.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/stores/HistoryStore.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__tests__/utils/ConnectionContext.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/utils/ConnectionContext.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/history/MonthlyGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/history/MonthlyGroup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/recommendations/ComparisonCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/ComparisonCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/ProductCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/recommendations/RecommendationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/recommendations/RecommendationModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Analyze.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Analyze.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/History.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/History.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ApiService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/stores/HistoryStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/HistoryStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/RecommendationsStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/RecommendationsStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/URLS.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/URLS.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,38 +54,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Jest.Analyze Page.executor": "Run",
-    "Jest.Analyze Page.renders most popular brands.executor": "Run",
-    "Jest.Analyze.test.jsx.executor": "Run",
-    "Jest.ConnectionContext.test.js.executor": "Run",
-    "Jest.History.test.jsx (1).executor": "Run",
-    "Jest.History.test.jsx (2).executor": "Run",
-    "Jest.History.test.jsx.executor": "Run",
-    "Jest.HistoryStore Tests.executor": "Run",
-    "Jest.HistoryStore.test.js.executor": "Run",
-    "Jest.MonthlyGroup Component.handles PDF generation click.executor": "Run",
-    "Jest.MonthlyGroup.test.jsx.executor": "Run",
-    "Jest.Scan.test.js.executor": "Run",
-    "Node.js.ConnectionContext.js.executor": "Run",
-    "Node.js.History.jsx.executor": "Run",
-    "Node.js.MonthlyGroup.jsx.executor": "Run",
-    "Node.js.sw.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "History/Analysis-fixes",
-    "last_opened_file_path": "C:/Users/wiora/WebstormProjects/EATcareFULLY-frontend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "C:/Users/wiora/WebstormProjects/EATcareFULLY-frontend/node_modules/@craco/craco",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Jest.Analyze Page.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Analyze Page.renders most popular brands.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Analyze.test.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.ConnectionContext.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.History.test.jsx (1).executor&quot;: &quot;Run&quot;,
+    &quot;Jest.History.test.jsx (2).executor&quot;: &quot;Run&quot;,
+    &quot;Jest.History.test.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.HistoryStore Tests.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.HistoryStore.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MonthlyGroup Component.handles PDF generation click.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MonthlyGroup.test.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Scan.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.ConnectionContext.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.History.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.MonthlyGroup.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.sw.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;History/Analysis-fixes&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/wiora/WebstormProjects/EATcareFULLY-frontend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/wiora/WebstormProjects/EATcareFULLY-frontend/node_modules/@craco/craco&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Jest.MonthlyGroup.test.jsx">
+}</component>
+  <component name="RunManager" selected="Jest.History.test.jsx">
     <configuration name="History.test.jsx (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/__tests__/pages/History.test.jsx" />
+      <method v="2" />
+    </configuration>
+    <configuration name="History.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/@craco/craco" />
       <working-dir value="$PROJECT_DIR$" />
@@ -125,19 +125,16 @@
       <test-file value="$PROJECT_DIR$/src/__tests__/components/MonthlyGroup.test.jsx" />
       <method v="2" />
     </configuration>
-    <configuration name="History.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/pages/History.jsx" working-dir="$PROJECT_DIR$/src/pages">
-      <method v="2" />
-    </configuration>
     <configuration name="MonthlyGroup.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/components/history/MonthlyGroup.jsx" working-dir="$PROJECT_DIR$/src/components/history">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.History.test.jsx" />
         <item itemvalue="Jest.MonthlyGroup.test.jsx" />
         <item itemvalue="Jest.MonthlyGroup Component.handles PDF generation click" />
         <item itemvalue="Node.js.MonthlyGroup.jsx" />
         <item itemvalue="Jest.History.test.jsx (1)" />
-        <item itemvalue="Node.js.History.jsx" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +173,8 @@
       <workItem from="1733651138067" duration="2143000" />
       <workItem from="1733667281758" duration="214000" />
       <workItem from="1733667712346" duration="15274000" />
+      <workItem from="1733853744299" duration="9000" />
+      <workItem from="1733855144431" duration="3478000" />
     </task>
     <task id="LOCAL-00001" summary="Renewed look for Analysis and History tab. &#10;Connected Analytical service">
       <option name="closed" value="true" />
@@ -217,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733183195382</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Combined recommendations with history fixes">
+      <option name="closed" value="true" />
+      <created>1733797754662</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733797754662</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +247,7 @@
     <MESSAGE value="Added view for the recommendations" />
     <MESSAGE value="Fixed issue with cache, &#10;Added loading for reports,&#10;Added visibility for offline mode" />
     <MESSAGE value="Blocked report generation for offline mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Blocked report generation for offline mode" />
+    <MESSAGE value="Combined recommendations with history fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Combined recommendations with history fixes" />
   </component>
 </project>
