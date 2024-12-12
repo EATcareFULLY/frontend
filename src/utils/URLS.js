@@ -1,4 +1,4 @@
-export const API_ROOT_URL = 'http://localhost:8081/api';
+export const API_ROOT_URL = '/api';  // Changed to relative path
 export const API_URLS = {
     checkConnection: `${API_ROOT_URL}/test/hello`,
     products: `${API_ROOT_URL}/products`,
@@ -13,12 +13,11 @@ export const API_URLS = {
     testpurchases: `${API_ROOT_URL}/test/purchases`,
     historyAnalysis: `${API_ROOT_URL}/services/history-analysis`,
     recommendation: `${API_ROOT_URL}/services/recommendation-system`,
-
 };
 
-export const APP_ROOT_URL = 'http://localhost:3000';
+export const APP_ROOT_URL = 'https://eatcarefully.zpi.wit.pwr.edu.pl';
 export const APP_URLS = {
-    home: `${APP_ROOT_URL}/`,
+    home: '/',
 };
 
-export const KEYCLOAK_ROOT_URL = 'http://localhost:8080/';
+export const KEYCLOAK_ROOT_URL = 'http://eatcarefully.zpi.wit.pwr.edu.pl:3030/';

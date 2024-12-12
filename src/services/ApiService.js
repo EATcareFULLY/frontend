@@ -1,6 +1,6 @@
 import RestService from "./RestService";
 import {errorToast, successToast} from "../utils/Toasts";
-import {API_URLS} from "../utils/URLS";
+import {API_ROOT_URL, API_URLS} from "../utils/URLS";
 import {clearCacheFor} from "../utils/Cache"
 import { historyStore } from "../stores/HistoryStore";
 
@@ -9,14 +9,17 @@ class ApiService {
     static async checkConnection() {
         try {
             const response = await RestService.ajax(
-                `${API_URLS.checkConnection}`,
+                API_URLS.checkConnection,
                 "GET",
-                null
+                null,
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }
             );
-            if (response) {
-                return true;
-            }
-            return false;
+            return !!response;
         } catch (error) {
             console.error("Error checking connection:", error);
             return false;
@@ -278,33 +281,21 @@ class ApiService {
     // FUNCTION TO SETUP PREFERENCES DURING TESTING
     static async createPref() {
         try {
-            await RestService.ajax(
-                `http://localhost:8081/api/test/create-preference-name?name=Milk`,
-                "POST",
-                null
-            );
-            await RestService.ajax(
-                `http://localhost:8081/api/test/create-preference-name?name=Organic`,
-                "POST",
-                null
-            );
-            await RestService.ajax(
-                `http://localhost:8081/api/test/create-preference-name?name=Vegetarian`,
-                "POST",
-                null
-            );
-            await RestService.ajax(
-                `http://localhost:8081/api/test/create-preference-name?name=Eggs`,
-                "POST",
-                null
-            );
-            await RestService.ajax(
-                `http://localhost:8081/api/test/create-preference-name?name=Nuts`,
-                "POST",
-                null
-            );
+            const preferencesToCreate = ["Milk", "Organic", "Vegetarian", "Eggs", "Nuts"];
+
+            for (const pref of preferencesToCreate) {
+                await RestService.ajax(
+                    `${API_ROOT_URL}/test/create-preference-name`,
+                    "POST",
+                    null,
+                    {
+                        params: { name: pref }
+                    }
+                );
+            }
+
             return await RestService.ajax(
-                `http://localhost:8081/api/test/preference-name/all`,
+                `${API_ROOT_URL}/test/preference-name/all`,
                 "GET",
                 null
             );
@@ -313,11 +304,10 @@ class ApiService {
         }
     }
 
-
     static async checkPref() {
         try {
             return await RestService.ajax(
-                `http://localhost:8081/api/test/preference-name/all`,
+                `${API_ROOT_URL}/test/preference-name/all`,
                 "GET",
                 null
             );

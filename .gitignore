@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.idea
+workspace.xml
+
+eatcarefully.zpi.wit.pwr.edu.pl.key
+eatcarefully_zpi_wit_pwr_edu_pl_cert.cer
