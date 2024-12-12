@@ -6,7 +6,7 @@ const RequireConnection = ({ children}) => {
     const { connected } = useContext(ConnectionContext);
 
     if (!connected) {
-        return <NotAvailableInOfflineMode/>;
+        return children; //temp change to allow no connected users to access all pages
     }
 
     return children;
