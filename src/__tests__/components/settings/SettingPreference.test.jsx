@@ -11,13 +11,13 @@ const mockUpdate = jest.fn();
 
 const mockPropsDefault = {
     name: "Test Preference",
-    wanted: 0,
+    status: 0,
     onUpdate: mockUpdate
 };
 
 const mockPropsRecommend = {
     name: "Test Preference",
-    wanted: 1,
+    status: 1,
     onUpdate: mockUpdate
 };
 

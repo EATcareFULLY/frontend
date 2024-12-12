@@ -32,8 +32,8 @@ describe("SettingsStore", () => {
             carbon_threshold: 300,
         };
         const preferences = [
-            { name: "Milk", wanted: 1 },
-            { name: "Vegetarian", wanted: 1 },
+            { name: "Milk", status: 1 },
+            { name: "Vegetarian", status: 1 },
         ];
 
         settingsStore.setSettings(thresholds, preferences);
@@ -125,8 +125,8 @@ describe("SettingsStore", () => {
                 carbon_threshold: 300,
             },
             preferences: [
-                { name: "Milk", wanted: 1 },
-                { name: "Vegetarian", wanted: 1 },
+                { name: "Milk", status: 1 },
+                { name: "Vegetarian", status: 1 },
             ],
         };
 
@@ -178,11 +178,11 @@ describe("SettingsStore", () => {
                 carbon_threshold: 0,
             },
             [
-                { name: "Milk", wanted: 0 },
-                { name: "Eggs", wanted: 0 },
-                { name: "Nuts", wanted: 0 },
-                { name: "Vegetarian", wanted: 1 },
-                { name: "Organic", wanted: 0 },
+                { name: "Milk", status: 0 },
+                { name: "Eggs", status: 0 },
+                { name: "Nuts", status: 0 },
+                { name: "Vegetarian", status: 1 },
+                { name: "Organic", status: 0 },
             ]
         );
     });

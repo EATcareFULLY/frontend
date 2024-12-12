@@ -48,7 +48,7 @@ describe("Leaderboard Page", () => {
     });
 
     it("renders Loading component when no total positions are available", () => {
-        leaderboardStore.totalPositions = 0;
+        leaderboardStore.totalPositions = null;
 
         render(<Leaderboard />);
 
