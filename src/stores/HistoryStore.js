@@ -20,18 +20,9 @@ class HistoryStore {
                 )
             );
             loadingFinished()
-            console.log('history state',purchases.flatMap(purchase => purchase.purchaseItems).length);
+            // console.log('history state',purchases.flatMap(purchase => purchase.purchaseItems).length);
         } catch (error) {
-            console.error("Failed to fetch purchases", error);
-        }
-    }
-    async fetchAllTestPurchases() {
-        try {
-            const purchases = await ApiService.getTestPurchases();
-            this.setHistory(purchases.flatMap(purchase => purchase.purchaseItems));
-            console.log('size',purchases.flatMap(purchase => purchase.purchaseItems).length);
-        } catch (error) {
-            console.error("Failed to fetch purchases");
+            // console.error("Failed to fetch purchases", error);
         }
     }
 
@@ -76,7 +67,7 @@ class HistoryStore {
         const sortedBrands = Object.entries(brandCounts)
             .map(([name, quantity]) => ({ name, quantity }))
             .sort((a, b) => b.quantity - a.quantity)
-            .slice(0, 10); // Pobieramy top 10
+            .slice(0, 10);
 
         return sortedBrands;
     }

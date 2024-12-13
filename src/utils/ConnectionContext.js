@@ -9,7 +9,7 @@ export const ConnectionProvider = ({ children }) => {
         try {
             const status = await ApiService.checkConnection();
             setConnected(status);
-            console.log(status);
+            // console.log(status);
         } catch (error) {
             console.error('Error checking connection:', error);
             setConnected(false);

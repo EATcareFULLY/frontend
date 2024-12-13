@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 import {BiArrowBack} from "react-icons/bi";
 
 const Details = observer(() => {
-    console.log("Details component rendering");
+    // console.log("Details component rendering");
     const navigate = useNavigate();
 
     useEffect(() => {

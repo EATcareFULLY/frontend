@@ -13,7 +13,7 @@ class ScanStore {
     setProductCode(productCode) {
         this.scannedProductCode=productCode;
         localStorage.setItem('scannedProductCode', productCode);
-        console.log('storeCode', this.scannedProductCode);
+        // console.log('storeCode', this.scannedProductCode);
     }
 
     getProductCodeFromStorage(){
@@ -33,12 +33,12 @@ class ScanStore {
             this.getProductCodeFromStorage();
         }
 
-        console.log('storeCode', this.scannedProductCode);
+        // console.log('storeCode', this.scannedProductCode);
 
         let product = await ApiService.getScannedProduct(this.scannedProductCode);
 
         this.scannedProduct = this.sortIngredientsOfProduct(product);
-        console.log('storeProduct', this.scannedProduct);
+        // console.log('storeProduct', this.scannedProduct);
     }
 
     sortIngredientsOfProduct(product) {
@@ -50,7 +50,7 @@ class ScanStore {
 
     resetScannedProduct(){
         this.scannedProduct = null;
-        console.log('storeProduct', this.scannedProduct);
+        // console.log('storeProduct', this.scannedProduct);
     }
 
     async addScannedProductToPurchase(quantity){
@@ -66,7 +66,7 @@ class ScanStore {
     async getTestProduct(){
 
         this.scannedProduct = await ApiService.getTestProduct();
-        console.log('storeProduct', this.scannedProduct);
+        // console.log('storeProduct', this.scannedProduct);
     }
 
 }

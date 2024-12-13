@@ -114,9 +114,9 @@ class SettingsStore {
     async fetchSettings() {
         try {
             const settings = await ApiService.getSettings();
-            console.log("Fetched settings:", settings);
+            // console.log("Fetched settings:", settings);
             this.setSettings(settings.thresholds, settings.preferences);
-            console.log("Thresholds:", this.thresholds);
+            // console.log("Thresholds:", this.thresholds);
             console.log("Preferences:", this.preferences);
         } catch (error) {
             console.error("Failed to fetch settings:", error);
@@ -129,7 +129,7 @@ class SettingsStore {
                 this.dictionaryThresholdsToObject(),
                 this.dictionaryPreferencesToList()
             );
-            console.log("Settings POST response 1", response);
+            // console.log("Settings POST response 1", response);
 
             successToast("Settings saved successfully.");
 
@@ -187,20 +187,20 @@ class SettingsStore {
     async createPref() {
         const prefs = ApiService.createPref();
 
-        console.log("Prefs created", prefs);
+        // console.log("Prefs created", prefs);
     }
 
 
     async checkPref() {
         const prefs = ApiService.checkPref();
 
-        console.log("Prefs existing", prefs);
+        // console.log("Prefs existing", prefs);
     }
 
 
     async setupSetting() {
         const response = ApiService.setupSettings();
-        console.log("setup response", response);
+        // console.log("setup response", response);
     }
 
 

@@ -12,7 +12,7 @@ self.addEventListener('install', event => {
     self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            console.log('Opened cache');
+            // console.log('Opened cache');
             return cache.addAll(urlsToCache);
         }).catch(err => {
             console.error('Failed to cache resources during install', err);
@@ -37,7 +37,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-    console.log('Fetching:', event.request.url);
+    // console.log('Fetching:', event.request.url);
 
     event.respondWith(
         fetch(event.request)
@@ -54,7 +54,7 @@ self.addEventListener('fetch', event => {
             .catch(() => {
                 return caches.match(event.request).then(cachedResponse => {
                     if (cachedResponse) {
-                        console.log("Returning cached response as fallback:", event.request.url);
+                        // console.log("Returning cached response as fallback:", event.request.url);
                     }
                     return cachedResponse || new Response("Offline and no cache available", {
                         status: 503,

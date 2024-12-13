@@ -12,7 +12,7 @@ const BarcodeScanner = ({ barcodeSubmition }) => {
         );
 
         function onScanSuccess(decodedText, decodedResult) {
-            console.log(`Code matched = ${decodedText}`, decodedResult);
+            // console.log(`Code matched = ${decodedText}`, decodedResult);
             barcodeSubmition(decodedText);
         }
 

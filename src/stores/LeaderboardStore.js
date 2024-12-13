@@ -17,13 +17,13 @@ class LeaderboardStore {
         this.userPosition = userPosition;
         this.totalPositions= totalPositions;
 
-        console.log("leaderboardStore", topPositions);
+        // console.log("leaderboardStore", topPositions);
     }
 
     async fetchUsersLeaderboard() {
         try {
             const leaderboard = await ApiService.getLeaderboard();
-            console.log("leaderboard", leaderboard);
+            // console.log("leaderboard", leaderboard);
             this.setLeaderboard(leaderboard.topPositions, leaderboard.userContext, leaderboard.userPosition, leaderboard.totalPositions);
         } catch (error) {
             console.error("Failed to fetch user's leaderboard");
@@ -34,7 +34,7 @@ class LeaderboardStore {
         try {
             const leaderboard = await ApiService.getLeaderboardByUsername(username);
             this.setLeaderboard(leaderboard.topPositions, leaderboard.userContext, leaderboard.userPosition, leaderboard.totalPositions);
-            console.log("leaderboard", leaderboard);
+            // console.log("leaderboard", leaderboard);
         } catch (error) {
             console.error("Failed to fetch another user's leaderboard");
             throw error;

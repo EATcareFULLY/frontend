@@ -47,7 +47,7 @@ class RecommendationsStore {
 
     setProductRecommendationsData(productRecommendationsData) {
         this.productRecommendationsData=productRecommendationsData;
-        console.log('currentProductsRecommendations', this.productRecommendationsData);
+        // console.log('currentProductsRecommendations', this.productRecommendationsData);
     }
 
 
@@ -61,7 +61,6 @@ class RecommendationsStore {
     getSourceProduct()
     {
         const sourcePurchase = historyStore.history.find(purchase => purchase.product.id === this.productRecommendationsData['source_product_code']);
-        // Then transform that single product if found
         const product = sourcePurchase ? {
             ...sourcePurchase.product,
             nutriScoreImage: scoreImages[sourcePurchase.product.score.toUpperCase() || 'unknown']
@@ -72,21 +71,20 @@ class RecommendationsStore {
 
 
     async fetchRecommendations() {
-        console.log('Starting recommendations fetch...');
+        // console.log('Starting recommendations fetch...');
         try {
             const result = await ApiService.getRecommendations();
 
-            // Check if we got an error object
             if (result.error) {
                 console.error(`Recommendation error (${result.status}):`, result.message);
 
                 switch (result.status) {
                     case 404:
-                        console.log('No recommendations available, clearing current data');
+                        // console.log('No recommendations available, clearing current data');
                         break;
 
                     case 503:
-                        console.log('Service unavailable, attempting to load cached recommendations');
+                        // console.log('Service unavailable, attempting to load cached recommendations');
 
                         break;
 
@@ -96,16 +94,15 @@ class RecommendationsStore {
                 return [];
             }
 
-            console.log('Successfully fetched recommendations:', result);
+            // console.log('Successfully fetched recommendations:', result);
             this.setProductRecommendationsData(result);
-            console.log('currentProductsRecommendations', this.productRecommendationsData);
+            // console.log('currentProductsRecommendations', this.productRecommendationsData);
             this.setRecommendations(result['recommendations']);
             this.recommendations = this.transformIntoRecommendedProducts();
-            console.log('recommendations', this.recommendations);
+            // console.log('recommendations', this.recommendations);
             return result;
 
         } catch (error) {
-            // Handle any unexpected errors
             console.error('Unexpected error in fetchRecommendations:', error);
             return [];
         }

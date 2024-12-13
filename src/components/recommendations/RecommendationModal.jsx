@@ -14,16 +14,13 @@ const RecommendationModal = ({ closeModal }) => {
 
 
 
-    // This useEffect handles cleanup on unmount
     useEffect(() => {
         return () => {
             isMounted.current = false;
         };
     }, []);
 
-    // This useEffect handles the initial loading animation
     useEffect(() => {
-        // Add a small delay before showing the modal for a smooth entrance
         const showTimeout = setTimeout(() => {
             if (isMounted.current) {
                 setIsVisible(true);
@@ -31,16 +28,15 @@ const RecommendationModal = ({ closeModal }) => {
         }, 100);
 
         return () => clearTimeout(showTimeout);
-    }, []); // We only want this to run once when the modal mounts
+    }, []);
 
-    // This useEffect handles the recommendations loading
     useEffect(() => {
         async function loadRecommendations() {
             setIsLoading(true);
             try {
-                console.log(`[INFO] ${COMPONENT_NAME}: Starting fetch`);
+                // console.log(`[INFO] ${COMPONENT_NAME}: Starting fetch`);
                 await recommendationsStore.fetchRecommendations();
-                console.log(`[INFO] ${COMPONENT_NAME}: Fetch complete`, recommendationsStore.productRecommendationsData);
+                // console.log(`[INFO] ${COMPONENT_NAME}: Fetch complete`, recommendationsStore.productRecommendationsData);
 
             } catch (error) {
                 console.error(`[ERROR] ${COMPONENT_NAME}: Fetch failed`, error);
@@ -54,13 +50,11 @@ const RecommendationModal = ({ closeModal }) => {
         loadRecommendations();
     }, []);
 
-    console.log('recommendationsStore', recommendationsStore.recommendations);
+    // console.log('recommendationsStore', recommendationsStore.recommendations);
 
-    // Handle the close modal action with animation
     const handleClose = () => {
         setIsVisible(false);
-        // Wait for the animation to complete before actually closing
-        setTimeout(closeModal, 500); // Match this with your CSS transition duration
+        setTimeout(closeModal, 500);
     };
 
     return (

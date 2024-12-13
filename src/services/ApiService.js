@@ -167,7 +167,7 @@ class ApiService {
                 formData
             );
 
-            console.log("label response img", response)
+            // console.log("label response img", response)
 
             return response;
 
@@ -193,7 +193,7 @@ class ApiService {
                 dto
             );
 
-            console.log("label response text", response)
+            // console.log("label response text", response)
 
             return response;
 
@@ -267,7 +267,7 @@ class ApiService {
                 settings
             );
 
-            console.log("Settings POST response", response);
+            // console.log("Settings POST response", response);
 
             return response;
 

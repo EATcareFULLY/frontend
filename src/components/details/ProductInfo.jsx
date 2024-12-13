@@ -28,7 +28,7 @@ const ProductInfo = ({ imageURL, id, name, brand, score }) => {
 
         const achievements = await scanStore.addScannedProductToPurchase(quantityToAdd);
 
-        console.log("achievements", achievements);
+        // console.log("achievements", achievements);
 
         achievementUnlockedToasts(achievements);
     };

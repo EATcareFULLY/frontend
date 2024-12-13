@@ -66,7 +66,7 @@ class LabelStore {
                 analysis = await this.analyzeLabelFromText();
             }
 
-            console.log("label analysis", analysis);
+            // console.log("label analysis", analysis);
             this.setLabelDescription(analysis);
         } catch (error) {
             throw error;
@@ -74,8 +74,8 @@ class LabelStore {
     }
 
     async analyzeLabelFromText() {
-        console.log("label text", this.labelText);
-        console.log("label image", this.labelImg);
+        // console.log("label text", this.labelText);
+        // console.log("label image", this.labelImg);
 
         try {
             return await ApiService.analyzeLabelText(this.labelText);
@@ -85,11 +85,11 @@ class LabelStore {
     }
 
     async analyzeLabelFromImage() {
-        console.log("label text", this.labelText);
-        console.log("label image", this.labelImg);
+        // console.log("label text", this.labelText);
+        // console.log("label image", this.labelImg);
 
         const imageBlob = this.base64ToBlob(this.labelImg, 'image/jpeg');
-        console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
+        // console.log(`Blob size: ${imageBlob.size}, type: ${imageBlob.type}`);
 
         try {
             return  await ApiService.analyzeLabelImg(imageBlob);
