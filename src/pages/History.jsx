@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import {observer} from "mobx-react";
 import {historyStore} from "../stores/HistoryStore";
@@ -17,6 +17,7 @@ import nutri_unknown from '../assets/nutri-score/nutri-score-unknown.svg';
 import './History.css';
 import RecommendationModal from '../components/recommendations/RecommendationModal';
 import {Link} from "react-router-dom"
+import {ConnectionContext} from "../utils/ConnectionContext";
 
 const monthIcons = {
     "01": <FaSnowflake className="text-white"/>,
@@ -37,16 +38,23 @@ const History = observer(() => {
 
     const [showRecommendationModal, setShowRecommendationModal] = useState(false);
     const [isFetched, setIsFetched] = useState(false);
+    const {connected} = useContext(ConnectionContext);
 
     const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             await historyStore.fetchAllPurchases(loadingFinished);
-            console.log("history", historyStore.history);
+            // console.log("history", historyStore.history);
         };
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if(!connected) {
+            setIsFetched(true);
+        }
+    }, [connected]);
 
     const showDetails = (barcode) => {
         scanStore.setProductCode(barcode);
@@ -54,14 +62,14 @@ const History = observer(() => {
     }
     const loadingFinished = () => {
         setIsFetched(true)
-        console.log("fetched set", isFetched)
+        // console.log("fetched set", isFetched)
     }
     const showAnalyze = () => {
         navigate('/Analyze')
     }
     const showModal = () => {
         setShowRecommendationModal(true)
-        console.log("modal", showRecommendationModal)
+        // console.log("modal", showRecommendationModal)
     }
     const closeModal = () => {
         setShowRecommendationModal(false)
