@@ -1,4 +1,4 @@
-export const API_ROOT_URL = '/api';  // Changed to relative path
+export const API_ROOT_URL = '/api';  // relative path because of proxy
 export const API_URLS = {
     checkConnection: `${API_ROOT_URL}/test/hello`,
     products: `${API_ROOT_URL}/products`,
@@ -17,7 +17,7 @@ export const API_URLS = {
 
 export const APP_ROOT_URL = 'https://eatcarefully.zpi.wit.pwr.edu.pl';
 export const APP_URLS = {
-    home: '/',
+    home: `${APP_ROOT_URL}/`,
 };
 
-export const KEYCLOAK_ROOT_URL = 'http://eatcarefully.zpi.wit.pwr.edu.pl:3030/';
+export const KEYCLOAK_ROOT_URL = '/auth/';

@@ -1,10 +1,9 @@
 import Keycloak from "keycloak-js";
-import {KEYCLOAK_ROOT_URL} from "./URLS";
 
 const keycloak = new Keycloak({
-    url: `${KEYCLOAK_ROOT_URL}`,
+    url: `${window.location.origin}/auth`,
     realm: "eat-carefully",
-    clientId: "frontend_client_docker",
+    clientId: "frontend_client_docker"
 });
 
 export default keycloak;
